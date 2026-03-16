@@ -8,7 +8,10 @@ domain: latent-world-models
 # World Models
 
 !!! info "Information"
-    - **Paper:** [World Models](https://arxiv.org/abs/1803.10122)
+    - **Title:** World Models
+    - **Venue:** NeurIPS 2018
+    - **Paper:** [arXiv](https://arxiv.org/abs/1803.10122)
+    - **Code:**
     - **Presenter:**
     - **Last updated:**
 

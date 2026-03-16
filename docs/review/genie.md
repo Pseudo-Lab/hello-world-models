@@ -8,7 +8,10 @@ domain: generative-world-models
 # Genie: Generative Interactive Environments
 
 !!! info "Information"
-    - **Paper:** [Genie](https://arxiv.org/abs/2402.15391)
+    - **Title:** Genie: Generative Interactive Environments
+    - **Venue:** ICML 2024
+    - **Paper:** [arXiv](https://arxiv.org/abs/2402.15391)
+    - **Code:**
     - **Presenter:**
     - **Last updated:**
 

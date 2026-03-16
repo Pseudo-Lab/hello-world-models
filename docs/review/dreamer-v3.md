@@ -8,7 +8,10 @@ domain: latent-world-models
 # Mastering Diverse Domains through World Models (DreamerV3)
 
 !!! info "Information"
-    - **Paper:** [DreamerV3](https://arxiv.org/abs/2301.04104)
+    - **Title:** Mastering Diverse Domains through World Models (DreamerV3)
+    - **Venue:** ICLR 2023
+    - **Paper:** [arXiv](https://arxiv.org/abs/2301.04104)
+    - **Code:**
     - **Presenter:**
     - **Last updated:**
 

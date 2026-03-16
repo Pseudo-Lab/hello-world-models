@@ -8,7 +8,10 @@ domain: latent-world-models
 # Dream to Control: Learning Behaviors by Latent Imagination (Dreamer)
 
 !!! info "Information"
-    - **Paper:** [Dreamer](https://arxiv.org/abs/1912.01603)
+    - **Title:** Dream to Control: Learning Behaviors by Latent Imagination (Dreamer)
+    - **Venue:** ICLR 2020
+    - **Paper:** [arXiv](https://arxiv.org/abs/1912.01603)
+    - **Code:**
     - **Presenter:**
     - **Last updated:**
 
