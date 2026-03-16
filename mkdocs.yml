@@ -1,4 +1,4 @@
-site_name: Hello, World! — World Models Study
+site_name: "Hello, World!"
 site_description: World Models 논문 리뷰 및 스터디 자료
 site_url: ''
 repo_url: https://github.com/Pseudo-Lab/hello-world-models
@@ -27,7 +27,6 @@ theme:
   - search.highlight
   - search.suggest
   - content.code.copy
-  - content.action.edit
   custom_dir: overrides
 plugins:
 - search
@@ -47,6 +46,8 @@ markdown_extensions:
 - tables
 - toc:
     permalink: true
+extra_css:
+- stylesheets/extra.css
 extra_javascript:
 - javascripts/mathjax.js
 - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
