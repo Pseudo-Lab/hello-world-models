@@ -7,11 +7,10 @@ domain: latent-world-models
 
 # World Models
 
-```{admonition} Information
-- **Paper:** [World Models](https://arxiv.org/abs/1803.10122)
-- **Presenter:**
-- **Last updated:**
-```
+!!! info "Information"
+    - **Paper:** [World Models](https://arxiv.org/abs/1803.10122)
+    - **Presenter:**
+    - **Last updated:**
 
 ## Summary
 

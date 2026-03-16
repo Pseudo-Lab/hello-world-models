@@ -7,11 +7,10 @@ domain: predictive-world-models
 
 # V-JEPA: Video Joint Embedding Predictive Architecture
 
-```{admonition} Information
-- **Paper:** [V-JEPA](https://arxiv.org/abs/2404.08471)
-- **Presenter:**
-- **Last updated:**
-```
+!!! info "Information"
+    - **Paper:** [V-JEPA](https://arxiv.org/abs/2404.08471)
+    - **Presenter:**
+    - **Last updated:**
 
 ## Summary
 

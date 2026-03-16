@@ -7,11 +7,10 @@ domain: latent-world-models
 
 # Mastering Atari with Discrete World Models (DreamerV2)
 
-```{admonition} Information
-- **Paper:** [DreamerV2](https://arxiv.org/abs/2010.02193)
-- **Presenter:**
-- **Last updated:**
-```
+!!! info "Information"
+    - **Paper:** [DreamerV2](https://arxiv.org/abs/2010.02193)
+    - **Presenter:**
+    - **Last updated:**
 
 ## Summary
 

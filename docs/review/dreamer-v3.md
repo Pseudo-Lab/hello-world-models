@@ -7,11 +7,10 @@ domain: latent-world-models
 
 # Mastering Diverse Domains through World Models (DreamerV3)
 
-```{admonition} Information
-- **Paper:** [DreamerV3](https://arxiv.org/abs/2301.04104)
-- **Presenter:**
-- **Last updated:**
-```
+!!! info "Information"
+    - **Paper:** [DreamerV3](https://arxiv.org/abs/2301.04104)
+    - **Presenter:**
+    - **Last updated:**
 
 ## Summary
 

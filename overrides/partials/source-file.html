@@ -1,0 +1,13 @@
+{% if page.edit_url %}
+  <a href="{{ page.edit_url }}" title="Edit this page" class="md-content__button md-icon">
+    {% set icon = config.theme.icon.edit or "material/pencil" %}
+    {% include ".icons/" ~ icon ~ ".svg" %}
+  </a>
+{% endif %}
+
+{% if page.edit_url %}
+  {% set download_url = page.edit_url | replace("edit/", "raw/") %}
+  <a href="{{ download_url }}" title="Download source" class="md-content__button md-icon" download>
+    {% include ".icons/material/download.svg" %}
+  </a>
+{% endif %}

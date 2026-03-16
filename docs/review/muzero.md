@@ -7,11 +7,10 @@ domain: latent-world-models
 
 # Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model (MuZero)
 
-```{admonition} Information
-- **Paper:** [MuZero](https://arxiv.org/abs/1911.08265)
-- **Presenter:**
-- **Last updated:**
-```
+!!! info "Information"
+    - **Paper:** [MuZero](https://arxiv.org/abs/1911.08265)
+    - **Presenter:**
+    - **Last updated:**
 
 ## Summary
 

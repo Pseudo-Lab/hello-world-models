@@ -1,6 +1,9 @@
 site_name: Hello, World! — World Models Study
 site_description: World Models 논문 리뷰 및 스터디 자료
 site_url: ''
+repo_url: https://github.com/Pseudo-Lab/hello-world-models
+repo_name: Pseudo-Lab/hello-world-models
+edit_uri: edit/main/docs/
 theme:
   name: material
   language: ko
@@ -24,6 +27,8 @@ theme:
   - search.highlight
   - search.suggest
   - content.code.copy
+  - content.action.edit
+  custom_dir: overrides
 plugins:
 - search
 markdown_extensions:

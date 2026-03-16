@@ -7,11 +7,10 @@ domain: generative-world-models
 
 # Cosmos World Foundation Model Platform for Physical AI
 
-```{admonition} Information
-- **Paper:** [Cosmos](https://arxiv.org/abs/2501.03575)
-- **Presenter:**
-- **Last updated:**
-```
+!!! info "Information"
+    - **Paper:** [Cosmos](https://arxiv.org/abs/2501.03575)
+    - **Presenter:**
+    - **Last updated:**
 
 ## Summary
 

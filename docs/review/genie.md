@@ -7,11 +7,10 @@ domain: generative-world-models
 
 # Genie: Generative Interactive Environments
 
-```{admonition} Information
-- **Paper:** [Genie](https://arxiv.org/abs/2402.15391)
-- **Presenter:**
-- **Last updated:**
-```
+!!! info "Information"
+    - **Paper:** [Genie](https://arxiv.org/abs/2402.15391)
+    - **Presenter:**
+    - **Last updated:**
 
 ## Summary
 
