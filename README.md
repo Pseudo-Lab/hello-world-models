@@ -2,7 +2,7 @@
 
 본 프로젝트는 [가짜연구소(PseudoLab)](https://www.linkedin.com/company/pseudolab/)에서 진행하는 World Models 스터디입니다. World Models 관련 논문을 리뷰하고 스터디 자료를 정리하는 공간입니다.
 
-참여 방법: 매주 수요일 오후 9시, 가짜연구소 Discord ROOM-GH로 입장!
+참여 방법: 매주 수요일 오후 9시, 가짜연구소 Discord ROOM-AK로 입장!
 
 ## Contributors
 - 유정화 [Jeonghwa Yoo] | [Github](https://github.com/jeongHwarr) | [Linkedin](https://www.linkedin.com/in/jeonghwa-yoo-8403a716b/) |
