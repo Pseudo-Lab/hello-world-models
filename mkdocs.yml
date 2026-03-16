@@ -1,0 +1,66 @@
+site_name: Hello, World! — World Models Study
+site_description: World Models 논문 리뷰 및 스터디 자료
+site_url: ''
+theme:
+  name: material
+  language: ko
+  palette:
+  - scheme: default
+    primary: indigo
+    accent: indigo
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - scheme: slate
+    primary: indigo
+    accent: indigo
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+  features:
+  - navigation.sections
+  - navigation.expand
+  - navigation.top
+  - search.highlight
+  - search.suggest
+  - content.code.copy
+plugins:
+- search
+markdown_extensions:
+- admonition
+- pymdownx.details
+- pymdownx.superfences
+- pymdownx.arithmatex:
+    generic: true
+- pymdownx.highlight:
+    anchor_linenums: true
+- pymdownx.inlinehilite
+- pymdownx.tabbed:
+    alternate_style: true
+- attr_list
+- md_in_html
+- tables
+- toc:
+    permalink: true
+extra_javascript:
+- javascripts/mathjax.js
+- https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+nav:
+- Home: index.md
+- Latent World Models:
+  - World Models (2018): review/world-models.md
+  - PlaNet (2019): review/planet.md
+  - Dreamer (2020): review/dreamer.md
+  - MuZero (2020): review/muzero.md
+  - DreamerV2 (2021): review/dreamer-v2.md
+  - DreamerV3 (2023): review/dreamer-v3.md
+- Sequence-Based World Models:
+  - Decision Transformer (2021): review/decision-transformer.md
+  - Trajectory Transformer (2021): review/trajectory-transformer.md
+- Predictive World Models:
+  - CPC (2018): review/CPC.md
+  - V-JEPA (2023): review/v-jepa.md
+  - V-JEPA 2 (2025): review/v-jepa-2.md
+- Generative World Models:
+  - Genie (2024): review/genie.md
+  - Cosmos (2025): review/cosmos.md
