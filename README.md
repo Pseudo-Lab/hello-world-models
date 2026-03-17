@@ -10,19 +10,19 @@
 ## Reviewed Papers
 | idx | Date | Presenter | Paper | Resources |
 | :--: | :--: | :--: | :--: | :--: |
-| 1 | | | [World Models](https://arxiv.org/abs/1803.10122) (NeurIPS 2018) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/world-models/) |
-| 2 | | | [PlaNet](https://arxiv.org/abs/1811.04551) (ICML 2019) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/planet/) |
-| 3 | | | [Dreamer](https://arxiv.org/abs/1912.01603) (ICLR 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer/) |
-| 4 | | | [DreamerV2](https://arxiv.org/abs/2010.02193) (ICLR 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v2/) |
-| 5 | | | [MuZero](https://arxiv.org/abs/1911.08265) (Nature 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/muzero/) |
-| 6 | | | [DreamerV3](https://arxiv.org/abs/2301.04104) (ICLR 2023) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v3/) |
-| 7 | | | [Trajectory Transformer](https://arxiv.org/abs/2106.02039) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/trajectory-transformer/) |
-| 8 | | | [Decision Transformer](https://arxiv.org/abs/2106.01345) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/decision-transformer/) |
-| 9 | | | [CPC](https://arxiv.org/abs/1807.03748) (arXiv 2018) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/CPC/) |
-| 10 | | | [V-JEPA](https://arxiv.org/abs/2404.08471) (arXiv 2023) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa/) |
-| 11 | | | [V-JEPA 2](https://ai.meta.com/research/publications/v-jepa-2-self-supervised-video-models-enable-understanding-prediction-and-planning/) (arXiv 2025) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa-2/) |
-| 12 | | | [Genie](https://arxiv.org/abs/2402.15391) (ICML 2024) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/genie/) |
-| 13 | | | [Cosmos](https://arxiv.org/abs/2501.03575) (arXiv 2025) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/cosmos/) |
+| 1 | 2026-03-25 | | [World Models](https://arxiv.org/abs/1803.10122) (NeurIPS 2018) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/world-models/) |
+| 2 | 2026-04-01 | | [PlaNet](https://arxiv.org/abs/1811.04551) (ICML 2019) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/planet/) |
+| 3 | 2026-04-08 | | [Dreamer](https://arxiv.org/abs/1912.01603) (ICLR 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer/) |
+| 4 | 2026-04-15 | | [DreamerV2](https://arxiv.org/abs/2010.02193) (ICLR 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v2/) |
+| 5 | 2026-04-22 | | [MuZero](https://arxiv.org/abs/1911.08265) (Nature 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/muzero/) |
+| 6 | 2026-05-06 | | [DreamerV3](https://arxiv.org/abs/2301.04104) (ICLR 2023) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v3/) |
+| 7 | 2026-05-13 | | [Trajectory Transformer](https://arxiv.org/abs/2106.02039) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/trajectory-transformer/) |
+| 8 | 2026-05-20 | | [Decision Transformer](https://arxiv.org/abs/2106.01345) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/decision-transformer/) |
+| 9 | 2026-06-03 | | [CPC](https://arxiv.org/abs/1807.03748) (arXiv 2018) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/CPC/) |
+| 10 | 2026-06-10 | | [V-JEPA](https://arxiv.org/abs/2404.08471) (arXiv 2023) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa/) |
+| 11 | 2026-06-17 | | [V-JEPA 2](https://ai.meta.com/research/publications/v-jepa-2-self-supervised-video-models-enable-understanding-prediction-and-planning/) (arXiv 2025) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa-2/) |
+| 12 | 2026-06-24 | | [Genie](https://arxiv.org/abs/2402.15391) (ICML 2024) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/genie/) |
+| 13 | 2026-07-01 | | [Cosmos](https://arxiv.org/abs/2501.03575) (arXiv 2025) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/cosmos/) |
 
 ## MkDocs 사용 가이드
 
