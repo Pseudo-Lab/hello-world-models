@@ -7,11 +7,12 @@
 ## Contributors
 - 유정화 [Jeonghwa Yoo] | [Github](https://github.com/jeongHwarr) | [Linkedin](https://www.linkedin.com/in/jeonghwa-yoo-8403a716b/) |
 - 김주연 [Juyeon Kim] | [Github](https://github.com/JYeonKim) | [Linkedin](https://www.linkedin.com/in/ju-yeon-kim) |
+- 장보아 [Boa Jang] | [Github](https://github.com/Jang-Boa) | [Linkedin](https://www.linkedin.com/in/boa-jang-93a72918a) |
 
 ## Reviewed Papers
 | idx | Date | Presenter | Paper | Resources |
 | :--: | :--: | :--: | :--: | :--: |
-| 1 | 2026-03-25 | | [World Models](https://arxiv.org/abs/1803.10122) (NeurIPS 2018) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/world-models/) |
+| 1 | 2026-03-25 | 장보아 | [World Models](https://arxiv.org/abs/1803.10122) (NeurIPS 2018) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/world-models/) |
 | 2 | 2026-04-01 | | [PlaNet](https://arxiv.org/abs/1811.04551) (ICML 2019) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/planet/) |
 | 3 | 2026-04-08 | 김주연 | [Dreamer](https://arxiv.org/abs/1912.01603) (ICLR 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer/) |
 | 4 | 2026-04-15 | | [DreamerV2](https://arxiv.org/abs/2010.02193) (ICLR 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v2/) |
