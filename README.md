@@ -6,6 +6,7 @@
 
 ## Contributors
 - 유정화 [Jeonghwa Yoo] | [Github](https://github.com/jeongHwarr) | [Linkedin](https://www.linkedin.com/in/jeonghwa-yoo-8403a716b/) |
+- 김주연 [Juyeon Kim] | [Github](https://github.com/JYeonKim) | [Linkedin](https://www.linkedin.com/in/ju-yeon-kim) |
 
 ## Reviewed Papers
 | idx | Date | Presenter | Paper | Resources |
