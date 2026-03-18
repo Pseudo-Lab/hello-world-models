@@ -1,0 +1,237 @@
+/* @theme review */
+/* Author: 유정화 스타일 */
+/* License: MIT */
+
+/* 기본 테마 기반 */
+@import "default";
+
+/* 폰트 설정 */
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap"); */
+/* @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Source+Code+Pro:wght@400;600&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;700&family=IBM+Plex+Mono:wght@400;600&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --color-background: #ffffff;
+  --color-foreground: #111111;
+  --color-primary: #8a1538; /* 헤더/포인트 색 (진한 와인색) */
+  --color-secondary: #1a1a1a;
+  /* --font-main: "Noto Serif", serif;
+  --font-code: "Source Code Pro", monospace; */
+  /* --font-main: 'Merriweather', serif;
+  --font-code: 'Source Code Pro', monospace; */
+  /* --font-main: 'Noto Sans', 'Noto Sans KR', sans-serif;
+  --font-code: 'JetBrains Mono', monospace; */
+  /* --font-main: 'IBM Plex Serif', serif;
+  --font-code: 'IBM Plex Mono', monospace; */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+}
+
+/* 슬라이드 전체 */
+section {
+  font-family: var(--font-main);
+  background: var(--color-background);
+  color: var(--color-foreground);
+  padding: 60px 70px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* 헤더 (상단 바) */
+header {
+  background: var(--color-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  padding: 10px 25px;
+}
+
+/* 제목 스타일 */
+h1,
+h2,
+h3 {
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 0.4em;
+}
+h1 {
+  font-size: 2.1rem;
+  border-bottom: 4px solid var(--color-primary);
+  padding-bottom: 6px;
+}
+h2 {
+  font-size: 1.6rem;
+  border-left: 6px solid var(--color-primary);
+  padding-left: 12px;
+}
+h3 {
+  font-size: 1.3rem;
+}
+
+/* 본문 */
+p {
+  margin: 0.5em 0;
+}
+
+/* 리스트 */
+ul,
+ol {
+  margin: 0.3em 0 0.5em 1.4em;
+}
+
+/* 인용문 */
+blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1em;
+  /* color: #555; */
+  font-style: italic;
+  background: #fafafa;
+  color: var(--color-primary); /* 🔥 텍스트를 강조 색상(빨간)으로 설정 */
+}
+
+/* 코드 블록 */
+code,
+pre {
+  font-family: var(--font-code);
+  background: #f5f5f5;
+  border-radius: 6px;
+  padding: 0.2em 0.4em;
+  color: #c7254e;
+}
+
+/* 슬라이드 구분 (리드) */
+section.lead h1 {
+  font-size: 2.6rem;
+  text-align: left;
+  color: var(--color-primary);
+}
+
+/* 페이지 번호 */
+section::after {
+  content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+  color: #999;
+  font-size: 0.8rem;
+  position: absolute;
+  right: 40px;
+  bottom: 20px;
+}
+
+/* 강조 */ 
+strong { color: var(--color-primary); }
+
+img[alt*="%"] {
+  display: block;
+  margin: 0.5em auto;
+}
+
+/* ===== 퍼센트 단위 이미지 크기 지원 ===== */
+img[alt~="w10"]{width:10% !important;height:auto}
+img[alt~="w20"]{width:20% !important;height:auto}
+img[alt~="w30"]{width:30% !important;height:auto}
+img[alt~="w40"]{width:40% !important;height:auto}
+img[alt~="w50"]{width:50% !important;height:auto}
+img[alt~="w60"]{width:60% !important;height:auto}
+img[alt~="w70"]{width:70% !important;height:auto}
+img[alt~="w80"]{width:80% !important;height:auto}
+img[alt~="w90"]{width:90% !important;height:auto}
+img[alt~="w100"]{width:100% !important;height:auto}
+
+/* 중앙 정렬 옵션 */
+img[alt~="center"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section .katex-display { text-align: left !important; }
+
+/* 내용이 조금 많을 때 */
+section.small {
+  font-size: 1.2em !important;   /* 약 0.9배 */
+  line-height: 1.2 !important;
+}
+
+/* 내용이 꽤 많을 때 */
+section.xsmall {
+  font-size: 0.9em !important;   /* 약 0.82배 */
+  line-height: 1.45 !important;
+}
+
+/* 내용이 정말 많은 경우 */
+section.xxsmall {
+  font-size: 0.8em !important;   /* 약 0.72배 */
+  line-height: 1.4 !important;
+}
+
+/* ===== Two-column layout support ===== */
+
+section.two-col .columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;             /* 두 단 사이 여백 */
+}
+
+section.two-col .col {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 왼쪽과 오른쪽 비율 (필요 시 조절 가능) */
+section.two-col .col.left  { flex: 0.48; }
+section.two-col .col.right { flex: 0.48; }
+
+/* 내용 정렬 / 세부 스타일 */
+section.two-col .col p,
+section.two-col .col ul {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+/* 반응형 대비 */
+section.two-col img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* === 리스트 들여쓰기 표준화 === */
+:root {
+  /* 1레벨·2레벨 들여쓰기 기준 (지금 1.4em 쓰고 있다면 그대로) */
+  --indent-1: 1.4em;   /* top-level <ul> 패딩 */
+  --indent-2: 1.0em;   /* nested <ul> 패딩 (원하면 0.8~1.0em로 조정) */
+}
+
+/* 1레벨: margin-left 대신 padding-left로 통일(브라우저 기본 오차 제거) */
+section ul, section ol {
+  margin: 0.3em 0 0.5em 0 !important;
+  padding-left: var(--indent-1) !important;
+}
+
+/* === continuation slide: l2 / l3 === */
+/* l2 슬라이드에서는 1레벨 불릿을 (1레벨 + 2레벨)만큼 들여써서 '진짜 2레벨'과 동일하게 */
+section.l2 ul { 
+  padding-left: calc(var(--indent-1) + var(--indent-2)) !important;
+  list-style-type: circle; /* 2레벨 모양으로 */
+}
+/* 문단도 같은 라인에 맞추고 싶으면 */
+section.l2 p { 
+  margin-left: calc(var(--indent-1) + var(--indent-2)) !important; 
+}
+
+/* 필요 시 3레벨 계속 슬라이드 */
+section.l3 ul { 
+  padding-left: calc(var(--indent-1) + var(--indent-2) + var(--indent-2)) !important; 
+  list-style-type: square;
+}
+section.l3 p { 
+  margin-left: calc(var(--indent-1) + var(--indent-2) + var(--indent-2)) !important; 
+}
+
+/* Export(=print)에서만 살짝 더 줄여줌 */
+@media print {
+  section.small  { font-size: 0.93em !important; }
+  section.xsmall { font-size: 0.88em !important; }
+  section.xxsmall{ font-size: 0.75em !important; }
+}

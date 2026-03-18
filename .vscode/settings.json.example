@@ -1,0 +1,5 @@
+{
+  "markdown.marp.themes": [
+    "./templates/marp/review.css"
+  ]
+}
