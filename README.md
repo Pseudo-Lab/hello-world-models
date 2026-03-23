@@ -19,7 +19,7 @@
 | 5 | 2026-04-22 | | [MuZero](https://arxiv.org/abs/1911.08265) (Nature 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/muzero/) |
 | 6 | 2026-05-06 | | [DreamerV3](https://arxiv.org/abs/2301.04104) (ICLR 2023) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v3/) |
 | 7 | 2026-05-13 | | [Trajectory Transformer](https://arxiv.org/abs/2106.02039) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/trajectory-transformer/) |
-| 8 | 2026-05-20 | | [Decision Transformer](https://arxiv.org/abs/2106.01345) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/decision-transformer/) |
+| 8 | 2026-05-20 | 김현수 | [Decision Transformer](https://arxiv.org/abs/2106.01345) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/decision-transformer/) |
 | 9 | 2026-06-03 | | [CPC](https://arxiv.org/abs/1807.03748) (arXiv 2018) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/CPC/) |
 | 10 | 2026-06-10 | | [V-JEPA](https://arxiv.org/abs/2404.08471) (arXiv 2023) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa/) |
 | 11 | 2026-06-17 | 김주연 | [V-JEPA 2](https://ai.meta.com/research/publications/v-jepa-2-self-supervised-video-models-enable-understanding-prediction-and-planning/) (arXiv 2025) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa-2/) |
