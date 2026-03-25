@@ -12,6 +12,7 @@
 ## Reviewed Papers
 | idx | Date | Presenter | Paper | Resources |
 | :--: | :--: | :--: | :--: | :--: |
+| 0 | 2026-03-18 | 유정화 | World Models Introduction & Overview| [YouTube ](https://youtu.be/F_Vd7-3JUc8)/ [Review] |
 | 1 | 2026-03-25 | 장보아 | [World Models](https://arxiv.org/abs/1803.10122) (NeurIPS 2018) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/world-models/) |
 | 2 | 2026-04-01 | | [PlaNet](https://arxiv.org/abs/1811.04551) (ICML 2019) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/planet/) |
 | 3 | 2026-04-08 | 김주연 | [Dreamer](https://arxiv.org/abs/1912.01603) (ICLR 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer/) |
