@@ -1,6 +1,6 @@
 # Hello, World! — World Models Study
 
-본 프로젝트는 [가짜연구소(PseudoLab)](https://www.linkedin.com/company/pseudolab/)에서 진행하는 World Models 스터디입니다. World Models 관련 논문을 리뷰하고 스터디 자료를 정리하는 공간입니다.
+본 프로젝트는 [가짜연구소(PseudoLab)](https://www.linkedin.com/company/pseudolab/)에서 진행하는 [World Models 스터디](https://pseudo-lab.com/projects/ee36e216-4876-49c4-899e-636e9b7e20a8)입니다. World Models 관련 논문을 리뷰하고 스터디 자료를 정리하는 공간입니다.
 
 참여 방법: 매주 수요일 오후 9시, 가짜연구소 Discord ROOM-AK로 입장!
 
