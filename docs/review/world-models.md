@@ -252,12 +252,13 @@ Agent Model: V, M, C components
 
 VAE Architecture 
 
-![스크린샷 2026-03-25 01.00.32.png](attachment:3a59410a-436f-45f2-9db2-2a6ccabb08d2:스크린샷_2026-03-25_01.00.32.png)
+![VAE Architecture](../assets/01_worldmodel_fig7.png)
 
 **목적**: 고해상도 이미지를 작은 숫자 묶음(잠재 벡터 $z$)으로 압축한다.
 
 사람으로 치면 눈으로 본 장면을 뇌가 "도로 + 커브 + 속도감" 같은 핵심 정보로 요약하는 과정이다.
 
+#### Implementation
 - 입력: 64×64 픽셀 RGB 이미지
 - 출력: 32차원(CarRacing) 또는 64차원(Doom) 숫자 벡터 $z$
 - 학습 방식: 압축했다가 다시 복원해보면서 스스로 학습 (비지도)
@@ -406,16 +407,6 @@ To summarize the Car Racing experiment, below are the steps taken:
 | Controller | 867 |
 
 ### Experiment Results
-
-| **Method** | **Average Score** |
-| --- | --- |
-| DQN[[ref](https://gist.github.com/lmclupr/b35c89b2f8f81b443166e88b787b03ab)] | 343 ± 18 |
-| A3C (continuous)[[ref](https://www.notion.so/World-Models-32d56f2fd633802caf0ce77557958c32?pvs=21)] | 591 ± 45 |
-| A3C (discrete) | 652 ± 10 |
-| Gym Leader (hand-engineered) | 838 ± 11 |
-| V only | 632 ± 251 |
-| V + hidden layer | 788 ± 141 |
-| **Full World Model (V+M+C)** | **906 ± 21** |
 
 ![스크린샷 2026-03-25 00.54.54.png](../assets/01_worldmodel_fig4.png)
 
