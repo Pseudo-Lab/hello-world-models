@@ -8,7 +8,7 @@
 - 유정화 [Jeonghwa Yoo] | [Github](https://github.com/jeongHwarr) | [Linkedin](https://www.linkedin.com/in/jeonghwa-yoo-8403a716b/) |
 - 김주연 [Juyeon Kim] | [Github](https://github.com/JYeonKim) | [Linkedin](https://www.linkedin.com/in/ju-yeon-kim) |
 - 장보아 [Boa Jang] | [Github](https://github.com/Jang-Boa) | [Linkedin](https://www.linkedin.com/in/boa-jang-93a72918a) |
-
+- 이재호 [Jaeho Lee] | [Github](https://github.com/ORE24) | [Linkedin](https://www.linkedin.com/in/jae-ho-lee-82b418303) |
 ## Reviewed Papers
 | idx | Date | Presenter | Paper | Resources |
 | :--: | :--: | :--: | :--: | :--: |
@@ -17,7 +17,7 @@
 | 2 | 2026-04-01 | 이재호 | [PlaNet](https://arxiv.org/abs/1811.04551) (ICML 2019) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/planet/) |
 | 3 | 2026-04-08 | 김주연 | [Dreamer](https://arxiv.org/abs/1912.01603) (ICLR 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer/) |
 | 4 | 2026-04-15 | | [DreamerV2](https://arxiv.org/abs/2010.02193) (ICLR 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v2/) |
-| 5 | 2026-04-22 | | [MuZero](https://arxiv.org/abs/1911.08265) (Nature 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/muzero/) |
+| 5 | 2026-04-22 | 이재호 | [MuZero](https://arxiv.org/abs/1911.08265) (Nature 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/muzero/) |
 | 6 | 2026-05-06 | | [DreamerV3](https://arxiv.org/abs/2301.04104) (ICLR 2023) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v3/) |
 | 7 | 2026-05-13 | | [Trajectory Transformer](https://arxiv.org/abs/2106.02039) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/trajectory-transformer/) |
 | 8 | 2026-05-20 | 김현수 | [Decision Transformer](https://arxiv.org/abs/2106.01345) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/decision-transformer/) |
