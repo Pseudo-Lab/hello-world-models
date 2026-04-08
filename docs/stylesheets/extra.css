@@ -1,3 +1,12 @@
 .md-grid {
   max-width: 1440px;
 }
+
+/* 현재 보고 있는 목차 항목 강조 */
+.md-nav__link--active {
+  font-weight: 700;
+  color: var(--md-accent-fg-color) !important;
+  border-left: 3px solid var(--md-accent-fg-color);
+  padding-left: 8px;
+  transition: all 0.2s ease;
+}
