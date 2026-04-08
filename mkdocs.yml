@@ -24,12 +24,16 @@ theme:
   - navigation.sections
   - navigation.expand
   - navigation.top
+  - toc.follow
   - search.highlight
   - search.suggest
   - content.code.copy
   custom_dir: overrides
 plugins:
 - search
+- glightbox:
+    zoomable: true
+    draggable: false
 markdown_extensions:
 - admonition
 - pymdownx.details
