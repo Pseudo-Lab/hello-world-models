@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<title>BL-2B Critic Loss Formula</title>
+<link rel="stylesheet" href="_common_style.css">
+<style>
+.slide-visual { padding: 20px 26px !important; gap: 12px !important; }
+.headline {
+  text-align: center; font-size: 24px; font-weight: 700; color: var(--dark); line-height: 1.35;
+}
+.headline b { color: var(--blue); }
+
+/* 두 수식을 2열로 나란히 배치 (λ-return | Critic Loss) */
+.formula-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.fbox {
+  padding: 14px 18px; border-radius: 12px;
+  display: flex; flex-direction: column; gap: 8px;
+  border: 2.5px solid;
+}
+.fbox.lam { background: var(--purple-bg); border-color: var(--purple); }
+.fbox.loss { background: var(--blue-bg); border-color: var(--blue); }
+.fbox .lbl {
+  font-size: 21px; font-weight: 800; display: flex; align-items: center; gap: 8px;
+}
+.fbox.lam .lbl { color: var(--purple); }
+.fbox.loss .lbl { color: var(--blue); }
+.fbox .eq {
+  font-family: 'Times New Roman', serif;
+  font-weight: 500; color: var(--dark);
+  padding: 12px 14px; background: white; border-radius: 8px;
+  text-align: center; line-height: 1.6;
+}
+.fbox.lam .eq { font-size: 22px; }
+.fbox.loss .eq { font-size: 26px; }
+
+.sigma-stack {
+  display: inline-flex; flex-direction: column; align-items: center;
+  vertical-align: middle; line-height: 1; margin: 0 5px;
+  font-family: 'Times New Roman', serif;
+}
+.sigma-stack .top, .sigma-stack .bot { font-size: 20px; font-weight: 500; }
+.sigma-stack .big { font-size: 32px; font-weight: 500; line-height: 0.95; }
+
+/* sg + target network 2열 */
+.split {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.card {
+  padding: 14px 18px; border-radius: 12px;
+  display: flex; flex-direction: column; gap: 8px;
+  border: 2.5px solid;
+}
+.card.sg { background: var(--orange-bg); border-color: var(--orange); }
+.card.tn { background: var(--teal-bg); border-color: var(--teal); }
+.card .hdr {
+  font-size: 22px; font-weight: 800;
+  display: flex; align-items: center; gap: 8px;
+}
+.card.sg .hdr { color: var(--orange); }
+.card.tn .hdr { color: var(--teal); }
+.card .hdr .ic { font-size: 26px; }
+.card .body {
+  font-size: 20px; font-weight: 600; color: var(--dark); line-height: 1.4;
+}
+.card .body b { font-weight: 800; }
+.card.sg .body b { color: var(--orange); }
+.card.tn .body b { color: var(--teal); }
+.card .body .dim { color: var(--gray); font-weight: 500; }
+
+.hint {
+  font-size: 20px; font-weight: 600; color: var(--gray);
+  text-align: center; padding: 4px;
+}
+.hint b.v { color: var(--blue); }
+.hint b.p { color: var(--purple); }
+</style></head><body>
+
+<h1 class="slide-title">Critic Loss — 수식 + 안정화 기법</h1>
+<div class="slide-visual">
+
+  <div class="headline">
+    <b>V<sup>λ</sup>를 target으로 squared error 회귀</b><br>
+    <span style="font-size:20px;color:var(--gray);font-weight:500;">단, target이 자기 자신을 쫓지 않도록 2가지 안정화 기법 필요</span>
+  </div>
+
+  <!-- 수식 두 개 좌우 배치 -->
+  <div class="formula-row">
+    <div class="fbox lam">
+      <div class="lbl">🎯 target V<sup>λ</sup><sub>t</sub> — λ-return</div>
+      <div class="eq">
+        V<sup>λ</sup><sub>t</sub> = r̂<sub>t</sub> + γ̂<sub>t</sub> · [ (1−λ)·v<sub>ξ</sub>(ẑ<sub>t+1</sub>) + λ·V<sup>λ</sup><sub>t+1</sub> ]
+        <br>
+        <span style="font-size:20px;">(t &lt; H) &nbsp;&nbsp;·&nbsp;&nbsp; V<sup>λ</sup><sub>H</sub> = v<sub>ξ</sub>(ẑ<sub>H</sub>)</span>
+      </div>
+    </div>
+
+    <div class="fbox loss">
+      <div class="lbl">📉 Critic Loss</div>
+      <div class="eq">
+        L(ξ) = 𝔼 [
+        <span class="sigma-stack"><span class="top">H−1</span><span class="big">Σ</span><span class="bot">t=0</span></span>
+        ½ (v<sub>ξ</sub>(ẑ<sub>t</sub>) − sg(V<sup>λ</sup><sub>t</sub>))² ]
+      </div>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="card sg">
+      <div class="hdr"><span class="ic">🛑</span>sg(·) — stop-gradient</div>
+      <div class="body">
+        <b>역전파 차단</b> — target 쪽으로 gradient 안 흐름.<br>
+        <span class="dim">V<sup>λ</sup> 계산에 쓰인 값들은 상수로 취급.</span>
+      </div>
+    </div>
+    <div class="card tn">
+      <div class="hdr"><span class="ic">🧊</span>Target network — 100 step마다 복사</div>
+      <div class="body">
+        본체는 매 step 학습,<br>
+        <b>target용 복사본은 느리게 갱신</b>
+        <span class="dim">→ 자기 자신을 쫓는 불안정성 제거 (Mnih 2015).</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hint">
+    <b class="v">v<sub>ξ</sub>(ẑ<sub>t</sub>)</b>가 <b class="p">sg(V<sup>λ</sup><sub>t</sub>)</b>에 가까워지도록 학습<br>
+    마지막 step (t = H)은 loss 항 없음 (target = critic 자체)
+  </div>
+
+</div>
+</body></html>
