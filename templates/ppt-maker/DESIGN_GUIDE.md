@@ -43,7 +43,7 @@
 
 완성된 PNG 미리보기: `visual/v3/example_*.png`.
 
-**PNG-only 참고 자료** (`visual/v3/reference/`) — HTML 소스 없음, 시각적 패턴 참고용:
+**PNG-only 참고 자료** (`visual/v3/ref_*.png`) — HTML 소스 없음, 시각적 패턴 참고용:
 
 | 파일 | 패턴 |
 |---|---|

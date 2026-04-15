@@ -88,7 +88,7 @@ HTML/CSS로 슬라이드 삽화를 디자인하고, Playwright로 3×DPI PNG를 
 | 단계별 흐름 (비유) | `visual/example_5_staged_flow.html` | Stage 1 → Stage 2 비유 카드 |
 | 수식 + 안정화 카드 | `visual/example_6_formula.html` | 수식 정의 + 부가 설명 |
 
-**PNG-only 참고 자료** — `visual/v3/reference/` (HTML 소스는 없지만 패턴 참고용):
+**PNG-only 참고 자료** — `visual/v3/ref_*.png` (HTML 소스는 없지만 패턴 참고용):
 
 | 파일 | 패턴 |
 |---|---|
