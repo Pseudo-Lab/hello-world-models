@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>DreamerV2 RSSM v4 — Paper Figure</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; word-break: keep-all; }
+
+:root {
+  --wine: #8a1538;
+  --wine-bg: #fdf2f5;
+  --dark: #111;
+  --gray: #555;
+  --blue: #3a6cbf;
+  --purple: #7a4e9c;
+  --green: #4ea56c;
+  --brown: #8b5a2b;
+  --orange: #e08e1c;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #e8e8e8;
+  padding: 40px;
+}
+
+.slide-visual {
+  width: 1280px;
+  background: white;
+  padding: 28px 32px;
+  margin: 30px auto;
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+
+h1.slide-title {
+  font-size: 22px;
+  color: var(--gray);
+  text-align: center;
+  background: #f0f0f0;
+  padding: 10px;
+}
+
+.diagram {
+  flex: 1.55;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.diagram img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.legend {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding: 10px 13px;
+  border-radius: 8px;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+}
+
+.legend-color {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.legend-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.35;
+}
+
+.legend-text .desc {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--gray);
+  margin-top: 2px;
+}
+
+.core {
+  margin-top: 6px;
+  padding: 12px 14px;
+  background: var(--wine-bg);
+  border: 2px solid var(--wine);
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.4;
+}
+
+.core b { color: var(--wine); }
+
+</style>
+</head>
+<body>
+
+<h1 class="slide-title">RSSM 구조 (Paper Figure)</h1>
+<div class="slide-visual">
+
+  <div class="diagram">
+    <img src="rssm_paper_figure_hq.png" alt="RSSM paper figure">
+  </div>
+
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-color" style="background:#ccc;"></div>
+      <div class="legend-text"><i>x</i><sub>t</sub> — 실제 이미지
+        <span class="desc">입력 관측 (Atari 프레임)</span>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background:#3a6cbf;"></div>
+      <div class="legend-text">Encoder (CNN)
+        <span class="desc">이미지 → feature</span>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background:#4ea56c;"></div>
+      <div class="legend-text">Posterior <i>z</i><sub>t</sub> · Prior <i>ẑ</i><sub>t</sub>
+        <span class="desc">실선=이미지 반영 / 점선=상상 시 사용</span>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background:#7a4e9c;"></div>
+      <div class="legend-text">Deterministic <i>h</i><sub>t</sub>
+        <span class="desc">GRU 기반 순환 상태</span>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background:#8b5a2b;"></div>
+      <div class="legend-text">Decoder (CNN<sup>⁻¹</sup>)
+        <span class="desc">latent → 이미지 <i>x̂</i><sub>t</sub> 복원</span>
+      </div>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background:#e08e1c;"></div>
+      <div class="legend-text">Reward head <i>r̂</i><sub>t</sub>
+        <span class="desc">latent → 보상 예측</span>
+      </div>
+    </div>
+    <div class="core">
+      핵심: Stochastic state가<br>
+      <b>32×32 categorical variables</b>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

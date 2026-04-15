@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Multi-modal 분포</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; word-break: keep-all; }
+
+:root {
+  --wine: #8a1538;
+  --wine-bg: #fdf2f5;
+  --blue: #1a5276;
+  --blue-bg: #eaf2f8;
+  --dark: #111;
+  --gray: #555;
+  --gray-light: #888;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #e8e8e8;
+  padding: 40px;
+}
+
+.slide-visual {
+  width: 720px;
+  background: white;
+  padding: 18px 22px 20px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 12px;
+  border: 2px solid #ddd;
+}
+
+h1.slide-title {
+  font-size: 18px;
+  color: var(--gray);
+  text-align: center;
+  background: #f0f0f0;
+  padding: 6px;
+}
+
+.title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+.title b { color: var(--wine); }
+
+.charts {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.chart-card {
+  flex: 1;
+  border-radius: 10px;
+  border: 2px solid;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.chart-card.uni { border-color: var(--blue); background: var(--blue-bg); }
+.chart-card.multi { border-color: var(--wine); background: var(--wine-bg); }
+
+.chart-tag {
+  padding: 2px 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.chart-card.uni .chart-tag { background: var(--blue); }
+.chart-card.multi .chart-tag { background: var(--wine); }
+
+.chart-name {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.chart-card.uni .chart-name { color: var(--blue); }
+.chart-card.multi .chart-name { color: var(--wine); }
+
+.chart-svg {
+  background: white;
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.chart-desc {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+  text-align: center;
+  line-height: 1.35;
+}
+
+.chart-desc .dim { color: var(--gray); font-weight: 500; }
+
+.note {
+  padding: 10px 14px;
+  background: #fafafa;
+  border-left: 4px solid var(--wine);
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.5;
+}
+
+.note b { color: var(--wine); }
+
+</style>
+</head>
+<body>
+
+<h1 class="slide-title">Multi-modal 분포란?</h1>
+<div class="slide-visual">
+
+  <div class="title">
+    <b>모드(mode)</b> = 확률 분포의 봉우리 —
+    여러 봉우리면 <b>multi-modal</b>
+  </div>
+
+  <div class="charts">
+
+    <!-- Uni-modal -->
+    <div class="chart-card uni">
+      <span class="chart-tag">1개</span>
+      <div class="chart-name">Uni-modal</div>
+      <div class="chart-svg">
+        <svg viewBox="0 0 240 90" width="240" height="90">
+          <!-- bell curve -->
+          <path d="M10,80 C50,80 70,10 120,10 C170,10 190,80 230,80 L230,80 Z"
+                fill="#d5e3ef" stroke="#1a5276" stroke-width="2"/>
+          <!-- mode marker -->
+          <circle cx="120" cy="10" r="4" fill="#1a5276"/>
+          <text x="120" y="6" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5276">mode</text>
+          <!-- axis -->
+          <line x1="5" y1="80" x2="235" y2="80" stroke="#888" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="chart-desc">봉우리 <b>1개</b>
+        <span class="dim">Gaussian (DreamerV1)</span>
+      </div>
+    </div>
+
+    <!-- Multi-modal -->
+    <div class="chart-card multi">
+      <span class="chart-tag">여러 개</span>
+      <div class="chart-name">Multi-modal</div>
+      <div class="chart-svg">
+        <svg viewBox="0 0 240 90" width="240" height="90">
+          <!-- two bumps + small third -->
+          <path d="M10,80
+                   C30,80 45,25 65,25 C85,25 100,80 120,80
+                   C140,80 155,20 175,20 C195,20 210,80 230,80 Z"
+                fill="#f5d7e0" stroke="#8a1538" stroke-width="2"/>
+          <circle cx="65" cy="25" r="4" fill="#8a1538"/>
+          <circle cx="175" cy="20" r="4" fill="#8a1538"/>
+          <text x="65" y="19" text-anchor="middle" font-size="11" font-weight="700" fill="#8a1538">mode</text>
+          <text x="175" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#8a1538">mode</text>
+          <line x1="5" y1="80" x2="235" y2="80" stroke="#888" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="chart-desc">봉우리 <b>여러 개</b>
+        <span class="dim">Categorical (DreamerV2)</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    게임 상태가 <b>여러 가능성</b>을 동시에 가질 때가 multi-modal.
+    예: 방 A로 이동 vs 방 B로 이동 — 둘 다 가능성 있음 →
+    Gaussian은 봉우리 <b>1개</b>뿐이라 둘 중간의 엉뚱한 상태를 예측하지만,
+    Categorical은 <b>여러 선택지</b>를 그대로 표현할 수 있음.
+  </div>
+
+</div>
+
+</body>
+</html>
