@@ -1,0 +1,36 @@
+/* Common DreamerV2 style palette */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, .slide-visual, .slide-visual * {
+  word-break: keep-all; overflow-wrap: break-word; hyphens: manual;
+}
+
+:root {
+  --wine: #8a1538;
+  --wine-bg: #fdf2f5;
+  --blue: #1a5276;
+  --blue-bg: #eaf2f8;
+  --teal: #0e6655;
+  --teal-bg: #e8f6f3;
+  --orange: #d35400;
+  --orange-bg: #fdf4e3;
+  --purple: #7a4e9c;
+  --purple-bg: #f1ebf7;
+  --green: #1e8449;
+  --green-bg: #e8f5ec;
+  --dark: #111;
+  --gray: #555;
+  --gray-light: #999;
+}
+
+body { font-family: 'Inter', sans-serif; background: #e8e8e8; padding: 40px; }
+h1.slide-title {
+  font-size: 24px; color: var(--gray); text-align: center;
+  background: #f0f0f0; padding: 8px;
+}
+.slide-visual {
+  width: 1280px; background: white;
+  padding: 26px 30px; margin: 30px auto;
+  display: flex; flex-direction: column; gap: 16px;
+}

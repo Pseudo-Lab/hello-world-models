@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<title>BL-2A Critic n-step</title>
+<link rel="stylesheet" href="_common_style.css">
+<style>
+.headline {
+  text-align: center; font-size: 27px; font-weight: 700; color: var(--dark); line-height: 1.4;
+}
+.headline b { color: var(--blue); }
+.n-steps {
+  padding: 20px 24px; border-radius: 12px;
+  background: #fafafa; border: 2px solid #e8e8e8;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.n-title {
+  font-size: 24px; font-weight: 800; color: var(--blue);
+  text-align: center; margin-bottom: 8px;
+}
+.n-row {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 24px; line-height: 1.3;
+}
+.n-row .n-lbl {
+  width: 130px; flex-shrink: 0;
+  font-weight: 800; color: var(--blue);
+  font-family: 'JetBrains Mono', monospace; font-size: 24px;
+  text-align: right;
+}
+.n-row .n-content {
+  flex: 1; display: flex; align-items: center; gap: 6px;
+}
+.chip {
+  padding: 7px 11px; border-radius: 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 24px; font-weight: 700;
+}
+.chip.r { background: var(--orange-bg); color: var(--orange); border: 1.5px solid var(--orange); }
+.chip.v { background: var(--blue-bg); color: var(--blue); border: 1.5px solid var(--blue); }
+.n-row .plus { color: #111; font-weight: 700; font-size: 24px; }
+.n-row .weight {
+  width: 130px; flex-shrink: 0;
+  padding: 6px 12px; border-radius: 7px;
+  background: var(--purple-bg); color: var(--purple);
+  font-weight: 800; font-size: 24px; text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+}
+.summary-line {
+  text-align: center; font-size: 24px; font-weight: 800; color: var(--purple);
+  margin-top: 10px; padding-top: 12px; border-top: 2px dashed #d5c5e8;
+}
+.summary-line .mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+.summary-line b { color: var(--wine); font-weight: 800; }
+.bottom-hint {
+  padding: 13px 18px; border-radius: 10px;
+  background: var(--purple-bg); border-left: 4px solid var(--purple);
+  font-size: 24px; font-weight: 600; color: var(--dark); line-height: 1.5;
+}
+.bottom-hint .hdr {
+  font-size: 24px; font-weight: 800; color: var(--purple); display: block; margin-bottom: 4px;
+}
+.bottom-hint b { color: var(--purple); font-weight: 800; }
+</style></head><body>
+
+<h1 class="slide-title">Critic Loss — λ-return (여러 예측의 가중평균)</h1>
+<div class="slide-visual">
+
+  <div class="headline">
+    "1-step, 2-step, … H-step" 각각이 value를 다르게 예측 →<br>
+    <b>λ로 가중평균</b>해서 안정적인 target을 만든다
+  </div>
+
+  <div class="n-steps">
+    <div class="n-title">"지금 state에서 미래 보상은?" — n개의 예측</div>
+
+    <div class="n-row">
+      <div class="n-lbl">1-step:</div>
+      <div class="n-content">
+        <span class="chip r">r̂<sub>t+1</sub></span>
+        <span class="plus">+ γ̂ ·</span>
+        <span class="chip v">v(ẑ<sub>t+1</sub>)</span>
+        <span style="color:#111;font-size:24px;margin-left:8px;">← 1 step 보고 bootstrap</span>
+      </div>
+      <div class="weight">(1−λ)</div>
+    </div>
+
+    <div class="n-row">
+      <div class="n-lbl">2-step:</div>
+      <div class="n-content">
+        <span class="chip r">r̂<sub>t+1</sub></span>
+        <span class="plus">+ γ̂·</span>
+        <span class="chip r">r̂<sub>t+2</sub></span>
+        <span class="plus">+ γ̂²·</span>
+        <span class="chip v">v(ẑ<sub>t+2</sub>)</span>
+      </div>
+      <div class="weight">(1−λ)λ</div>
+    </div>
+
+    <div class="n-row">
+      <div class="n-lbl">3-step:</div>
+      <div class="n-content">
+        <span class="chip r">r̂<sub>t+1</sub></span>
+        <span class="plus">+ …+</span>
+        <span class="chip r">r̂<sub>t+3</sub></span>
+        <span class="plus">+ γ̂³·</span>
+        <span class="chip v">v(ẑ<sub>t+3</sub>)</span>
+      </div>
+      <div class="weight">(1−λ)λ²</div>
+    </div>
+
+    <div class="n-row">
+      <div class="n-lbl">⋮</div>
+      <div class="n-content" style="color:#111;font-size:24px;font-style:italic;">점점 더 먼 미래를 보는 예측</div>
+      <div class="weight">⋮</div>
+    </div>
+
+    <div class="n-row">
+      <div class="n-lbl">H-step:</div>
+      <div class="n-content">
+        <span class="chip r">r̂<sub>t+1</sub></span>
+        <span class="plus">+ …+</span>
+        <span class="chip r">r̂<sub>t+H</sub></span>
+        <span class="plus">+ γ̂<sup>H</sup>·</span>
+        <span class="chip v">v(ẑ<sub>t+H</sub>)</span>
+      </div>
+      <div class="weight">λ<sup>H−1</sup></div>
+    </div>
+
+    <div class="summary-line">
+      <span class="mono">V<sup>λ</sup><sub>t</sub></span> = 위 모든 n-step return들의 <b>가중 평균</b> (가중치 합 = 1)
+    </div>
+  </div>
+
+  <div class="bottom-hint">
+    <span class="hdr">🎯 λ = 0.95 의 의미</span>
+    λ가 클수록 <b>먼 horizon에 더 많은 가중치</b><br>
+    → DreamerV2는 0.95로 장기 보상에 focus. 짧은 예측의 bias와 긴 예측의 variance 사이의 <b>유연한 trade-off</b>.
+  </div>
+
+</div>
+</body></html>

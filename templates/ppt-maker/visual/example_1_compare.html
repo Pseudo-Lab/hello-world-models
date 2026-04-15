@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<title>BL-1A Imagination MDP 비교</title>
+<link rel="stylesheet" href="_common_style.css">
+<style>
+.headline {
+  text-align: center; font-size: 28px; font-weight: 700; color: var(--dark); line-height: 1.4;
+}
+.headline b { color: var(--wine); }
+.compare {
+  display: grid; grid-template-columns: 1fr 70px 1fr;
+  gap: 16px; align-items: stretch;
+}
+.world {
+  border-radius: 14px; border: 3px solid;
+  padding: 22px 24px; display: flex; flex-direction: column; gap: 12px;
+}
+.world.real { background: var(--green-bg); border-color: var(--green); }
+.world.img { background: var(--purple-bg); border-color: var(--purple); }
+.world-hdr { display: flex; align-items: center; gap: 12px; }
+.world-hdr .ic { font-size: 42px; }
+.world-hdr .txt { font-size: 30px; font-weight: 800; line-height: 1.15; }
+.world.real .world-hdr .txt { color: var(--green); }
+.world.img .world-hdr .txt { color: var(--purple); }
+.world-hdr .sub {
+  font-size: 24px; font-weight: 600; color: var(--gray); display: block; margin-top: 2px;
+}
+.comp-list { display: flex; flex-direction: column; gap: 10px; }
+.comp-item {
+  background: white; border-radius: 10px; padding: 11px 15px;
+  border: 1.5px solid; display: flex; align-items: baseline; gap: 12px;
+  font-size: 24px; font-weight: 600;
+}
+.world.real .comp-item { border-color: #c3dfcd; }
+.world.img .comp-item { border-color: #d5c5e8; }
+.comp-item .lbl {
+  font-size: 24px; font-weight: 800; padding: 3px 10px; border-radius: 6px;
+  color: white; flex-shrink: 0; min-width: 26px; text-align: center;
+}
+.world.real .comp-item .lbl { background: var(--green); }
+.world.img .comp-item .lbl { background: var(--purple); }
+.comp-item .body { flex: 1; color: var(--dark); }
+.comp-item .body .eq {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--gray); font-size: 24px; font-weight: 500;
+  display: block; margin-top: 2px;
+}
+.arrow-mid {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; font-weight: 800; color: var(--wine);
+}
+</style></head><body>
+
+<h1 class="slide-title">Imagination MDP — 상상 속에서 만든 RL 환경</h1>
+<div class="slide-visual">
+
+  <div class="headline">
+    실제 환경 대신 <b>World Model을 시뮬레이터</b>로 써서 만든 MDP<br>
+    <span style="font-size:24px;color:var(--gray);font-weight:500;">state · action · reward · discount 4요소를 모두 상상으로 생성</span>
+  </div>
+
+  <div class="compare">
+    <div class="world real">
+      <div class="world-hdr">
+        <span class="ic">🌍</span>
+        <div class="txt">Real MDP<span class="sub">실제 환경 (Atari 등)</span></div>
+      </div>
+      <div class="comp-list">
+        <div class="comp-item">
+          <span class="lbl">S</span>
+          <div class="body">이미지 관측<span class="eq">x<sub>t</sub> (64×64 픽셀)</span></div>
+        </div>
+        <div class="comp-item">
+          <span class="lbl">T</span>
+          <div class="body">실제 게임 엔진<span class="eq">env.step(a)</span></div>
+        </div>
+        <div class="comp-item">
+          <span class="lbl">R</span>
+          <div class="body">실제 게임 점수<span class="eq">r<sub>t</sub> (점수 변화)</span></div>
+        </div>
+        <div class="comp-item">
+          <span class="lbl">γ</span>
+          <div class="body">에피소드 종료 플래그<span class="eq">done ∈ {0, 1}</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-mid">→</div>
+
+    <div class="world img">
+      <div class="world-hdr">
+        <span class="ic">💭</span>
+        <div class="txt">Imagination MDP<span class="sub">World Model이 만든 가상 MDP</span></div>
+      </div>
+      <div class="comp-list">
+        <div class="comp-item">
+          <span class="lbl">S</span>
+          <div class="body">compact latent<span class="eq">ẑ<sub>t</sub> (32×32 categorical)</span></div>
+        </div>
+        <div class="comp-item">
+          <span class="lbl">T</span>
+          <div class="body">Transition predictor<span class="eq">p<sub>φ</sub>(ẑ<sub>t</sub> | ẑ<sub>t-1</sub>, a<sub>t-1</sub>)</span></div>
+        </div>
+        <div class="comp-item">
+          <span class="lbl">R</span>
+          <div class="body">Reward predictor 평균<span class="eq">mean[p<sub>φ</sub>(r̂<sub>t</sub> | ẑ<sub>t</sub>)]</span></div>
+        </div>
+        <div class="comp-item">
+          <span class="lbl">γ</span>
+          <div class="body">Discount predictor<span class="eq">p<sub>φ</sub>(γ̂<sub>t</sub> | ẑ<sub>t</sub>)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body></html>
