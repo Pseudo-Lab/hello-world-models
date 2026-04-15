@@ -35,14 +35,14 @@
 # 1. 배경 — 문제 설정
 <!-- _class: small -->
 
-![w90 center](visual/v3/example_1_compare.png)
+![w90 center](visual/v3/example_3_two_column_roles.png)
 
 ---
 
 # 2. 핵심 아이디어 (타임라인)
 <!-- _class: small -->
 
-![w90 center](visual/v3/example_2_timeline_parallel.png)
+![w90 center](visual/v3/example_1_grid_components.png)
 
 ---
 
