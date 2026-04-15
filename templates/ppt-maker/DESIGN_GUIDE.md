@@ -29,17 +29,31 @@
 새 슬라이드를 작성할 때는 **이 템플릿의 예시 HTML을 먼저 읽고 스타일/구조를 따를 것.**
 처음부터 만들지 말고 가까운 패턴을 복제해서 수정.
 
+**독립 HTML 예시 6종** (실제 발표에서 채택된 슬라이드 기반):
+
 | 파일 | 패턴 | 언제 쓰나 |
 |---|---|---|
-| `visual/example_1_compare.html` | 2열 비교 카드 | 개념 A vs B, 방법론 비교 |
-| `visual/example_2_timeline_parallel.html` | 병렬 타임라인 (SVG) | 여러 trajectory 동시 rollout |
-| `visual/example_3_nstep_weights.html` | n-step 가중치 표 | 수식 분해 · 가중 평균 |
-| `visual/example_4_formula.html` | 수식 + 안정화 카드 | 수식 정의 + 부가 설명 |
-| `visual/example_5_dartboard.html` | 다트보드 비교 | Bias vs Variance 추상 비교 |
-| `visual/example_6_actor_loss.html` | 수식 + 슬라이더 + 범례 | 가중 혼합 · 하이퍼파라미터 |
-| `visual/_common_style.css` | 공통 팔레트·폰트·베이스 | 모든 HTML에서 `<link>`로 참조 |
+| `visual/example_1_grid_components.html` | 6-카드 그리드 | 모델 컴포넌트·구성 요소 |
+| `visual/example_2_figure_with_legend.html` | 논문 figure + 범례 | 논문 다이어그램 + 한글 설명 |
+| `visual/example_3_two_column_roles.html` | 2열 역할 비교 | 두 단계/역할 나란히 |
+| `visual/example_4_simple_concept.html` | 간단 개념 비교 | 최소 비교 · 핵심 짚기 |
+| `visual/example_5_staged_flow.html` | 단계별 흐름 (비유) | Stage 흐름 + 비유 |
+| `visual/example_6_formula.html` | 수식 + 안정화 카드 | 수식 정의 + 부가 설명 |
+| `visual/_common_style.css` | 공통 팔레트·폰트·베이스 | 예시 중 일부에서 `<link>`로 참조 |
 
-완성된 결과 미리보기는 `visual/v3/example_*.png` 참조.
+완성된 PNG 미리보기: `visual/v3/example_*.png`.
+
+**PNG-only 참고 자료** (`visual/v3/reference/`) — HTML 소스 없음, 시각적 패턴 참고용:
+
+| 파일 | 패턴 |
+|---|---|
+| `ref_compare_two_cards.png` | 큰 2열 비교 카드 |
+| `ref_three_step_flow.png` | 3단계 flow (STEP 1→2→3) |
+| `ref_analogy_cards.png` | 비유·유추 카드 |
+| `ref_infographic_numbers.png` | 숫자 강조 인포그래픽 |
+| `ref_mechanism_diagram.png` | 메커니즘·수식 박스 |
+
+필요하면 Claude에게 참고 PNG 보여주고 "이 스타일로 HTML 만들어줘" 요청.
 
 ---
 

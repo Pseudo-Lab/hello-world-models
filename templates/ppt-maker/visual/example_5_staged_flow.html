@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>DreamerV2 Two-Stage Simple</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; word-break: keep-all; overflow-wrap: break-word; }
+
+:root {
+  --wine: #8a1538;
+  --wine-bg: #fdf2f5;
+  --blue: #1a5276;
+  --blue-bg: #eaf2f8;
+  --dark: #111;
+  --gray: #555;
+  --gray-light: #888;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #e8e8e8;
+  padding: 40px;
+}
+
+.slide-visual {
+  width: 1280px;
+  background: white;
+  padding: 26px 30px 28px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h1.slide-title {
+  font-size: 22px;
+  color: var(--gray);
+  text-align: center;
+  background: #f0f0f0;
+  padding: 10px;
+}
+
+.headline {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.4;
+}
+
+.headline b { color: var(--wine); }
+
+/* ===== two cards ===== */
+.cards {
+  display: flex;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.card {
+  flex: 1;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 2.5px solid;
+}
+
+.card.c1 { border-color: var(--blue); }
+.card.c2 { border-color: var(--wine); }
+
+.card-header {
+  padding: 14px 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.c1 .card-header { background: var(--blue); }
+.c2 .card-header { background: var(--wine); }
+
+.stage-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stage-pill {
+  background: white;
+  padding: 3px 12px;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.c1 .stage-pill { color: var(--blue); }
+.c2 .stage-pill { color: var(--wine); }
+
+.stage-title {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.metaphor {
+  font-size: 19px;
+  font-weight: 500;
+  opacity: 0.92;
+}
+
+.card-body {
+  padding: 18px 20px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  justify-content: flex-start;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.step-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.c1 .step-ico { background: var(--blue-bg); }
+.c2 .step-ico { background: var(--wine-bg); }
+
+.step-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.45;
+}
+
+.step-text b { font-weight: 800; }
+
+.c1 .step-text b { color: var(--blue); }
+.c2 .step-text b { color: var(--wine); }
+
+.step-text .q {
+  color: var(--gray);
+  font-weight: 500;
+  font-size: 19px;
+}
+
+.step-arrow {
+  text-align: center;
+  font-size: 22px;
+  color: var(--gray-light);
+  line-height: 1;
+}
+
+.card-footer {
+  margin: 0 16px 14px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 19px;
+  font-weight: 700;
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  line-height: 1.4;
+}
+
+.c1 .card-footer { background: var(--blue-bg); color: var(--blue); }
+.c2 .card-footer { background: var(--wine-bg); color: var(--wine); }
+
+.card-footer .fa-label {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--gray);
+  flex-shrink: 0;
+}
+
+.card-footer .upd { font-weight: 800; }
+.card-footer .frz {
+  color: var(--gray-light);
+  font-weight: 700;
+}
+
+/* ===== loop bar ===== */
+.loop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: linear-gradient(90deg, var(--blue-bg) 0%, var(--wine-bg) 100%);
+  border: 2px solid #d7dde3;
+  border-radius: 12px;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.loop .cyc { font-size: 24px; color: var(--wine); }
+.loop .step-tag {
+  background: white;
+  padding: 5px 13px;
+  border-radius: 14px;
+  border: 1.5px solid #ccc;
+}
+.loop .arr { color: var(--gray); font-size: 19px; }
+
+</style>
+</head>
+<body>
+
+<h1 class="slide-title">DreamerV2 — 두 단계 번갈아 학습</h1>
+<div class="slide-visual">
+
+  <div class="cards">
+
+    <!-- Stage 1 -->
+    <div class="card c1">
+      <div class="card-header">
+        <div class="stage-row">
+          <span class="stage-pill">STAGE 1</span>
+          <span class="stage-title">World Model 학습</span>
+        </div>
+        <div class="metaphor">🏟️ 경기 중 — 화면을 보며 분석 · <strong>Posterior</strong> 사용</div>
+      </div>
+
+      <div class="card-body">
+        <div class="step">
+          <div class="step-ico">👁️</div>
+          <div class="step-text"><b>화면을 보고</b> 상황 파악<br>
+            <span class="q">"적이 왼쪽에서 접근 중, 체력 낮음"</span>
+          </div>
+        </div>
+        <div class="step-arrow">↓</div>
+
+        <div class="step">
+          <div class="step-ico">📝</div>
+          <div class="step-text">핵심만 <b>compact 요약</b> (<i>z</i>)<br>
+            <span class="q">64×64 이미지 → 작은 벡터로 압축</span>
+          </div>
+        </div>
+        <div class="step-arrow">↓</div>
+
+        <div class="step">
+          <div class="step-ico">🔮</div>
+          <div class="step-text"><b>예측도 동시에</b> 수행 (<i>ẑ</i>)<br>
+            <span class="q">"다음엔 적이 이렇게 움직일 거야"</span>
+          </div>
+        </div>
+        <div class="step-arrow">↓</div>
+
+        <div class="step">
+          <div class="step-ico">⚖️</div>
+          <div class="step-text">예측 vs 실제 <b>비교(KL loss)</b>로 개선<br>
+            <span class="q">예측이 정확해질수록 상상도 정확</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="fa-label">업데이트</span>
+        <span class="upd">Encoder · RSSM · Decoder · Reward head</span>
+      </div>
+      <div class="card-footer" style="margin-top:-8px;">
+        <span class="fa-label">고정</span>
+        <span class="frz">Actor · Critic</span>
+      </div>
+    </div>
+
+    <!-- Stage 2 -->
+    <div class="card c2">
+      <div class="card-header">
+        <div class="stage-row">
+          <span class="stage-pill">STAGE 2</span>
+          <span class="stage-title">Actor · Critic 학습</span>
+        </div>
+        <div class="metaphor">💭 상상 시 — 화면 없이 머릿속으로만 · <strong>Prior</strong>만 사용</div>
+      </div>
+
+      <div class="card-body">
+        <div class="step">
+          <div class="step-ico">🧠</div>
+          <div class="step-text">이미지 없이 <b>다음 상태 예측</b><br>
+            <span class="q">"여기서 오른쪽으로 이동하면?"</span>
+          </div>
+        </div>
+        <div class="step-arrow">↓</div>
+
+        <div class="step">
+          <div class="step-ico">🔄</div>
+          <div class="step-text"><b>15스텝 앞까지</b> 연쇄 예측<br>
+            <span class="q">"→ 적 회피 → 아이템 → 점수 +100"</span>
+          </div>
+        </div>
+        <div class="step-arrow">↓</div>
+
+        <div class="step">
+          <div class="step-ico">📊</div>
+          <div class="step-text">시나리오의 <b>누적 보상 추정</b> (Critic)<br>
+            <span class="q">"이 경로의 기대 점수 ≈ 850"</span>
+          </div>
+        </div>
+        <div class="step-arrow">↓</div>
+
+        <div class="step">
+          <div class="step-ico">⚡</div>
+          <div class="step-text"><b>2,500개 시나리오</b> 동시 시뮬레이션<br>
+            <span class="q">GPU 병렬 → 최적 행동 학습</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="fa-label">업데이트</span>
+        <span class="upd">Actor <i>π</i>(<i>a</i>|<i>z</i>) · Critic <i>v</i>(<i>z</i>)</span>
+      </div>
+      <div class="card-footer" style="margin-top:-8px;">
+        <span class="fa-label">고정</span>
+        <span class="frz">Encoder · RSSM · Decoder · Reward head</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="loop">
+    <span class="cyc">⟲</span>
+    <span class="step-tag">환경 탐색</span>
+    <span class="arr">→</span>
+    <span class="step-tag" style="color:var(--blue);border-color:var(--blue);">STAGE 1 (WM 학습)</span>
+    <span class="arr">→</span>
+    <span class="step-tag" style="color:var(--wine);border-color:var(--wine);">STAGE 2 (A·C 학습)</span>
+    <span class="arr">→</span>
+    <span class="step-tag">새 경험 수집</span>
+    <span class="cyc">⟲</span>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>DreamerV2 Role Flow</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; word-break: keep-all; overflow-wrap: break-word; }
+
+:root {
+  --wine: #8a1538;
+  --wine-bg: #fdf2f5;
+  --blue: #1a5276;
+  --blue-bg: #eaf2f8;
+  --teal: #0e6655;
+  --teal-bg: #e8f6f3;
+  --orange: #d35400;
+  --dark: #111;
+  --gray: #555;
+  --gray-light: #888;
+}
+
+body { font-family: 'Inter', sans-serif; background: #e8e8e8; padding: 40px; }
+
+.slide-visual {
+  width: 1280px; background: white; padding: 26px 28px 28px;
+  margin: 30px auto; display: flex; flex-direction: column; gap: 16px;
+}
+
+h1.slide-title {
+  font-size: 22px; color: var(--gray); text-align: center;
+  background: #f0f0f0; padding: 10px;
+}
+
+/* Legend */
+.legend {
+  display: flex; gap: 18px; justify-content: center;
+  flex-wrap: wrap; padding: 10px 16px;
+  background: #fafafa; border: 1px solid #e5e5e5; border-radius: 10px;
+}
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 600; color: var(--dark); }
+.swatch {
+  width: 40px; height: 24px; border-radius: 6px; border: 2px solid;
+}
+.swatch.wm-active { background: var(--blue-bg); border-color: var(--blue); }
+.swatch.wm-frozen { background: #f0f0f0; border-color: var(--gray-light); border-style: dashed; }
+.swatch.ac-active { background: var(--wine-bg); border-color: var(--wine); }
+
+/* Stages side by side */
+.stages { display: flex; gap: 20px; align-items: stretch; }
+
+.stage {
+  flex: 1; border-radius: 16px; border: 3px solid;
+  padding: 22px 20px 22px; display: flex; flex-direction: column; gap: 12px;
+  position: relative;
+}
+.stage.s1 { background: #fcfcfd; border-color: var(--blue); }
+.stage.s2 { background: #fffafa; border-color: var(--wine); }
+
+.stage-tag {
+  position: absolute; top: -15px; left: 22px;
+  padding: 4px 14px; border-radius: 14px;
+  color: white; font-size: 17px; font-weight: 800; letter-spacing: 0.4px;
+}
+.s1 .stage-tag { background: var(--blue); }
+.s2 .stage-tag { background: var(--wine); }
+
+.stage-title {
+  font-size: 23px; font-weight: 800; margin-top: 3px;
+}
+.s1 .stage-title { color: var(--blue); }
+.s2 .stage-title { color: var(--wine); }
+
+.stage-sub {
+  font-size: 17px; font-weight: 600; color: var(--gray);
+  padding-bottom: 8px; border-bottom: 1.5px dashed #ddd;
+}
+
+/* Flow graph inside stage */
+.flow { display: flex; flex-direction: column; gap: 6px; }
+
+.node {
+  border: 2px solid; border-radius: 10px;
+  padding: 9px 12px; font-size: 18px; font-weight: 700;
+  line-height: 1.3; display: flex; align-items: center; gap: 9px;
+}
+.node .tag {
+  padding: 1px 8px; border-radius: 6px; font-size: 14px; font-weight: 800;
+  color: white; flex-shrink: 0;
+}
+.node .desc {
+  color: var(--gray); font-weight: 500; font-size: 16px; margin-top: 1px;
+  display: block;
+}
+.node .body { flex: 1; }
+
+/* variants */
+.n-wm-active { background: var(--blue-bg); border-color: var(--blue); color: var(--blue); }
+.n-wm-active .tag { background: var(--blue); }
+
+.n-wm-frozen { background: #f5f5f5; border-color: var(--gray-light); border-style: dashed; color: var(--gray); }
+.n-wm-frozen .tag { background: var(--gray-light); }
+
+.n-ac-active { background: var(--wine-bg); border-color: var(--wine); color: var(--wine); }
+.n-ac-active .tag { background: var(--wine); }
+
+.n-loss {
+  background: #fff7e6; border-color: var(--orange); color: var(--orange);
+  border-style: dashed;
+}
+.n-loss .tag { background: var(--orange); }
+
+.arrow {
+  text-align: center; font-size: 20px; color: var(--gray-light); line-height: 0.8;
+  margin: -1px 0;
+}
+
+.side-arrow {
+  position: absolute; left: -30px; top: 50%; transform: translateY(-50%);
+  font-size: 24px; color: var(--gray); font-weight: 800;
+}
+
+.note {
+  padding: 10px 14px; border-radius: 10px; background: #fafafa;
+  border-left: 4px solid var(--wine);
+  font-size: 17px; font-weight: 600; color: var(--dark); line-height: 1.45;
+}
+
+.note b { color: var(--wine); }
+
+/* Loop bar */
+.loop {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 12px 20px; border: 2px solid #ddd; border-radius: 12px;
+  font-size: 18px; font-weight: 700; color: var(--dark);
+  background: linear-gradient(90deg, var(--blue-bg) 0%, var(--wine-bg) 100%);
+}
+.loop .step { background: white; padding: 5px 13px; border-radius: 14px; border: 1.5px solid #ccc; }
+.loop .arr { color: var(--gray); }
+.loop .cyc { font-size: 24px; color: var(--wine); }
+
+</style>
+</head>
+<body>
+
+<div class="slide-visual">
+
+  <div class="stages">
+
+    <!-- ========== STAGE 1 ========== -->
+    <div class="stage s1">
+      <div class="stage-tag">STAGE 1</div>
+      <div class="stage-title">World Model 학습</div>
+      <div class="stage-sub">입력: 실제 경험 (<i>x</i><sub>t</sub>, <i>a</i><sub>t</sub>, <i>r</i><sub>t</sub>) — 업데이트: <b style="color:var(--blue);">φ</b></div>
+
+      <div class="flow">
+        <div class="node n-wm-active">
+          <span class="tag">WM</span>
+          <div class="body">① Encoder — 화면 보고 <i>z</i><sub>t</sub> 추론
+            <span class="desc"><i>q</i><sub>φ</sub>(<i>z</i><sub>t</sub> | <i>h</i><sub>t</sub>, <i>x</i><sub>t</sub>) · Posterior</span>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="node n-wm-active">
+          <span class="tag">WM</span>
+          <div class="body">② Transition — 이미지 없이 <i>ẑ</i><sub>t</sub> 예측
+            <span class="desc"><i>p</i><sub>φ</sub>(<i>ẑ</i><sub>t</sub> | <i>h</i><sub>t</sub>) · Prior</span>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="node n-wm-active">
+          <span class="tag">WM</span>
+          <div class="body">③ Decoder · Reward · Discount
+            <span class="desc"><i>x̂</i>, <i>r̂</i>, <i>γ̂</i> 복원/예측</span>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="node n-loss">
+          <span class="tag">LOSS</span>
+          <div class="body">④ Reconstruction + <i>β</i>·KL[<i>q</i> ∥ <i>p</i>]
+            <span class="desc">backprop → <b style="color:var(--blue);">φ</b> 업데이트</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note" style="border-left-color:var(--blue);">
+        <b style="color:var(--blue);">여기까지 전부 World Model</b> — Actor/Critic은 등장하지 않음
+      </div>
+    </div>
+
+    <!-- ========== STAGE 2 ========== -->
+    <div class="stage s2">
+      <div class="stage-tag">STAGE 2</div>
+      <div class="stage-title">Actor · Critic 학습</div>
+      <div class="stage-sub">입력: replay의 시작 state (<i>h</i><sub>t</sub>, <i>z</i><sub>t</sub>) — 업데이트: <b style="color:var(--wine);">ψ</b> (π, v)</div>
+
+      <div class="flow">
+        <div class="node n-wm-frozen">
+          <span class="tag">WM·frozen</span>
+          <div class="body">① Transition (prior) — 다음 <i>ẑ</i> 예측
+            <span class="desc">이미지 없이, 고정된 <b>φ</b> 사용</span>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="node n-wm-frozen">
+          <span class="tag">WM·frozen</span>
+          <div class="body">② 15-step 연쇄 rollout
+            <span class="desc">Transition + Reward + Discount heads (고정)</span>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="node n-ac-active">
+          <span class="tag">CRITIC</span>
+          <div class="body">③ <i>v</i>(<i>ẑ</i>) — 누적 보상 추정
+            <span class="desc"><i>λ</i>-return 타겟으로 회귀</span>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="node n-ac-active">
+          <span class="tag">ACTOR</span>
+          <div class="body">④ <i>π</i>(<i>a</i> | <i>ẑ</i>) — 행동 선택
+            <span class="desc">2,500 trajectories 병렬 · REINFORCE/backprop</span>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="node n-loss">
+          <span class="tag">LOSS</span>
+          <div class="body">Actor + Critic loss
+            <span class="desc">backprop → <b style="color:var(--wine);">ψ</b>만 업데이트, <b>φ는 고정</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <b>①② WM 사용(고정) · ③④가 Actor/Critic 학습</b> — 15-step rollout에서 WM은 "시뮬레이터" 역할만
+      </div>
+    </div>
+
+  </div>
+
+  <div class="loop">
+    <span class="cyc">⟲</span>
+    <span class="step">환경 탐색</span>
+    <span class="arr">→</span>
+    <span class="step" style="color:var(--blue);border-color:var(--blue);">STAGE 1 (WM 학습)</span>
+    <span class="arr">→</span>
+    <span class="step" style="color:var(--wine);border-color:var(--wine);">STAGE 2 (A·C 학습)</span>
+    <span class="arr">→</span>
+    <span class="step">새 경험 수집</span>
+    <span class="cyc">⟲</span>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>DreamerV2 — World Model 구성 요소</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; word-break: keep-all; overflow-wrap: break-word; }
+
+:root {
+  --wine: #8a1538;
+  --wine-bg: #fdf2f5;
+  --blue: #3a6cbf;
+  --blue-bg: #eef3fb;
+  --purple: #7a4e9c;
+  --purple-bg: #f1ebf7;
+  --green: #4ea56c;
+  --green-bg: #edf7f0;
+  --brown: #8b5a2b;
+  --brown-bg: #f7f1ea;
+  --orange: #e08e1c;
+  --orange-bg: #fdf4e3;
+  --teal: #0e6655;
+  --teal-bg: #e8f6f3;
+  --dark: #111;
+  --gray: #555;
+  --mute: #888;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #e8e8e8;
+  padding: 40px;
+}
+
+.slide-visual {
+  width: 1280px;
+  background: white;
+  padding: 28px 32px 32px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h1.slide-title {
+  font-size: 22px;
+  color: var(--gray);
+  text-align: center;
+  background: #f0f0f0;
+  padding: 10px;
+}
+
+.headline {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.45;
+}
+
+.headline b { color: var(--wine); }
+
+.meta-strip {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.meta-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: #fafafa;
+  border: 1.5px solid #ddd;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.meta-pill b { color: var(--wine); }
+
+/* ==== Component grid ==== */
+.row-group {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  border-radius: 16px;
+  padding: 26px 16px 16px;
+  margin-top: 8px;
+}
+
+.row-group.rssm {
+  border: 3px dashed var(--wine);
+  background: repeating-linear-gradient(135deg, #fff 0, #fff 12px, #faf4f6 12px, #faf4f6 14px);
+}
+
+.row-group.preds {
+  border: 3px dashed var(--mute);
+  background: repeating-linear-gradient(135deg, #fff 0, #fff 12px, #f7f7f7 12px, #f7f7f7 14px);
+}
+
+.group-tag {
+  position: absolute;
+  top: -15px;
+  left: 24px;
+  padding: 4px 16px;
+  border-radius: 15px;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.row-group.rssm .group-tag { background: var(--wine); }
+.row-group.preds .group-tag { background: var(--mute); }
+
+.comp {
+  border-radius: 14px;
+  border: 2.5px solid;
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comp-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comp-ico {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.comp-name {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.comp-sub {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--gray);
+  margin-top: 2px;
+}
+
+.formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 19px;
+  font-weight: 700;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: white;
+  line-height: 1.5;
+}
+
+.nn-tag {
+  display: inline-block;
+  padding: 3px 11px;
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: 800;
+  background: white;
+  border: 1.5px solid;
+}
+
+.role {
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--dark);
+  line-height: 1.45;
+}
+
+.role .dim { color: var(--gray); font-weight: 500; }
+.role b { font-weight: 700; }
+
+/* Color variants */
+.c-recurrent { background: var(--purple-bg); border-color: var(--purple); }
+.c-recurrent .comp-ico { background: var(--purple); }
+.c-recurrent .comp-name { color: var(--purple); }
+.c-recurrent .formula { border: 1.5px solid #d5c5e8; color: var(--purple); }
+.c-recurrent .nn-tag { color: var(--purple); border-color: var(--purple); }
+
+.c-repr { background: var(--green-bg); border-color: var(--green); }
+.c-repr .comp-ico { background: var(--green); }
+.c-repr .comp-name { color: var(--green); }
+.c-repr .formula { border: 1.5px solid #bcdcc7; color: var(--green); }
+.c-repr .nn-tag { color: var(--green); border-color: var(--green); }
+
+.c-trans { background: var(--green-bg); border-color: var(--green); border-style: dashed; }
+.c-trans .comp-ico { background: var(--green); }
+.c-trans .comp-name { color: var(--green); }
+.c-trans .formula { border: 1.5px solid #bcdcc7; color: var(--green); }
+.c-trans .nn-tag { color: var(--green); border-color: var(--green); }
+
+.c-image { background: var(--brown-bg); border-color: var(--brown); }
+.c-image .comp-ico { background: var(--brown); }
+.c-image .comp-name { color: var(--brown); }
+.c-image .formula { border: 1.5px solid #dcc5ab; color: var(--brown); }
+.c-image .nn-tag { color: var(--brown); border-color: var(--brown); }
+
+.c-reward { background: var(--orange-bg); border-color: var(--orange); }
+.c-reward .comp-ico { background: var(--orange); }
+.c-reward .comp-name { color: var(--orange); }
+.c-reward .formula { border: 1.5px solid #f0d8a6; color: var(--orange); }
+.c-reward .nn-tag { color: var(--orange); border-color: var(--orange); }
+
+.c-discount { background: var(--teal-bg); border-color: var(--teal); }
+.c-discount .comp-ico { background: var(--teal); }
+.c-discount .comp-name { color: var(--teal); }
+.c-discount .formula { border: 1.5px solid #b8dcd4; color: var(--teal); }
+.c-discount .nn-tag { color: var(--teal); border-color: var(--teal); }
+
+/* bottom note */
+.footnote {
+  padding: 12px 16px;
+  background: var(--wine-bg);
+  border: 2px solid var(--wine);
+  border-radius: 10px;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--wine);
+  line-height: 1.45;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.footnote .dot { font-size: 22px; }
+.footnote .dim { color: var(--dark); font-weight: 500; }
+
+</style>
+</head>
+<body>
+
+<h1 class="slide-title">World Model 구성 요소 (DreamerV2)</h1>
+<div class="slide-visual">
+
+  <div class="meta-strip">
+    <div class="meta-pill">입력 이미지: <b>84×84 grayscale</b> → 64×64 downscale</div>
+    <div class="meta-pill">Stochastic state: <b>32×32 categorical</b></div>
+    <div class="meta-pill">Model state = <b>deterministic <i>h</i></b> ⊕ <b>sample <i>z</i></b></div>
+    <div class="meta-pill">모든 네트워크는 <b>파라미터 <i>φ</i></b>로 통합되어 <b>함께 학습</b></div>
+  </div>
+
+  <div class="row-group rssm">
+    <div class="group-tag">RSSM (Recurrent State-Space Model)</div>
+
+    <!-- 1. Recurrent model -->
+    <div class="comp c-recurrent">
+      <div class="comp-head">
+        <div class="comp-ico">🔁</div>
+        <div>
+          <div class="comp-name">Recurrent Model</div>
+          <div class="comp-sub">RSSM의 결정적 상태</div>
+        </div>
+      </div>
+      <div class="formula"><i>h</i><sub>t</sub> = <i>f</i><sub>φ</sub>(<i>h</i><sub>t−1</sub>, <i>z</i><sub>t−1</sub>, <i>a</i><sub>t−1</sub>)</div>
+      <div><span class="nn-tag">GRU</span></div>
+      <div class="role">이전 state와 action을 받아 <b>결정적 순환 상태</b> <i>h</i><sub>t</sub> 계산. <span class="dim">시간 방향 기억 담당.</span></div>
+    </div>
+
+    <!-- 2. Representation model (Posterior) -->
+    <div class="comp c-repr">
+      <div class="comp-head">
+        <div class="comp-ico">👁️</div>
+        <div>
+          <div class="comp-name">Representation Model</div>
+          <div class="comp-sub">Posterior — 이미지 반영</div>
+        </div>
+      </div>
+      <div class="formula"><i>z</i><sub>t</sub> ∼ <i>q</i><sub>φ</sub>(<i>z</i><sub>t</sub> | <i>h</i><sub>t</sub>, <i>x</i><sub>t</sub>)</div>
+      <div><span class="nn-tag">CNN + MLP</span></div>
+      <div class="role">이미지 <i>x</i><sub>t</sub>와 <i>h</i><sub>t</sub>로부터 <b>stochastic state</b> <i>z</i><sub>t</sub>를 추론. <span class="dim">World Model 학습 시 사용.</span></div>
+    </div>
+
+    <!-- 3. Transition predictor (Prior) -->
+    <div class="comp c-trans">
+      <div class="comp-head">
+        <div class="comp-ico">🔮</div>
+        <div>
+          <div class="comp-name">Transition Predictor</div>
+          <div class="comp-sub">Prior — 이미지 없이 예측</div>
+        </div>
+      </div>
+      <div class="formula"><i>ẑ</i><sub>t</sub> ∼ <i>p</i><sub>φ</sub>(<i>ẑ</i><sub>t</sub> | <i>h</i><sub>t</sub>)</div>
+      <div><span class="nn-tag">MLP</span></div>
+      <div class="role"><i>h</i><sub>t</sub>만 보고 다음 <i>z</i>를 <b>상상으로 예측</b>. <span class="dim">상상 rollout의 핵심 — 이미지 없이 미래 생성.</span></div>
+    </div>
+
+  </div>
+
+  <div class="row-group preds">
+    <div class="group-tag">Predictors (관측·보상·종료 복원)</div>
+
+    <!-- 4. Image predictor -->
+    <div class="comp c-image">
+      <div class="comp-head">
+        <div class="comp-ico">🖼️</div>
+        <div>
+          <div class="comp-name">Image Predictor</div>
+          <div class="comp-sub">Decoder — 이미지 복원</div>
+        </div>
+      </div>
+      <div class="formula"><i>x̂</i><sub>t</sub> ∼ <i>p</i><sub>φ</sub>(<i>x̂</i><sub>t</sub> | <i>h</i><sub>t</sub>, <i>z</i><sub>t</sub>)</div>
+      <div><span class="nn-tag">Transposed CNN</span></div>
+      <div class="role">latent (<i>h</i>, <i>z</i>)로부터 원본 이미지 <b>복원</b>. <span class="dim">reconstruction loss로 representation 학습 유도.</span></div>
+    </div>
+
+    <!-- 5. Reward predictor -->
+    <div class="comp c-reward">
+      <div class="comp-head">
+        <div class="comp-ico">🏆</div>
+        <div>
+          <div class="comp-name">Reward Predictor</div>
+          <div class="comp-sub">보상 추정 head</div>
+        </div>
+      </div>
+      <div class="formula"><i>r̂</i><sub>t</sub> ∼ <i>p</i><sub>φ</sub>(<i>r̂</i><sub>t</sub> | <i>h</i><sub>t</sub>, <i>z</i><sub>t</sub>)</div>
+      <div><span class="nn-tag">MLP</span></div>
+      <div class="role">현재 model state에서 기대 보상 <b>예측</b>. <span class="dim">상상 rollout에서 reward signal 공급.</span></div>
+    </div>
+
+    <!-- 6. Discount predictor -->
+    <div class="comp c-discount">
+      <div class="comp-head">
+        <div class="comp-ico">⏳</div>
+        <div>
+          <div class="comp-name">Discount Predictor</div>
+          <div class="comp-sub">에피소드 종료 추정</div>
+        </div>
+      </div>
+      <div class="formula"><i>γ̂</i><sub>t</sub> ∼ <i>p</i><sub>φ</sub>(<i>γ̂</i><sub>t</sub> | <i>h</i><sub>t</sub>, <i>z</i><sub>t</sub>)</div>
+      <div><span class="nn-tag">MLP</span></div>
+      <div class="role">에피소드가 <b>끝날 확률</b>을 예측. <span class="dim">상상 trajectory에서 bootstrap 경계 처리.</span></div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -77,14 +77,29 @@ HTML/CSS로 슬라이드 삽화를 디자인하고, Playwright로 3×DPI PNG를 
 
 ### 예시 자산 (복제해서 수정할 것 — 처음부터 만들지 말 것)
 
+**독립 HTML 예시 6종** — 실제 발표 PPT에서 채택된 슬라이드 기반:
+
 | 패턴 | 파일 | 언제 쓰나 |
 |---|---|---|
-| 2열 비교 카드 | `visual/example_1_compare.html` | 개념 A vs B |
-| 병렬 타임라인 (SVG) | `visual/example_2_timeline_parallel.html` | 여러 trajectory 병렬 rollout |
-| n-step 가중치 표 | `visual/example_3_nstep_weights.html` | 수식 분해 · 가중 평균 설명 |
-| 수식 + 안정화 카드 | `visual/example_4_formula.html` | 수식 정의 + 부가 설명 |
-| 다트보드 비교 | `visual/example_5_dartboard.html` | Bias vs Variance 같은 추상 비교 |
-| 수식 + 슬라이더 + 범례 | `visual/example_6_actor_loss.html` | 가중 혼합 · 하이퍼파라미터 |
+| 6-카드 그리드 | `visual/example_1_grid_components.html` | 모델 컴포넌트·구성 요소 나열 |
+| 논문 figure + 범례 | `visual/example_2_figure_with_legend.html` | 논문 다이어그램 + 한글 설명 |
+| 2열 역할 비교 | `visual/example_3_two_column_roles.html` | 두 단계/역할 나란히 비교 |
+| 간단 개념 비교 | `visual/example_4_simple_concept.html` | 2-3 항목 최소 비교 |
+| 단계별 흐름 (비유) | `visual/example_5_staged_flow.html` | Stage 1 → Stage 2 비유 카드 |
+| 수식 + 안정화 카드 | `visual/example_6_formula.html` | 수식 정의 + 부가 설명 |
+
+**PNG-only 참고 자료** — `visual/v3/reference/` (HTML 소스는 없지만 패턴 참고용):
+
+| 파일 | 패턴 |
+|---|---|
+| `ref_compare_two_cards.png` | 큰 2열 비교 카드 (좌우 풍부한 내용) |
+| `ref_three_step_flow.png` | 3단계 flow (STEP 1→2→3) |
+| `ref_analogy_cards.png` | 비유·유추 카드 레이아웃 |
+| `ref_infographic_numbers.png` | 숫자 강조 인포그래픽 |
+| `ref_mechanism_diagram.png` | 메커니즘·수식 박스 다이어그램 |
+
+참고 PNG는 "이런 패턴도 가능하다" 보여주는 용도. 필요하면 Claude에게 PNG 보여주고
+"이런 스타일로 HTML 만들어줘" 요청하면 재현해줌.
 
 ### HTML 작성 규칙
 
