@@ -15,9 +15,9 @@
 | 0 | 2026-03-18 | 유정화 | Introduction & Overview| [YouTube ](https://youtu.be/F_Vd7-3JUc8)/ Review |
 | 1 | 2026-03-25 | 장보아 | [World Models](https://arxiv.org/abs/1803.10122) (NeurIPS 2018) | [YouTube](https://youtu.be/hzyZPWn2goI) / [Review](https://pseudo-lab.github.io/hello-world-models/review/world-models/) |
 | 2 | 2026-04-01 | 이재호 | [PlaNet](https://arxiv.org/abs/1811.04551) (ICML 2019) | [YouTube](https://www.youtube.com/watch?v=qVEcdMkFZc4) / [Review](https://pseudo-lab.github.io/hello-world-models/review/planet/) |
-| 3 | 2026-04-08 | 김주연 | [Dreamer](https://arxiv.org/abs/1912.01603) (ICLR 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer/) |
+| 3 | 2026-04-08 | 김주연 | [Dreamer](https://arxiv.org/abs/1912.01603) (ICLR 2020) | [YouTube](https://youtu.be/e_WeefKrxB8) / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer/) |
 | 4 | 2026-04-15 | 유정화 | [DreamerV2](https://arxiv.org/abs/2010.02193) (ICLR 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v2/) |
-| 5 | 2026-04-22 | | [MuZero](https://arxiv.org/abs/1911.08265) (Nature 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/muzero/) |
+| 5 | 2026-04-22 | 이재호 | [MuZero](https://arxiv.org/abs/1911.08265) (Nature 2020) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/muzero/) |
 | 6 | 2026-05-06 | 이재호 | [DreamerV3](https://arxiv.org/abs/2301.04104) (ICLR 2023) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v3/) |
 | 7 | 2026-05-13 | | [Trajectory Transformer](https://arxiv.org/abs/2106.02039) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/trajectory-transformer/) |
 | 8 | 2026-05-20 | 김현수 | [Decision Transformer](https://arxiv.org/abs/2106.01345) (NeurIPS 2021) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/decision-transformer/) |
