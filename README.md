@@ -9,9 +9,6 @@
 - 김주연 [Juyeon Kim] | [Github](https://github.com/JYeonKim) | [Linkedin](https://www.linkedin.com/in/ju-yeon-kim) |
 - 장보아 [Boa Jang] | [Github](https://github.com/Jang-Boa) | [Linkedin](https://www.linkedin.com/in/boa-jang-93a72918a) |
 - 이재호 [Jaeho Lee] | [Github](https://github.com/ORE24) | [Linkedin](https://www.linkedin.com/in/jae-ho-lee-82b418303) |
-- 김현수
-- 유지형
-- 정민지
   
 ## Reviewed Papers
 | idx | Date | Presenter | Paper | Resources |
