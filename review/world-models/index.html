@@ -1,0 +1,2655 @@
+<!DOCTYPE html><html lang="ko" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="World Models 논문 리뷰 및 스터디 자료">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../planet/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+  <title>Hello, World! — World Models Study</title>
+
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#world-models" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../.." title="Hello, World!" class="md-header__button md-logo" aria-label="Hello, World!" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hello, World! — World Models Study
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              World Models
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Pseudo-Lab/hello-world-models" title="저장소로 이동" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Pseudo-Lab/hello-world-models
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hello, World!" class="md-nav__button md-logo" aria-label="Hello, World!" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Hello, World!
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Pseudo-Lab/hello-world-models" title="저장소로 이동" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Pseudo-Lab/hello-world-models
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Latent World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Latent World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    World Models (2018)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    World Models (2018)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0-background" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Background: 강화 학습 기초
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. Background: 강화 학습 기초">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      강화학습이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      두 등장인물
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      핵심 루프
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reward-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      보상(Reward)과 점수(Score)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      정책(Policy)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai-gym" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenAI Gym
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Motivation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Motivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      인간은 어떻게 빠르게 판단할까?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      강화 학습 (RL)의 두 가지 접근법
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="강화 학습 (RL)의 두 가지 접근법">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-free-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model-Free RL (모델 없는 강화학습)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-based-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model-Based RL (모델 기반 강화학습)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-free-credit-assignment-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model-Free의 핵심 병목: Credit Assignment Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      이 논문의 해법
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      핵심 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-agent-model-v-m-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Agent Model — V · M · C
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Agent Model — V · M · C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposed-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proposed Method 한 줄 요약
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v-variational-autoencoder-vae" class="md-nav__link">
+    <span class="md-ellipsis">
+      V — Variational Autoencoder (VAE) → 눈의 역할
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V — Variational Autoencoder (VAE) → 눈의 역할">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m-mdn-rnn-mixture-density-network-rnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      M — MDN-RNN (Mixture Density Network + RNN) → 기억과 예측의 역할
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="M — MDN-RNN (Mixture Density Network + RNN) → 기억과 예측의 역할">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixture-density-network-combined-with-a-rnn-mdn-rnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mixture Density Network combined with a RNN (MDN-RNN)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-linear-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      C — Linear Controller → 판단의 역할
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C — Linear Controller → 판단의 역할">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#covariancematrix-adaptation-evolution-strategy-cma-es" class="md-nav__link">
+    <span class="md-ellipsis">
+      CovarianceMatrix Adaptation Evolution Strategy (CMA-ES)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training Procedure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-car-racing-experiment-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Car Racing Experiment (Github)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Car Racing Experiment (Github)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carracing-v0" class="md-nav__link">
+    <span class="md-ellipsis">
+      실험 설정 [CarRacing-v0]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiment-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experiment Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m" class="md-nav__link">
+    <span class="md-ellipsis">
+      왜 M이 중요한가?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evolving-stable-strategies-world-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      *Evolving Stable Strategies: (World Models 저자가 직접 쓴 블로그 포스트)*
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      그래프 해석 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vizdoom-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. VizDoom Experiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. VizDoom Experiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#doomtakecover-v0" class="md-nav__link">
+    <span class="md-ellipsis">
+      실험 설정 [DoomTakeCover-v0]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procedure_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiment-results_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experiment Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tau" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(\tau\) 역할
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cheating-the-world-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cheating the World Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doomrnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      DoomRNN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Discussion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Discussion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strengths
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weaknesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weaknesses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Impact
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 마무리
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 마무리">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      핵심 요약
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      이 논문의 의의
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../planet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PlaNet (2019)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dreamer (2020)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../muzero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MuZero (2020)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer-v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DreamerV2 (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer-v3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DreamerV3 (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Sequence-Based World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Sequence-Based World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decision-transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decision Transformer (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trajectory-transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trajectory Transformer (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Predictive World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Predictive World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CPC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CPC (2018)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v-jepa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V-JEPA (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v-jepa-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V-JEPA 2 (2025)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Generative World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Generative World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genie (2024)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cosmos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cosmos (2025)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0-background" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Background: 강화 학습 기초
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. Background: 강화 학습 기초">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      강화학습이란?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      두 등장인물
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      핵심 루프
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reward-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      보상(Reward)과 점수(Score)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      정책(Policy)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai-gym" class="md-nav__link">
+    <span class="md-ellipsis">
+      OpenAI Gym
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Motivation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Motivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      인간은 어떻게 빠르게 판단할까?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      강화 학습 (RL)의 두 가지 접근법
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="강화 학습 (RL)의 두 가지 접근법">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-free-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model-Free RL (모델 없는 강화학습)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-based-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model-Based RL (모델 기반 강화학습)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-free-credit-assignment-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model-Free의 핵심 병목: Credit Assignment Problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      이 논문의 해법
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      핵심 질문
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-agent-model-v-m-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Agent Model — V · M · C
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Agent Model — V · M · C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proposed-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proposed Method 한 줄 요약
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v-variational-autoencoder-vae" class="md-nav__link">
+    <span class="md-ellipsis">
+      V — Variational Autoencoder (VAE) → 눈의 역할
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V — Variational Autoencoder (VAE) → 눈의 역할">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m-mdn-rnn-mixture-density-network-rnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      M — MDN-RNN (Mixture Density Network + RNN) → 기억과 예측의 역할
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="M — MDN-RNN (Mixture Density Network + RNN) → 기억과 예측의 역할">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixture-density-network-combined-with-a-rnn-mdn-rnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mixture Density Network combined with a RNN (MDN-RNN)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-linear-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      C — Linear Controller → 판단의 역할
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C — Linear Controller → 판단의 역할">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#covariancematrix-adaptation-evolution-strategy-cma-es" class="md-nav__link">
+    <span class="md-ellipsis">
+      CovarianceMatrix Adaptation Evolution Strategy (CMA-ES)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training Procedure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-car-racing-experiment-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Car Racing Experiment (Github)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Car Racing Experiment (Github)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carracing-v0" class="md-nav__link">
+    <span class="md-ellipsis">
+      실험 설정 [CarRacing-v0]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiment-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experiment Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#m" class="md-nav__link">
+    <span class="md-ellipsis">
+      왜 M이 중요한가?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evolving-stable-strategies-world-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      *Evolving Stable Strategies: (World Models 저자가 직접 쓴 블로그 포스트)*
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      그래프 해석 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vizdoom-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. VizDoom Experiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. VizDoom Experiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#doomtakecover-v0" class="md-nav__link">
+    <span class="md-ellipsis">
+      실험 설정 [DoomTakeCover-v0]
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procedure_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiment-results_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiment Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experiment Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tau" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(\tau\) 역할
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cheating-the-world-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cheating the World Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doomrnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      DoomRNN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Discussion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Discussion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strengths
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weaknesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weaknesses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Impact
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 마무리
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 마무리">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      핵심 요약
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      이 논문의 의의
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="world-models">World Models<a class="headerlink" href="#world-models" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Information</p>
+<ul>
+<li><strong>Title:</strong> World Models</li>
+<li><strong>Venue:</strong> NeurIPS 2018</li>
+<li><strong>Paper:</strong> <a href="https://arxiv.org/abs/1803.10122">arXiv</a> | <a href="https://papers.nips.cc/paper_files/paper/2018/hash/2de5d16682c3c35007e4e92982f1a2ba-Abstract.html">NeurIPS</a></li>
+<li><strong>Code:</strong> <a href="https://github.com/hardmaru/WorldModelsExperiments">Github</a></li>
+<li><strong>Homepage:</strong> <a href="https://worldmodels.github.io/">Homepage</a></li>
+<li><strong>Presenter:</strong> Boa Jang</li>
+<li><strong>Last updated:</strong> 2026-03-25</li>
+</ul>
+</div>
+<hr>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">¶</a></h2>
+<p>인간의 인지 시스템에서 영감을 받아, RL 에이전트에게 <strong>환경의 압축된 시공간 표현(World Model)</strong>을 학습시키는 프레임워크를 제안한다.</p>
+<p>에이전트는 <strong>V(Vision)</strong> + <strong>M(Memory)</strong> + <strong>C(Controller)</strong> 3개 모듈로 구성되며, V와 M이 비지도 학습으로 환경이 어떻게 작동하는지 먼저 배운 후, C는 진화 전략(CMA-ES)으로 최적화된다.</p>
+<p>핵심적으로, 에이전트를 자신의 world model 내부(꿈속)에서만 훈련시킨 후 실제 환경으로 정책을 이전(transfer)할 수 있음을 실증하였다.</p>
+<p>CarRacing-v0를 최초로 해결(906점)하고, VizDoom에서 꿈속 훈련만으로 1092점을 달성했다.</p>
+<h2 id="0-background">0. Background: 강화 학습 기초<a class="headerlink" href="#0-background" title="Permanent link">¶</a></h2>
+<h3 id="_1">강화학습이란?<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<p>강화학습(Reinforcement Learning, RL)은 <strong>시행착오를 통해 스스로 배우는 학습 방법</strong>이다.</p>
+<p>지도학습처럼 정답을 알려주는 사람이 없다. 그냥 해보고, 결과가 좋으면 그 행동을 더 하고, 나쁘면 덜 하도록 스스로 조정한다. 마치 아이가 자전거 타는 법을 넘어지면서 배우는 것과 같다.</p>
+<h3 id="_2">두 등장인물<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<p>강화학습에는 딱 두 가지만 있다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>  <span class="n">에이전트</span> <span class="p">(</span><span class="n">Agent</span><span class="p">)</span>   <span class="err">←→</span>      <span class="n">환경</span> <span class="p">(</span><span class="n">Environment</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  <span class="s2">"결정하는 주체"</span>          <span class="s2">"에이전트가 살고 있는 세계"</span>
+</code></pre></div>
+<p><strong>에이전트(Agent)</strong>: 관찰하고, 행동을 선택하고, 보상을 받는 주체. AI가 여기에 해당한다.</p>
+<p><strong>환경(Environment)</strong>: 에이전트의 행동에 반응하는 세계 전체. 게임 엔진, 로봇 시뮬레이터, 심지어 현실 세계도 환경이 될 수 있다.</p>
+<h3 id="_3">핵심 루프<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<p>강화학습은 이 사이클의 무한 반복이다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="err">①</span> <span class="n">환경이</span> <span class="n">현재</span> <span class="n">상태</span><span class="p">(</span><span class="n">관찰</span><span class="p">)</span><span class="n">를</span> <span class="n">에이전트에게</span> <span class="n">준다</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>        <span class="err">↓</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="err">②</span> <span class="n">에이전트가</span> <span class="n">관찰을</span> <span class="n">보고</span> <span class="n">행동을</span> <span class="n">선택한다</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="err">↓</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="err">③</span> <span class="n">환경이</span> <span class="n">행동에</span> <span class="n">반응해</span> <span class="n">상태를</span> <span class="n">바꾸고</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>   <span class="n">에이전트에게</span> <span class="n">보상을</span> <span class="n">돌려준다</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="err">↓</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="err">④</span> <span class="err">①</span><span class="n">로</span> <span class="n">돌아간다</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="err">↓</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>   <span class="p">(</span><span class="n">에피소드가</span> <span class="n">끝날</span> <span class="n">때까지</span> <span class="n">반복</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="err">↓</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>   <span class="n">누적</span> <span class="n">보상을</span> <span class="n">합산</span> <span class="err">→</span> <span class="n">이게</span> <span class="n">그</span> <span class="n">에피소드의</span> <span class="n">점수</span>
+</code></pre></div>
+<p>게임으로 비유하면 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th>RL 용어</th>
+<th>게임 비유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>에이전트</td>
+<td>플레이어</td>
+</tr>
+<tr>
+<td>환경</td>
+<td>게임 엔진 전체</td>
+</tr>
+<tr>
+<td>관찰 (Observation)</td>
+<td>현재 게임 화면</td>
+</tr>
+<tr>
+<td>행동 (Action)</td>
+<td>버튼 입력</td>
+</tr>
+<tr>
+<td>보상 (Reward)</td>
+<td>점수 변화</td>
+</tr>
+<tr>
+<td>에피소드 (Episode)</td>
+<td>게임 한 판</td>
+</tr>
+</tbody>
+</table>
+<h3 id="reward-score">보상(Reward)과 점수(Score)<a class="headerlink" href="#reward-score" title="Permanent link">¶</a></h3>
+<p>에이전트의 목표는 단 하나다.</p>
+<blockquote>
+<p><strong>에피소드(Episode) 동안 받는 보상의 합(누적 보상)을 최대화하는 것</strong>
+</p>
+</blockquote>
+<p>보상은 환경마다 다르게 설계된다.</p>
+<table>
+<thead>
+<tr>
+<th>환경</th>
+<th>보상 기준</th>
+<th>최대값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CarRacing-v0</td>
+<td>트랙 타일 밟을 때마다 +1, 매 타임스텝 -0.1</td>
+<td>약 1000점</td>
+</tr>
+<tr>
+<td>DoomTakeCover-v0</td>
+<td>살아있는 매 타임스텝마다 +1</td>
+<td>2100점</td>
+</tr>
+<tr>
+<td>Atari Breakout</td>
+<td>벽돌 깰 때마다 +점수</td>
+<td>게임마다 다름</td>
+</tr>
+</tbody>
+</table>
+<p>그래서 뒤에 결과표에 나오는 숫자는 <strong>100번의 에피소드 동안 받은 누적 보상의 평균값</strong>이다. 환경마다 단위가 다르기 때문에 같은 환경 안에서만 방법끼리 비교가 의미있다.</p>
+<h3 id="policy">정책(Policy)<a class="headerlink" href="#policy" title="Permanent link">¶</a></h3>
+<p>에이전트가 "어떤 상황에서 어떤 행동을 할지"를 결정하는 규칙을 <strong>정책(Policy)</strong> 이라고 한다.</p>
+<p>강화학습의 목표를 다시 표현하면 이렇다.</p>
+<blockquote>
+<p><strong>최대한 높은 보상을 얻을 수 있는 정책을 찾는 것</strong>
+</p>
+</blockquote>
+<p>처음엔 랜덤하게 행동하다가, 경험이 쌓일수록 좋은 행동을 더 자주 선택하도록 정책이 개선된다.</p>
+<h3 id="openai-gym">OpenAI Gym<a class="headerlink" href="#openai-gym" title="Permanent link">¶</a></h3>
+<p>이 논문에서 사용한 환경들은 모두 <strong>OpenAI Gym</strong>이라는 프레임워크에서 제공한다.</p>
+<p>Gym은 <strong>2016년 OpenAI가 공개한 강화학습 환경 모음집</strong>이다. 카트폴(막대 세우기)처럼 단순한 것부터 Atari 게임, CarRacing, VizDoom까지 다양한 환경이 들어있다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">## 예시 코드 &gt; 최신 기준으로 작동하는 코드 </span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">gymnasium</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gym</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">"CarRacing-v3"</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="s2">"human"</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">obs</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="k">if</span> <span class="n">terminated</span> <span class="ow">or</span> <span class="n">truncated</span><span class="p">:</span> 
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="n">obs</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p>가장 큰 장점은 <strong>모든 환경이 동일한 인터페이스로 작동한다</strong>는 것이다. 덕분에 연구자들이 같은 환경에서 서로 다른 알고리즘을 공정하게 비교할 수 있다. World Models 논문이 DQN, A3C와 결과를 비교할 수 있는 것도 모두 같은 Gym 환경을 사용했기 때문이다.</p>
+<h2 id="1-motivation">1. Motivation<a class="headerlink" href="#1-motivation" title="Permanent link">¶</a></h2>
+<h3 id="_4"><strong>인간은 어떻게 빠르게 판단할까?</strong><a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<p>야구 타자를 생각해보자. 투수가 던진 공이 타자에게 도달하는 시간은 약 0.4초, 그런데 시각 정보가 눈에서 뇌까지 전달되는 데만 0.1초가 걸린다. 계산상 타자는 공을 보고 판단하고 배트를 휘두를 시간이 없다.</p>
+<p>그런데도 우리는 공을 친다. 어떻게?</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/01_worldmodel_fig1.png" data-desc-position="bottom"><img alt="We learn to perceive time&nbsp;spatially&nbsp;when we read comics. According to cartoonist and comics theorist Scott McCloud, “in the world of comics, time and space are one and the same.” Art © Scott McCloud." src="../../assets/01_worldmodel_fig1.png"></a></p>
+<blockquote>
+<p>뇌가 공의 궤적을 <strong>미리 예측</strong>하고, 그 예측에 맞춰 <strong>반사적으로</strong> 몸을 움직이기 때문이다.
+</p>
+</blockquote>
+<p>우리 뇌에는 세상이 어떻게 돌아가는지에 대한 <strong>내부 모델(mental model)</strong> 이 있다. 이 모델 덕분에 우리는 매 순간 의식적으로 생각하지 않아도 빠르게 행동할 수 있다.</p>
+<blockquote>
+<p><em>"The image of the world around us, which we carry in our head, is just a model."</em>
+— Jay Wright Forrester (1971)
+</p>
+</blockquote>
+<p><strong>그렇다면 AI도 이런 내부 모델을 가질 수 있을까?</strong></p>
+<h3 id="rl"><a href="https://dalpo0814.tistory.com/52">강화 학습 (RL)</a>의 두 가지 접근법<a class="headerlink" href="#rl" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/01_worldmodel_fig2.png" data-desc-position="bottom"><img alt="Taxonomy of RL algorithms (https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#id21)" src="../../assets/01_worldmodel_fig2.png"></a></p>
+<ul>
+<li><strong>대표 알고리즘</strong><ol>
+<li>Q-learning: 각 상태-행동 쌍의 가치를 테이블로 저장</li>
+<li>DQN (Deep Q-Network): 딥러닝을 활용한 Q-learning 확장 버전<ul>
+<li><a href="https://arxiv.org/abs/1312.5602">DQN</a>: CNN으로 게임 화면(픽셀)을 직접 보고, Q-learning으로 행동을 학습하는 첫 번째 딥러닝 RL 모델</li>
+</ul>
+</li>
+<li>PPO, A3C, DDPG 등: 고급 알고리즘으로 성능 향상 가능</li>
+</ol>
+</li>
+</ul>
+<p>강화학습에는 크게 두 가지 방식이 있다.</p>
+<h4 id="model-free-rl"><strong>Model-Free RL (모델 없는 강화학습)</strong><a class="headerlink" href="#model-free-rl" title="Permanent link">¶</a></h4>
+<p><strong>환경이 어떻게 작동하는지 이해하려 하지 않는다.</strong> 그냥 수많은 시행착오를 통해 "이 상황에서 이 행동을 하면 좋은 결과가 나온다"는 패턴을 직접 외운다.</p>
+<p>Model-Free RL은 On-policy 방법인 Policy Optimizatioin, 그리고 Off-policy 방법인 Q-learning 두 가지로 구분</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Learning은 Environment의 Model은 모르지만 interaction을 통해 문제를 푸는 것을 말한다.
+</code></pre></div>
+<ul>
+<li>장점: 구현이 간단하고, 환경 모델을 따로 만들 필요가 없다</li>
+<li>단점: 엄청난 양의 시행착오가 필요하다. 현재 딥러닝 기반 model-free RL은 대개 수천만 번의 상호작용을 요구한다</li>
+<li>대표 알고리즘: DQN, A3C 등</li>
+</ul>
+<h4 id="model-based-rl"><strong>Model-Based RL (모델 기반 강화학습)</strong><a class="headerlink" href="#model-based-rl" title="Permanent link">¶</a></h4>
+<p><strong>환경이 어떻게 돌아가는지 먼저 배운다.</strong> "내가 이 행동을 하면 다음 상태는 어떻게 될까?"를 예측할 수 있는 모델을 만들고, 그 모델을 활용해 더 효율적으로 학습한다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Planning은 Environment의 Model을 어느정도 알거나 주어진 상태에서 문제를 푸는 것을 말한다. 즉 어떤 action에 있어 좋은 reward를 받게 끔 policy를 improve한다.
+</code></pre></div>
+<ul>
+<li>장점: 훨씬 적은 실제 경험으로도 좋은 정책을 만들 수 있다</li>
+<li>단점: 세계 모델이 틀리면 오히려 방해가 된다. 그래서 기존 model-based 연구 대부분은 세계 모델을 참고용으로만 쓰고, 실제 훈련은 여전히 실제 환경에서 한다</li>
+</ul>
+<h3 id="model-free-credit-assignment-problem">Model-Free의 핵심 병목: Credit Assignment Problem<a class="headerlink" href="#model-free-credit-assignment-problem" title="Permanent link">¶</a></h3>
+<p>Model-free RL이 많은 시행착오를 필요로 하는 데에는 구조적인 이유가 있다.</p>
+<p>게임에서 최종 점수는 수백 번의 행동이 모여 결정된다. 그런데 결과(보상)는 맨 마지막에야 주어진다. 그렇다면 그 결과에 기여한 건 어떤 행동이었을까?</p>
+<blockquote>
+<p><strong>어떤 행동이 좋은 결과를 만들었는지 알아내는 문제</strong> — 이것을 Credit Assignment Problem이라고 한다.
+</p>
+</blockquote>
+<p>이 문제 때문에 파라미터 수가 많은 대형 신경망을 model-free 방식으로 훈련하기가 매우 어렵다. 그래서 실제로는 파라미터 수를 적게 유지한 소형 네트워크만 쓰게 되고, 그만큼 표현력도 제한된다.</p>
+<p>실제로 이런 비용이 따른다.</p>
+<ul>
+<li><strong>로봇</strong>: 수백만 번 넘어지고 일어나야 한다</li>
+<li><strong>게임</strong>: 하나를 배우는 데 인간 시간으로 수천 시간 분량의 플레이가 필요하다</li>
+<li><strong>현실 세계</strong>: 자율주행, 의료 등에서는 실수가 허용되지 않는다</li>
+</ul>
+<hr>
+<h3 id="_5">이 논문의 해법<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<blockquote>
+<p><strong>큰 세계 모델(V+M)은 보상 없이 비지도로 먼저 학습하고, 작은 컨트롤러(C)만 보상을 보며 최적화한다.</strong>
+</p>
+</blockquote>
+<p>세계 모델은 "이 게임이 어떻게 돌아가는지"를 이미지만 보고 스스로 익힌다. 보상이 얼마인지는 관심 없다. 복잡한 credit assignment 문제를 수백만 파라미터짜리 네트워크에서 풀 필요가 없어진다.</p>
+<p>컨트롤러(C)는 파라미터가 겨우 867개(CarRacing 기준)에 불과하다. 파라미터가 적으니 credit assignment 문제도 훨씬 쉽게 풀 수 있고, 진화 전략(CMA-ES)처럼 더 단순한 최적화 방법도 쓸 수 있다.</p>
+<h3 id="_6">핵심 질문<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
+<blockquote>
+<p><strong>AI가 실제 환경 대신 자신이 상상한 세계 안에서 연습할 수 있다면?</strong>
+</p>
+</blockquote>
+<p>마치 운동선수가 잠들기 전 머릿속으로 경기를 시뮬레이션하듯, AI도 스스로 만든 "꿈" 속에서 훈련하고 그 실력을 현실로 가져올 수 있다면 훨씬 효율적일 것이다.</p>
+<p>이것이 이 논문의 출발점이다.</p>
+<h2 id="2-agent-model-v-m-c">2. <strong>Agent Model — V · M · C</strong><a class="headerlink" href="#2-agent-model-v-m-c" title="Permanent link">¶</a></h2>
+<h3 id="proposed-method">Proposed Method 한 줄 요약<a class="headerlink" href="#proposed-method" title="Permanent link">¶</a></h3>
+<blockquote>
+<p>에이전트가 스스로 만든 가상 환경(꿈) 안에서 학습하고, 그 정책을 실제 환경으로 가져온다.
+</p>
+</blockquote>
+<h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x1.png" data-desc-position="bottom"><img alt="Agent Model: V, M, C components" src="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x1.png"></a></p>
+<p>Agent Model: V, M, C components</p>
+<p>이 논문의 에이전트는 인간의 인지 시스템에서 영감을 받아 세 파트로 나뉜다.</p>
+<table>
+<thead>
+<tr>
+<th>컴포넌트</th>
+<th>이름</th>
+<th>역할</th>
+<th>인간 비유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>V</strong></td>
+<td>Vision</td>
+<td>이미지 → 잠재 벡터 <span class="arithmatex">\(z\)</span></td>
+<td>눈과 감각</td>
+</tr>
+<tr>
+<td><strong>M</strong></td>
+<td>Memory</td>
+<td>과거+현재 → 미래 <span class="arithmatex">\(z\)</span> 예측</td>
+<td>기억과 상상</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Controller</td>
+<td><span class="arithmatex">\(z\)</span>, <span class="arithmatex">\(h\)</span> → 행동 (<span class="arithmatex">\(a\)</span>) 결정</td>
+<td>반사적 판단</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x5.png" data-desc-position="bottom"><img alt="Flow diagram of Agent Model" src="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x5.png"></a></p>
+<h3 id="v-variational-autoencoder-vae">V — Variational Autoencoder (VAE) → 눈의 역할<a class="headerlink" href="#v-variational-autoencoder-vae" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x2.png" data-desc-position="bottom"><img alt="VAE Architecture " src="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x2.png"></a></p>
+<p>VAE Architecture </p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/01_worldmodel_fig7.png" data-desc-position="bottom"><img alt="VAE Architecture" src="../../assets/01_worldmodel_fig7.png"></a></p>
+<p><strong>목적</strong>: 고해상도 이미지를 작은 숫자 묶음(잠재 벡터 <span class="arithmatex">\(z\)</span>)으로 압축한다.</p>
+<p>사람으로 치면 눈으로 본 장면을 뇌가 "도로 + 커브 + 속도감" 같은 핵심 정보로 요약하는 과정이다.</p>
+<h4 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">¶</a></h4>
+<ul>
+<li>입력: 64×64 픽셀 RGB 이미지</li>
+<li>출력: 32차원(CarRacing) 또는 64차원(Doom) 숫자 벡터 <span class="arithmatex">\(z\)</span></li>
+<li>학습 방식: 압축했다가 다시 복원해보면서 스스로 학습 (비지도)</li>
+<li>Epoch: 1</li>
+<li>보상 신호 없이 작동한다</li>
+</ul>
+<blockquote>
+<p>VAE는 랜덤 플레이로 수집한 수백만 장의 64×64 이미지를 1 epoch 동안 학습하며, 재구성 손실 (<span class="arithmatex">\(L^2\)</span> distance)과 KL divergence를 동시에 최소화해서 이미지를 z로 압축하는 방법을 익힌다.</p>
+</blockquote>
+<h3 id="m-mdn-rnn-mixture-density-network-rnn">M — MDN-RNN (Mixture Density Network + RNN) → 기억과 예측의 역할<a class="headerlink" href="#m-mdn-rnn-mixture-density-network-rnn" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x3.png" data-desc-position="bottom"><img alt="MDN-RNN Architecture" src="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x3.png"></a></p>
+<p>MDN-RNN Architecture</p>
+<p><strong>목적</strong>: "지금까지 이런 상황이었고, 이런 행동을 했으니 다음엔 이렇게 될 것이다"를 예측한다.</p>
+<p>모델링 대상: <span class="arithmatex">\(P(z_{t+1} | a_t, z_t, h_t)\)</span></p>
+<p>F1 드라이버가 코너를 보기 전에 이미 핸들을 꺾는 것처럼, 현재 상태에서 미래를 내다보는 역할이다.</p>
+<ul>
+<li>입력: 현재 행동 <span class="arithmatex">\(a\)</span>, 현재 <span class="arithmatex">\(z\)</span>, 이전 은닉 상태 <span class="arithmatex">\(h\)</span></li>
+<li>출력: 다음 <span class="arithmatex">\(z\)</span>의 확률 분포 <span class="arithmatex">\(P(z_{t+1} | a_t, z_t, h_t)\)</span></li>
+<li>핵심: 하나의 정답을 예측하는 게 아니라 <strong>확률 분포</strong>를 출력한다</li>
+</ul>
+<p><strong>온도 파라미터</strong> <span class="arithmatex">\(\tau\)</span> — 예측의 불확실성을 조절하는 손잡이</p>
+<ul>
+<li>가상환경 난이도 조절 → 꿈의 선명도</li>
+<li><span class="arithmatex">\(\tau\)</span> 낮음: 거의 결정론적, 예측이 정확하지만 가상 환경에서 치팅이 발생할 수 있다</li>
+<li><span class="arithmatex">\(\tau\)</span> 높음: 더 불확실하고 어려운 환경이 만들어지지만, 실제 환경에서 더 잘 작동한다</li>
+</ul>
+<h4 id="implementation_1">Implementation<a class="headerlink" href="#implementation_1" title="Permanent link">¶</a></h4>
+<ul>
+<li>Trained for 20 epochs on the data</li>
+<li>LSTM hidden units: Car racing task 256; Doom task 512</li>
+<li>5 Gaussian mixture<ul>
+<li>MDN은 다음 z의 확률 분포를 <strong>5개의 가우시안을 섞어서</strong> 표현</li>
+</ul>
+</li>
+</ul>
+<h4 id="mixture-density-network-combined-with-a-rnn-mdn-rnn">Mixture Density Network combined with a RNN (MDN-RNN)<a class="headerlink" href="#mixture-density-network-combined-with-a-rnn-mdn-rnn" title="Permanent link">¶</a></h4>
+<p><strong>RNN — 기억을 가진 신경망</strong></p>
+<p>일반적인 신경망은 입력을 받아 출력을 내고 끝이다. 이전에 무엇을 봤는지 기억하지 못한다. 반면 RNN은 <strong>은닉 상태(hidden state)</strong> <span class="arithmatex">\(h\)</span> 라는 일종의 메모리를 갖는다. 매 시점마다 새 입력을 받으면서 이 메모리를 업데이트하고, 다음 시점에 그 메모리를 다시 참고한다.</p>
+<p><strong>MDN — 하나의 답 대신 확률 분포를 출력하는 신경망</strong></p>
+<p>일반 신경망은 입력에 대해 하나의 정답을 출력한다. 그런데 현실의 많은 상황은 <strong>결과가 하나로 정해지지 않는다.</strong> 어떤 행동을 취하든 그 결과에는 본질적인 불확실성이 있다.</p>
+<p>이런 상황에서 하나의 값만 예측하면 틀릴 수밖에 없다. MDN은 이 문제를 다르게 접근한다.</p>
+<blockquote>
+<p><strong>하나의 정답 대신, 가능한 결과들의 확률 분포를 출력한다.</strong>
+</p>
+</blockquote>
+<p>구체적으로는 여러 개의 가우시안(정규분포)을 섞어서 복잡한 분포를 표현한다. 이것을 <strong>Mixture of Gaussians</strong> 라고 한다.</p>
+<p><strong>MDN + RNN = MDN-RNN</strong></p>
+<p>이 두 가지를 합치면 <strong>"시간의 흐름을 기억하면서, 미래를 확률 분포로 예측하는"</strong> 모델이 된다.</p>
+<!-- ![SketchRNN: 영상은 MDN-RNN이 벌레 스케치를 한 획씩 생성하는 과정이다. 매 획마다 "다음 획이 어디로 갈지"를 확률 분포로 예측하고 샘플링한다. World Models의 M 모델은 이와 동일한 구조로, 획 대신 잠재 벡터 z의 다음 값을 확률 분포로 예측한다.](https://worldmodels.github.io/assets/mp4/sketch_rnn_insect.mp4) -->
+
+<h3 id="c-linear-controller">C — Linear Controller → 판단의 역할<a class="headerlink" href="#c-linear-controller" title="Permanent link">¶</a></h3>
+<div class="arithmatex">\[
+a_t = W_c[z_t \ h_t] + b_c
+\]</div>
+<p><strong>목적</strong>: V와 M이 만든 표현을 보고 행동을 결정한다. 그냥 입력을 선형으로 변환해서 행동을 출력하는 가장 단순한 모델이다. 가장 단순한 형태인 fully connected layer 하나</p>
+<p><strong>왜 이렇게 단순하게 만들었나?</strong></p>
+<ul>
+<li>복잡한 판단 능력은 이미 V와 M이 담당한다</li>
+<li>C가 단순할수록 학습이 빠르고, 진화 전략(CMA-ES)으로 최적화하기 좋다</li>
+</ul>
+<h4 id="implementation_2">Implementation<a class="headerlink" href="#implementation_2" title="Permanent link">¶</a></h4>
+<ul>
+<li>C의 출력은 tanh 함수로 -1 ~ 1 사이로 제한한 뒤 각 행동의 범위에 맞게 변환</li>
+</ul>
+<h4 id="covariancematrix-adaptation-evolution-strategy-cma-es">CovarianceMatrix Adaptation Evolution Strategy (CMA-ES)<a class="headerlink" href="#covariancematrix-adaptation-evolution-strategy-cma-es" title="Permanent link">¶</a></h4>
+<p><strong>진화 전략</strong></p>
+<p>일반적인 딥러닝은 경사하강법(gradient descent)으로 학습한다. 손실 함수를 미분해서 "어느 방향으로 파라미터를 바꾸면 더 좋아지는가"를 계산하고 조금씩 수정한다.</p>
+<p><strong>경사하강법의 한계</strong></p>
+<ul>
+<li>미분 가능한 손실 함수가 있어야 한다</li>
+<li>중간 과정의 정보가 필요하다 (어느 행동이 좋았는가?)</li>
+<li>Credit Assignment Problem이 심할수록 학습이 불안정해진다</li>
+</ul>
+<p>강화학습에서 컨트롤러를 학습할 때는 "100번의 행동 끝에 누적 보상이 얼마였다"는 결과만 주어진다. 어느 행동이 좋았는지 중간 정보가 없다. 이런 상황에서는 경사하강법보다 진화 전략이 훨씬 자연스럽다.</p>
+<p><strong>CMA-ES의 작동 원리</strong></p>
+<p><strong>"어떤 방향으로 파라미터를 바꿨을 때 성능이 좋아졌는가"를 기억하고, 그 방향으로 탐색을 집중한다.</strong></p>
+<h3 id="training-procedure">Training Procedure<a class="headerlink" href="#training-procedure" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/01_worldmodel_fig3.png" data-desc-position="bottom"><img alt="Flow diagram of Agent model. " src="../../assets/01_worldmodel_fig3.png"></a></p>
+<p>Flow diagram of Agent model. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">rollout</span><span class="p">(</span><span class="n">controller</span><span class="p">):</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="sd">''' env, rnn, vae are '''</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="sd">''' global variables  '''</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span> <span class="c1"># 환경 초기화 → 첫 번째 게임 화면(이미지) 받음</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  <span class="n">h</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">initial_state</span><span class="p">()</span> <span class="c1"># M의 메모리(은닉 상태 h)를 0으로 초기화</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  <span class="n">cumulative_reward</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">z</span> <span class="o">=</span> <span class="n">vae</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span> <span class="c1"># V: 이미지 → 잠재 벡터 z로 압축</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="n">a</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">action</span><span class="p">([</span><span class="n">z</span><span class="p">,</span> <span class="n">h</span><span class="p">])</span> <span class="c1"># C: z와 h를 보고 행동 a 결정</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># 환경: 행동 실행 → 다음 화면 + 보상 반환</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="n">cumulative_reward</span> <span class="o">+=</span> <span class="n">reward</span> <span class="c1"># 보상 누적</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="n">h</span> <span class="o">=</span> <span class="n">rnn</span><span class="o">.</span><span class="n">forward</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">h</span><span class="p">])</span> <span class="c1"># M: 방금의 행동·상태로 메모리 h 업데이트</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>  <span class="k">return</span> <span class="n">cumulative_reward</span> <span class="c1"># 한 판의 총 점수 반환</span>
+</code></pre></div>
+<h2 id="3-car-racing-experiment-github">3. Car Racing Experiment (<a href="https://github.com/AGiannoutsos/car_racer_gym">Github</a>)<a class="headerlink" href="#3-car-racing-experiment-github" title="Permanent link">¶</a></h2>
+<p>https://worldmodels.github.io/assets/mp4/carracing_mistake_short.mp4</p>
+<h3 id="carracing-v0">실험 설정 [CarRacing-v0]<a class="headerlink" href="#carracing-v0" title="Permanent link">¶</a></h3>
+<ul>
+<li>환경: 매 시도마다 다르게 생성되는 트랙에서 탑뷰 레이싱</li>
+<li>행동: 좌/우 조향, 가속, 브레이크 (연속 3가지)</li>
+<li>해결 기준: 100회 연속 평균 <strong>900점 이상</strong></li>
+<li>당시 기준으로 이 기준을 달성한 방법이 없었음 — 이 논문이 처음</li>
+</ul>
+<h3 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Permanent link">¶</a></h3>
+<p>To summarize the Car Racing experiment, below are the steps taken:</p>
+<ol>
+<li>Collect 10,000 rollouts from a random policy.<ol>
+<li>rollouts: 에이전트가 환경에서 게임 한 판을 처음부터 끝까지 플레이 하는 것 </li>
+</ol>
+</li>
+<li>Train VAE (V) to encode each frame into a latent vector&nbsp;<span class="arithmatex">\(z\in R^{32}\)</span>.</li>
+<li>Train MDN-RNN (M) to model&nbsp;<span class="arithmatex">\(P(z_{t+1} | a_t, z_t, h_t)\)</span> → <ol>
+<li><span class="arithmatex">\(z_t\)</span> 32차원</li>
+<li><span class="arithmatex">\(h_t\)</span> 256차원 </li>
+</ol>
+</li>
+<li>Evolve Controller (C) to maximize the expected cumulative reward of a rollout.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Parameter Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VAE</td>
+<td>4,348,547</td>
+</tr>
+<tr>
+<td>MDN-RNN</td>
+<td>422,368</td>
+</tr>
+<tr>
+<td>Controller</td>
+<td>867</td>
+</tr>
+</tbody>
+</table>
+<h3 id="experiment-results">Experiment Results<a class="headerlink" href="#experiment-results" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/01_worldmodel_fig4.png" data-desc-position="bottom"><img alt="스크린샷 2026-03-25 00.54.54.png" src="../../assets/01_worldmodel_fig4.png"></a></p>
+<ul>
+<li>
+<p><strong>CarRacing-v0의 보상 계산 방식</strong></p>
+<p>매 타임스텝마다 보상이 쌓인다.</p>
+<ul>
+<li>트랙 타일을 밟을 때마다 <strong>+1점</strong> (전체 트랙을 다 밟으면 총 약 1000점)</li>
+<li>매 타임스텝마다 <strong>0.1점</strong> 패널티 (시간을 낭비하면 손해)</li>
+<li>트랙을 벗어나면 추가 패널티</li>
+</ul>
+</li>
+</ul>
+<h4 id="m">왜 M이 중요한가?<a class="headerlink" href="#m" title="Permanent link">¶</a></h4>
+<p><strong>V만 있을 때</strong>: 현재 순간의 스냅샷만 봄 → 코너에서 미리 준비 불가 → 흔들리는 주행</p>
+<p><strong>V + M</strong>: <span class="arithmatex">\(h_t\)</span>에는 미래 확률 분포 정보가 내재 → F1 드라이버처럼 코너를 미리 예측 → 반사적 대응</p>
+<blockquote>
+<p>M은 단순 예측기가 아니라 <strong>암묵적 미래 표현</strong>을 제공한다
+</p>
+</blockquote>
+<h4 id="evolving-stable-strategies-world-models"><a href="https://blog.otoro.net/2017/11/12/evolving-stable-strategies/">*Evolving Stable Strategies</a>: (World Models 저자가 직접 쓴 블로그 포스트)*<a class="headerlink" href="#evolving-stable-strategies-world-models" title="Permanent link">¶</a></h4>
+<p><strong>주제</strong>: CMA-ES 같은 진화 전략을 RL 문제에 적용할 때 어떻게 하면 <strong>안정적이고 강건한(stable &amp; robust) 정책</strong>을 찾을 수 있는가.</p>
+<p><strong>핵심 아이디어</strong>: 랜덤 환경에서 에이전트를 평가할 때 운이 좋아서 좋은 점수를 받은 건지, 진짜 실력이 좋아서 좋은 점수를 받은 건지 구분해야 한다.</p>
+<p>예를 들어 CarRacing처럼 트랙이 매번 랜덤으로 생성되는 환경에서는 이런 문제가 생긴다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">후보</span> <span class="n">A</span><span class="p">:</span> <span class="n">쉬운</span> <span class="n">트랙을</span> <span class="n">만나서</span> <span class="mi">950</span><span class="n">점</span> <span class="err">→</span> <span class="n">운이</span> <span class="n">좋았을</span> <span class="n">수도</span> <span class="n">있음</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">후보</span> <span class="n">B</span><span class="p">:</span> <span class="n">어려운</span> <span class="n">트랙을</span> <span class="n">만나서</span> <span class="mi">850</span><span class="n">점</span> <span class="err">→</span> <span class="n">실제로는</span> <span class="n">더</span> <span class="n">잘하는</span> <span class="n">에이전트일</span> <span class="n">수도</span> <span class="n">있음</span>
+</code></pre></div>
+<p><strong>해결책</strong>: 한 에이전트를 <strong>16가지 서로 다른 랜덤 시드</strong>로 16번 실행하고, 그 <strong>평균 보상을 fitness</strong>로 사용한다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">후보</span> <span class="n">하나의</span> <span class="n">fitness</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  <span class="o">=</span> <span class="n">랜덤</span> <span class="n">시드</span> <span class="mi">1</span><span class="n">로</span> <span class="n">rollout</span> <span class="err">→</span> <span class="n">보상</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  <span class="o">+</span> <span class="n">랜덤</span> <span class="n">시드</span> <span class="mi">2</span><span class="n">로</span> <span class="n">rollout</span> <span class="err">→</span> <span class="n">보상</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  <span class="o">+</span> <span class="o">...</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>  <span class="o">+</span> <span class="n">랜덤</span> <span class="n">시드</span> <span class="mi">16</span><span class="n">으로</span> <span class="n">rollout</span> <span class="err">→</span> <span class="n">보상</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>  <span class="err">÷</span> <span class="mi">16</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>  <span class="o">=</span> <span class="n">평균</span> <span class="n">누적</span> <span class="n">보상</span><span class="err">`</span>
+</code></pre></div>
+<p><strong>그래프 해석</strong></p>
+<p>후보 (population) 64개; 각 후보를 16번씩만 돌린 결과 (population size of 64, and had each agent perform the task 16 times with different initial random seeds.)</p>
+<p>파란선: 64개 후보 전체의 <strong>평균</strong> 점수</p>
+<p>주황선: 64개 후보 중 <strong>최하위</strong> 점수</p>
+<p>초록선: 64개 후보 중 <strong>최상위</strong> 점수</p>
+<p>빨간선: 최우수 에이전트를 <strong>1024번</strong> 테스트한 점수</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x9.png" data-desc-position="bottom"><img alt="CarRacing training curves &amp; histogram" src="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x9.png"></a></p>
+<p>CarRacing training curves &amp; histogram</p>
+<h4 id="2">그래프 해석 2<a class="headerlink" href="#2" title="Permanent link">¶</a></h4>
+<ul>
+<li>we plot the results of same agent evaluated over 100 rollouts</li>
+<li><span class="arithmatex">\(h_t\)</span>는 MDN-RNN이 지금까지의 모든 흐름을 압축한 은닉 상태 (256차원)</li>
+<li>hidden layer는 C 내부의 구조를 복잡하게 설계했다는 것 → add a hidden layer with 40 tanh activations</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Figure 26</th>
+<th>Figure 27</th>
+<th>Figure 25</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>입력</td>
+<td>z만</td>
+<td>z만</td>
+<td>z + h</td>
+</tr>
+<tr>
+<td>C 구조</td>
+<td>선형 레이어 1층</td>
+<td>선형 + Hidden layer</td>
+<td>선형 1층</td>
+</tr>
+<tr>
+<td>C 파라미터</td>
+<td>867개</td>
+<td>1443개</td>
+<td>867개</td>
+</tr>
+<tr>
+<td>평균 점수</td>
+<td>632 ± 251</td>
+<td>788 ± 141</td>
+<td><strong>906 ± 21</strong></td>
+</tr>
+<tr>
+<td>분포 형태</td>
+<td>넓게 퍼짐</td>
+<td>중간</td>
+<td>오른쪽에 집중</td>
+</tr>
+</tbody>
+</table>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x11.png" data-desc-position="bottom"><img alt="V only: 632점" src="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x11.png"></a></p>
+<p>V only: 632점</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/01_worldmodel_fig5.png" data-desc-position="bottom"><img alt="V + Hidden Layer: 788점" src="../../assets/01_worldmodel_fig5.png"></a></p>
+<p>V + Hidden Layer: 788점</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x10.png" data-desc-position="bottom"><img alt="Full Model: 906점" src="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x10.png"></a></p>
+<p>Full Model: 906점</p>
+<h2 id="4-vizdoom-experiment"><strong>4. VizDoom Experiment</strong><a class="headerlink" href="#4-vizdoom-experiment" title="Permanent link">¶</a></h2>
+<p>https://worldmodels.github.io/assets/mp4/doom_lazy_small.mp4</p>
+<h3 id="doomtakecover-v0">실험 설정 [DoomTakeCover-v0]<a class="headerlink" href="#doomtakecover-v0" title="Permanent link">¶</a></h3>
+<ul>
+<li>환경: 방 안에서 몬스터의 파이어볼 피하기</li>
+<li>보상: 생존 시간 (최대 2100 스텝)</li>
+<li>해결 기준: 100회 연속 평균 <strong>750 스텝 이상</strong></li>
+<li><strong>핵심 차이</strong>: 에이전트를 실제 환경이 아닌 <strong>가상 환경(DoomRNN)에서만</strong> 학습</li>
+</ul>
+<h3 id="procedure_1">Procedure<a class="headerlink" href="#procedure_1" title="Permanent link">¶</a></h3>
+<p>To summarize the&nbsp;<em>Take Cover</em>&nbsp;experiment, below are the steps taken:</p>
+<ol>
+<li>Collect 10,000 rollouts from a random policy.</li>
+<li>Train VAE (V) to encode each frame into a latent vector&nbsp;<span class="arithmatex">\(z \in R^{64}\)</span>, and use V to convert the images collected from (1) into the latent space representation.</li>
+<li>Train MDN-RNN (M) to model&nbsp;<span class="arithmatex">\(P(z_t+1,d_t+1∣a_t,z_t,h_t)\)</span></li>
+<li>Evolve Controller (C) to maximize the expected survival time inside the virtual environment.</li>
+<li>Use learned policy from (4) on actual Gym environment.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Parameter Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VAE</td>
+<td>4,446,915</td>
+</tr>
+<tr>
+<td>MDN-RNN</td>
+<td>1,678,785</td>
+</tr>
+<tr>
+<td>Controller</td>
+<td>1,088</td>
+</tr>
+</tbody>
+</table>
+<h3 id="experiment-results_1">Experiment Results<a class="headerlink" href="#experiment-results_1" title="Permanent link">¶</a></h3>
+<p>에이전트를 <strong>world model 내부(꿈속)에서만 학습</strong> 후 실제 환경으로 전이.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/01_worldmodel_fig6.png" data-desc-position="bottom"><img alt="Table2" src="../../assets/01_worldmodel_fig6.png"></a></p>
+<h4 id="tau"><span class="arithmatex">\(\tau\)</span> 역할<a class="headerlink" href="#tau" title="Permanent link">¶</a></h4>
+<ul>
+<li>
+<p><span class="arithmatex">\(\tau\)</span> 낮음 (≈ 0.1)</p>
+<p>→ 항상 가장 확률 높은 값만 뽑음</p>
+<p>→ 가상 환경이 예측 가능하고 단순해짐</p>
+<p>→ C가 허점을 쉽게 발견 → 치팅</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\tau\)</span> 높음 (≈ 1.15)</p>
+<p>→ 다양한 값을 뽑음</p>
+<p>→ 가상 환경이 불확실하고 어려워짐</p>
+<p>→ C가 허점을 찾기 어려움 → 진짜 실력을 키워야 함</p>
+</li>
+<li>
+<p><strong>DoomTakeCover-v0의 보상 계산 방식</strong></p>
+<p>매 타임스텝마다 보상이 쌓인다.</p>
+<ul>
+<li>살아있는 매 타임스텝마다 <strong>+1점</strong></li>
+<li>파이어볼에 맞으면 즉시 <strong>에피소드 종료</strong> (추가 패널티 없음)</li>
+<li>최대 <strong>2100 스텝</strong>까지 생존 가능 (약 60초)</li>
+<li>해결 기준: 100회 연속 평균 <strong>750 스텝 이상</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="cheating-the-world-model">Cheating the World Model<a class="headerlink" href="#cheating-the-world-model" title="Permanent link">¶</a></h4>
+<p>https://worldmodels.github.io/assets/mp4/doom_adversarial.mp4</p>
+<p><strong>무슨 일이 일어났나? (</strong><span class="arithmatex">\(\tau\)</span> <strong>= 0.1)</strong></p>
+<p>M이 거의 결정론적으로 작동하면서 몬스터가 파이어볼을 아예 안 쏘는 상태로 고착된다. C는 이 허점을 발견해 가상에서 2100점 만점을 달성하지만, 실제 환경에서는 랜덤 정책(210점)보다도 낮은 193점을 기록한다.</p>
+<p><strong>왜 이런 일이?</strong></p>
+<p>C는 M의 모든 내부 은닉 상태에 접근 가능하다. 게임 엔진 내부를 해킹하는 것과 같다.</p>
+<p><strong>해결책</strong>: <span class="arithmatex">\(\tau\)</span>를 높여 가상 환경을 일부러 더 어렵고 불확실하게 만든다. 노이즈가 많은 환경에서 살아남은 정책이 실제 환경에서도 잘 작동한다.</p>
+<h4 id="doomrnn">DoomRNN<a class="headerlink" href="#doomrnn" title="Permanent link">¶</a></h4>
+<ul>
+<li>가상환경에 붙인 이름, hallucinated Doom environment</li>
+<li>DoomRNN에서만 훈련한 에이전트를 실제 VisDoom 에서 100번 테스트한 결과</li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x14.png" data-desc-position="bottom"><img alt="VizDoom actual results histogram" src="https://ar5iv.labs.arxiv.org/html/1803.10122/assets/x14.png"></a></p>
+<p>VizDoom actual results histogram</p>
+<p><strong>Key Findings:</strong></p>
+<ul>
+<li><span class="arithmatex">\(\tau\)</span> 낮으면 가상에서만 잘 함 → 실제 실패 (치팅)</li>
+<li><span class="arithmatex">\(\tau\)</span> = 1.15에서 기존 최고(820점)를 크게 웃도는 1092점 달성</li>
+<li>V가 몬스터 수를 정확히 재현 못해도 정책 이전은 성공</li>
+</ul>
+<h2 id="5-discussion">5. Discussion<a class="headerlink" href="#5-discussion" title="Permanent link">¶</a></h2>
+<h3 id="strengths">Strengths<a class="headerlink" href="#strengths" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>샘플 효율성</strong>: 실제 환경 상호작용을 최소화(랜덤 10,000회)하고 이후 훈련은 전부 가상에서 진행</li>
+<li><strong>최초 해결</strong>: CarRacing-v0를 당시 기준으로 처음 해결 (906점), 기존 SOTA(838점) 대비 압도적</li>
+<li><strong>모듈식 설계</strong>: V, M, C를 분리해 학습 → 각각 독립적으로 교체·재사용 가능</li>
+<li><strong>확장성</strong>: 세계 모델이 완성되면 에이전트를 무제한으로 가상 훈련 가능 → 계산 비용 절감</li>
+<li><strong>불확실성 모델링</strong>: MDN으로 확률 분포를 출력해 결정론적 모델보다 강건하고 치팅 방지 가능</li>
+<li><strong>심리·뇌과학적 연결</strong>: V/M/C 구조가 인간 인지 시스템(감각-기억-판단)과 대응 → 해석 가능성 높음</li>
+</ul>
+<h3 id="weaknesses">Weaknesses<a class="headerlink" href="#weaknesses" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>비지도 V의 한계</strong>: VAE가 태스크와 무관한 특징도 학습 → 보상과 연관된 중요한 정보를 놓칠 수 있음</li>
+<li><strong>단순 환경에만 검증</strong>: 랜덤 정책 데이터로 세계 모델을 충분히 학습할 수 있는 단순한 환경에서만 작동</li>
+<li><strong>치팅 문제</strong>: C가 M의 내부 상태 전체에 접근 가능 → 가상에서만 통하는 적대적 정책 학습 위험</li>
+<li><strong>모델 용량 한계</strong>: LSTM 기반 M은 복잡한 환경을 장기적으로 기억하기 어렵고 catastrophic forgetting 발생</li>
+<li><strong>일회성 데이터 수집</strong>: 랜덤 정책으로 한 번만 수집 → 에이전트가 탐험하면서 개선하는 반복 학습 없음</li>
+<li><strong>τ 튜닝 필요</strong>: 온도 파라미터를 환경마다 수동으로 조정해야 함 → 자동화 방법 없음</li>
+</ul>
+<h3 id="future-impact">Future Impact<a class="headerlink" href="#future-impact" title="Permanent link">¶</a></h3>
+<p><strong>반복적 학습 (Iterative Training)</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="mf">1.</span> <span class="n">M</span><span class="p">,</span> <span class="n">C</span> <span class="n">랜덤</span> <span class="n">초기화</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="mf">2.</span> <span class="n">실제</span> <span class="n">환경</span> <span class="n">N번</span> <span class="n">롤아웃</span> <span class="err">→</span> <span class="n">데이터</span> <span class="n">수집</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="mf">3.</span> <span class="n">M</span> <span class="n">재학습</span> <span class="o">+</span> <span class="n">C를</span> <span class="n">M</span> <span class="n">안에서</span> <span class="n">최적화</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="mf">4.</span> <span class="n">완료</span> <span class="n">전까지</span> <span class="mi">2</span><span class="n">로</span> <span class="n">돌아감</span>
+</code></pre></div>
+<p><strong>인공 호기심 (Artificial Curiosity)</strong></p>
+<p>M이 잘 예측하지 못하는 상황 = 아직 모르는 영역. 이를 보상으로 활용하면 에이전트가 스스로 낯선 곳을 탐험하도록 유도할 수 있다.</p>
+<p><strong>더 큰 모델로의 확장</strong></p>
+<p>이 논문 이후 Dreamer, DreamerV2, DreamerV3 등의 후속 연구로 이어졌고, 모델 크기와 성능이 크게 향상됐다.</p>
+<hr>
+<h2 id="6">6. 마무리<a class="headerlink" href="#6" title="Permanent link">¶</a></h2>
+<h3 id="_7">핵심 요약<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>구성</th>
+<th>역할</th>
+<th>인간 비유</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V (VAE)</td>
+<td>이미지 → 핵심 표현 z</td>
+<td>눈과 감각</td>
+</tr>
+<tr>
+<td>M (MDN-RNN)</td>
+<td>현재 + 과거 → 미래 예측</td>
+<td>기억과 상상</td>
+</tr>
+<tr>
+<td>C (Linear)</td>
+<td>z + h → 행동</td>
+<td>반사적 판단</td>
+</tr>
+<tr>
+<td>τ (온도)</td>
+<td>가상 환경 난이도 조절</td>
+<td>꿈의 선명도</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8"><strong>이 논문의 의의</strong><a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<ul>
+<li>실제 환경과의 상호작용을 최소화하면서 효율적인 학습 가능</li>
+<li>세계 모델 기반 RL 연구의 중요한 이정표</li>
+<li>Dreamer 시리즈 등 이후 연구의 직접적 기반</li>
+</ul>
+<h2 id="7-reference">7. Reference<a class="headerlink" href="#7-reference" title="Permanent link">¶</a></h2>
+<ul>
+<li>인터랙티브 논문: <a href="https://worldmodels.github.io/">https://worldmodels.github.io</a></li>
+<li>arXiv: https://arxiv.org/abs/1803.10122</li>
+<li>NeurIPS 2018: https://papers.nips.cc/paper/7512</li>
+<li>발표 영상: https://youtu.be/HzA8LRqhujk</li>
+<li>공식 코드: https://github.com/hardmaru/WorldModels</li>
+</ul>
+<!-- ## Key Contributions
+
+## Method
+
+## Results
+
+## Discussion -->
+
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/edit/main/docs/review/world-models.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
+  </a>
+
+
+
+  
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/raw/main/docs/review/world-models.md" title="Download source" class="md-content__button md-icon" download="">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"></path></svg>
+  </a>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
