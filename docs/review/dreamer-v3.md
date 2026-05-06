@@ -15,8 +15,6 @@ domain: latent-world-models
     - **Presenter:** [Juyeon Kim](https://github.com/JYeonKim)
     - **Last updated:** 2026-05-06
 
-# [Paper Review] Mastering Diverse Domains through World Models
-
 ## 서론 (Introduction)
 
 논문에서는 강화학습이 Go, Dota, 대형 언어 모델(large language model)의 개선 등에 쓰였지만, 실제로는 영역이 바뀌면 알고리즘 설정을 다시 맞추어야 한다는 문제가 크다고 설명한다. PPO는 널리 쓰이는 표준 알고리즘이지만, 연속 제어(continuous control), 이산 행동(discrete action), 희소 보상(sparse reward), 이미지 입력(image input), 공간 환경(spatial environment), 보드게임(board game) 등에서는 영역별 전문 알고리즘이 자주 사용된다.
