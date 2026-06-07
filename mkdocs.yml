@@ -72,9 +72,9 @@ nav:
   - Decision Transformer (2021): review/decision-transformer.md
   - Trajectory Transformer (2021): review/trajectory-transformer.md
 - Predictive World Models:
-  - CPC (2018): review/CPC.md
   - V-JEPA (2023): review/v-jepa.md
   - V-JEPA 2 (2025): review/v-jepa-2.md
 - Generative World Models:
+  - GAIA-1 (2023): review/gaia-1.md
   - Genie (2024): review/genie.md
   - Cosmos (2025): review/cosmos.md
