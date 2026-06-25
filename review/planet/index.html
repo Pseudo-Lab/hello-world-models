@@ -1,0 +1,2085 @@
+<!DOCTYPE html><html lang="ko" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="World Models 논문 리뷰 및 스터디 자료">
+      
+      
+      
+      
+        <link rel="prev" href="../world-models/">
+      
+      
+        <link rel="next" href="../dreamer/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+  <title>Hello, World! — World Models Study</title>
+
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#learning-latent-dynamics-for-planning-from-pixels-planet" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../.." title="Hello, World!" class="md-header__button md-logo" aria-label="Hello, World!" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hello, World! — World Models Study
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PlaNet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Pseudo-Lab/hello-world-models" title="저장소로 이동" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Pseudo-Lab/hello-world-models
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hello, World!" class="md-nav__button md-logo" aria-label="Hello, World!" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Hello, World!
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Pseudo-Lab/hello-world-models" title="저장소로 이동" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Pseudo-Lab/hello-world-models
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Latent World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Latent World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../world-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    World Models (2018)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    PlaNet (2019)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    PlaNet (2019)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#0-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-planet" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. PlaNet은 어떤 문제를 풀려고 했나?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. PlaNet은 어떤 문제를 풀려고 했나?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-model-based-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Model-based planning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-latent-space-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Latent space planning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-latent-space-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 픽셀이 아닌 잠재 공간에서 계획하자: Latent Space Planning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 픽셀이 아닌 잠재 공간에서 계획하자: Latent Space Planning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-1-planet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm 1: PlaNet 알고리즘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-2-cem-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm 2: CEM을 이용한 planning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-rssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 결정론적이면서 확률론적인 모델 구조: RSSM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 결정론적이면서 확률론적인 모델 구조: RSSM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-rssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 RSSM 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-objective-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Objective Function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-latent-overshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 잠재공간에서 미래를 어떻게 예상할까?: Latent Overshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 잠재공간에서 미래를 어떻게 예상할까?: Latent Overshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-multi-step-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Multi-step prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-fixed-distance-d-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Fixed distance \(d\)에 대한 objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-1-le-d-le-d-latent-overshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 모든 거리 \(1 \le d \le D\)에 대한 Latent Overshooting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-6-task-4-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 6가지 Task에서 4가지 중요 지점 살펴보기: Experiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 6가지 Task에서 4가지 중요 지점 살펴보기: Experiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-6-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 실험에 사용된 6가지 task
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-1-planet-model-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 실험 1: PlaNet과 model-free 알고리즘 비교
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-2-rssm-ssm-gru" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 실험 2: RSSM, SSM, GRU 모델 구조 비교
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-3-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 실험 3: Planning을 하지 않는 방식과 비교
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-4-single-agent-individual-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 실험 4: Single agent와 Individual agents 비교
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 결론
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dreamer (2020)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../muzero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MuZero (2020)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer-v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DreamerV2 (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer-v3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DreamerV3 (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Sequence-Based World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Sequence-Based World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decision-transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decision Transformer (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trajectory-transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trajectory Transformer (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Predictive World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Predictive World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v-jepa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V-JEPA (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v-jepa-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V-JEPA 2 (2025)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Generative World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Generative World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gaia-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAIA-1 (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genie (2024)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cosmos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cosmos (2025)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#0-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-planet" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. PlaNet은 어떤 문제를 풀려고 했나?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. PlaNet은 어떤 문제를 풀려고 했나?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-model-based-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Model-based planning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-latent-space-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Latent space planning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-latent-space-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 픽셀이 아닌 잠재 공간에서 계획하자: Latent Space Planning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 픽셀이 아닌 잠재 공간에서 계획하자: Latent Space Planning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-1-planet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm 1: PlaNet 알고리즘
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-2-cem-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm 2: CEM을 이용한 planning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-rssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 결정론적이면서 확률론적인 모델 구조: RSSM
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 결정론적이면서 확률론적인 모델 구조: RSSM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-rssm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 RSSM 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-objective-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Objective Function
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-latent-overshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 잠재공간에서 미래를 어떻게 예상할까?: Latent Overshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 잠재공간에서 미래를 어떻게 예상할까?: Latent Overshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-multi-step-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Multi-step prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-fixed-distance-d-objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Fixed distance \(d\)에 대한 objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-1-le-d-le-d-latent-overshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 모든 거리 \(1 \le d \le D\)에 대한 Latent Overshooting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-6-task-4-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 6가지 Task에서 4가지 중요 지점 살펴보기: Experiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 6가지 Task에서 4가지 중요 지점 살펴보기: Experiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-6-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 실험에 사용된 6가지 task
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-1-planet-model-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 실험 1: PlaNet과 model-free 알고리즘 비교
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-2-rssm-ssm-gru" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 실험 2: RSSM, SSM, GRU 모델 구조 비교
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-3-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 실험 3: Planning을 하지 않는 방식과 비교
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-4-single-agent-individual-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 실험 4: Single agent와 Individual agents 비교
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 결론
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="learning-latent-dynamics-for-planning-from-pixels-planet">Learning Latent Dynamics for Planning from Pixels (PlaNet)<a class="headerlink" href="#learning-latent-dynamics-for-planning-from-pixels-planet" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Information</p>
+<ul>
+<li><strong>Title:</strong> Learning Latent Dynamics for Planning from Pixels (PlaNet)</li>
+<li><strong>Venue:</strong> ICML 2019</li>
+<li><strong>Paper:</strong> <a href="https://arxiv.org/abs/1811.04551">arXiv</a></li>
+<li><strong>Code:</strong> <a href="https://github.com/google-research/planet">Github</a></li>
+<li><strong>Presenter:</strong> 이재호</li>
+<li><strong>Last updated:</strong> 2026-05-26</li>
+</ul>
+</div>
+<h2 id="0-summary">0. Summary<a class="headerlink" href="#0-summary" title="Permanent link">¶</a></h2>
+<p>PlaNet은 <strong>pixel observation</strong>만으로 <strong>latent dynamics model</strong>을 학습하고, 그 <strong>latent space</strong> 안에서 <strong>planning</strong>을 수행하는 <strong>model-based reinforcement learning agent</strong>이다.</p>
+<p><strong>핵심 방법론</strong></p>
+<ol>
+<li>
+<p><strong>Latent space planning</strong><br>
+   고차원 이미지를 직접 예측하며 planning하지 않고, compact한 latent state 안에서 미래 reward를 예측하고 action sequence를 평가한다.</p>
+</li>
+<li>
+<p><strong>RSSM 구조</strong><br>
+   deterministic state와 stochastic state를 함께 사용해 장기 기억과 미래의 불확실성을 동시에 다룬다.</p>
+</li>
+<li>
+<p><strong>CEM 기반 action search</strong><br>
+   학습된 latent dynamics model 안에서 여러 action sequence를 평가하고, CEM으로 좋은 action sequence를 반복적으로 개선한다.</p>
+</li>
+</ol>
+<p><strong>보조 아이디어</strong></p>
+<ul>
+<li><strong>Latent overshooting</strong>: multi-step prediction 성능을 높이기 위해 latent space에서 여러 step 뒤의 예측도 함께 학습하려는 시도다.</li>
+</ul>
+<p><strong>핵심 기여</strong></p>
+<ol>
+<li>
+<p><strong>이미지 기반 연속 제어에서 model-based planning이 가능함을 보였다.</strong><br>
+   PlaNet은 pixel observation만으로 6가지 continuous control task를 학습했다. 이 task들은 contact dynamics, partial observability, sparse reward를 포함한다.</p>
+</li>
+<li>
+<p><strong>높은 sample efficiency를 보였다.</strong><br>
+   PlaNet은 model-free baseline보다 훨씬 적은 episode로 비슷하거나 더 좋은 성능을 달성했다.</p>
+</li>
+</ol>
+<hr>
+<h2 id="1-planet">1. PlaNet은 어떤 문제를 풀려고 했나?<a class="headerlink" href="#1-planet" title="Permanent link">¶</a></h2>
+<p>PlaNet이 풀려는 문제는 두 가지로 먼저 정리할 수 있다.</p>
+<p>첫째, <strong>planning이 가능할 정도로 정확한 latent dynamics model을 학습하는 것</strong>이다.<br>
+둘째, <strong>그 문제를 고차원 이미지 환경에서 해결하는 것</strong>이다.</p>
+<p>즉 PlaNet의 목표는 다음과 같다.</p>
+<blockquote>
+<p><strong>이미지를 compact한 latent state로 압축하자.<br>
+그리고 그 latent dynamics 안에서 미래 state와 reward를 예측해 빠르게 행동을 고르자.</strong></p>
+</blockquote>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/01_planet.png" data-desc-position="bottom"><img alt="planning" src="../../assets/planet/01_planet.png"></a></p>
+<p><em>왼쪽은 model-free 방식이고, 오른쪽은 learned model을 사용하는 model-based 방식이다.</em></p>
+<h3 id="11-model-based-planning">1.1 Model-based planning<a class="headerlink" href="#11-model-based-planning" title="Permanent link">¶</a></h3>
+<p>Planning은 dynamics가 알려진 환경에서는 매우 효과적으로 작동한다. </p>
+<blockquote>
+<p>예를 들어 게임이나 시뮬레이터를 생각해보자.
+“이 행동을 하면 다음 상태가 어떻게 변하는지”를 알고 있는 상황이다.
+그러면 여러 미래 행동을 시뮬레이션해보고, 그중 가장 좋은 행동을 선택할 수 있다.</p>
+</blockquote>
+<p>하지만 dynamics가 알려져 있지 않은 환경에서는 agent가 직접 환경 모델을 학습해야한다.</p>
+<p>이때 어려움은 크게 네 가지다.</p>
+<p>첫째, <strong>모델이 부정확할 수 있다.</strong></p>
+<p>둘째, <strong>여러 step을 예측할수록 오차가 누적된다.</strong></p>
+<p>셋째, <strong>미래가 하나로 정해져 있지 않을 수 있다.</strong><br>
+이때 모델이 여러 가능한 미래를 잘 표현하지 못할 수 있다.</p>
+<p>넷째, <strong>학습 데이터 밖의 상황에서 모델이 지나치게 확신하는 예측을 할 수 있다.</strong></p>
+<p>그럼에도 모델을 사용하는 model-based planning은 model-free 강화학습에 비해 중요한 장점이 있다.</p>
+<ol>
+<li>
+<p><strong>학습 신호가 풍부하다.</strong></p>
+<p>Model-free 방식은 주로 reward를 통해 학습한다.<br>
+PlaNet 같은 model-based 방식은 observation, reward, transition을 모두 학습 신호로 사용할 수 있다.</p>
+</li>
+<li>
+<p><strong>Bellman backup에만 의존하지 않아도 된다.</strong></p>
+<p>Model-free value learning에서는 reward 정보를 여러 step에 걸쳐 Bellman backup으로 전파해야 한다.<br>
+반면 model-based planning은 학습된 모델 안에서 미래를 직접 rollout한다.<br>
+그래서 행동을 더 직접적으로 평가할 수 있다.</p>
+</li>
+<li>
+<p><strong>계산량을 늘려 성능을 높일 수 있다.</strong></p>
+<p>더 많은 action sequence를 평가하거나 planning iteration을 늘릴 수 있다.<br>
+그러면 같은 모델로도 더 좋은 행동을 찾을 가능성이 생긴다.<br>
+논문도 이 점을 강조한다.<br>
+action search에 더 많은 computation budget을 투입하면 성능 향상을 기대할 수 있다는 것이다.</p>
+</li>
+</ol>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/17_planet.png" data-desc-position="bottom"><img alt="Input space to latent space" src="../../assets/planet/17_planet.png" width="760"></a>
+<br>
+<figcaption>고차원 이미지를 그대로 다루지 않고, compact한 latent space로 옮겨 planning에 필요한 정보를 처리한다.</figcaption>
+</figure>
+<h3 id="12-latent-space-planning">1.2 Latent space planning<a class="headerlink" href="#12-latent-space-planning" title="Permanent link">¶</a></h3>
+<p>PlaNet이 특히 어려운 이유는 이 문제를 <strong>고차원 이미지 환경</strong>에서 다루기 때문이다. 
+픽셀은 차원이 매우 크고, 실제 제어에 필요한 정보는 그중 일부에 불과하다.</p>
+<p>따라서 픽셀 공간에서 직접 미래 이미지를 생성하면서 planning하면 계산량이 너무 커진다. 
+PlaNet은 이 문제를 <strong>latent space planning</strong>으로 해결한다. </p>
+<p>즉, 이미지를 compact한 잠재 상태로 압축하고, 그 잠재 상태 안에서 미래 state와 reward를 예측한다.</p>
+<p>이 접근은 확장 가능성도 보여준다.</p>
+<p>더 큰 상태 공간, 더 큰 행동 공간, 긴 planning horizon, sparse reward가 있는 환경으로 나아갈 수 있다는 것이다.</p>
+<p>논문은 기존 latent planning 방법들이 비교적 단순한 task에 제한되었다고 설명한다.</p>
+<p>예를 들어 cartpole이나 2-link arm 같은 환경이다.</p>
+<p>PlaNet은 여기서 더 나아가 image-based continuous control task를 다룬다.</p>
+<hr>
+<h2 id="2-latent-space-planning">2. 픽셀이 아닌 잠재 공간에서 계획하자: Latent Space Planning<a class="headerlink" href="#2-latent-space-planning" title="Permanent link">¶</a></h2>
+<h3 id="algorithm-1-planet">Algorithm 1: PlaNet 알고리즘<a class="headerlink" href="#algorithm-1-planet" title="Permanent link">¶</a></h3>
+<p>PlaNet의 전체 흐름은 크게 두 부분으로 나뉜다.</p>
+<figure style="margin: 0;">
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/02_planet.png" data-desc-position="bottom"><img alt="Algorithm 1: Deep Planning Network (PlaNet)" src="../../assets/planet/02_planet.png" width="620"></a>
+<br>
+<figcaption>Algorithm 1. Deep Planning Network (PlaNet)</figcaption>
+</figure>
+<p>Algorithm 1에 나오는 주요 용어는 다음처럼 읽으면 된다.</p>
+<table>
+<thead>
+<tr>
+<th>기호 / 용어</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(R\)</span></td>
+<td>같은 action을 실제 환경에서 몇 step 반복할지 정하는 값</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(S\)</span></td>
+<td>처음에 random action으로 모으는 seed episode 수</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(C\)</span></td>
+<td>새 데이터를 모으기 전, 모델을 몇 번 update할지 정하는 collect interval</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(B\)</span></td>
+<td>한 번의 update에 사용하는 batch size</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(L\)</span></td>
+<td>dataset에서 잘라 쓰는 sequence chunk 길이</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\alpha\)</span></td>
+<td>모델 parameter를 업데이트할 때 사용하는 learning rate</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(p(s_t \mid s_{t-1}, a_{t-1})\)</span></td>
+<td>이전 latent state와 action으로 다음 latent state를 예측하는 transition model</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(p(o_t \mid s_t)\)</span></td>
+<td>latent state에서 image observation을 복원하는 observation model</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(p(r_t \mid s_t)\)</span></td>
+<td>latent state에서 reward를 예측하는 reward model</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(q(s_t \mid o_{\leq t}, a_{&lt;t})\)</span></td>
+<td>지금까지의 observation과 action history로 현재 latent state를 추론하는 encoder</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(p(\epsilon)\)</span></td>
+<td>실제 환경에서 action을 실행할 때 더하는 exploration noise</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathcal{D}\)</span></td>
+<td>agent가 지금까지 모은 episode dataset</td>
+</tr>
+</tbody>
+</table>
+<p><strong>1. 전체 알고리즘 흐름</strong></p>
+<p>Algorithm 1은 seed episode 수집으로 시작해 <strong>모델 학습</strong>과 <strong>데이터 수집</strong>을 반복하는 구조다.</p>
+<p>Dataset에서 sequence chunk를 뽑아 latent dynamics model(transition, observation, reward model)을 학습하고, 학습된 모델로 latent space planning을 수행한다.</p>
+<p>Planner가 고른 action을 실제 환경에서 실행하면 새 observation과 reward가 dataset에 추가되고, 이 데이터로 다시 모델을 학습한다.</p>
+<blockquote>
+<p><strong>seed episode 수집 → 모델 학습 → latent planning → 실제 환경에서 데이터 수집 → 다시 모델 학습 (online planning)</strong></p>
+</blockquote>
+<p><strong>2. Observation model의 역할</strong></p>
+<p>Observation model은 planning에 직접 쓰이기보다, latent state가 실제 이미지를 잘 설명하도록 만드는 <strong>학습용 신호</strong>에 가깝다.</p>
+<p>Planning 단계에서는 미래 이미지를 생성하지 않고, transition model로 미래 latent state를 rollout한 뒤 reward model로 보상을 예측한다.</p>
+<p>따라서 planner는 <strong>고차원 이미지 공간을 거치지 않고</strong> compact한 latent space에서 많은 action sequence를 빠르게 평가할 수 있다.</p>
+<h3 id="algorithm-2-cem-planning">Algorithm 2: CEM을 이용한 planning<a class="headerlink" href="#algorithm-2-cem-planning" title="Permanent link">¶</a></h3>
+<p>PlaNet의 planning은 <strong>CEM, Cross-Entropy Method</strong>로 수행된다.</p>
+<p>CEM은 한 step의 action이 아니라 planning horizon 길이의 <strong>action sequence</strong> 분포를 반복적으로 개선한다.</p>
+<pre class="mermaid"><code>flowchart TD
+  A["action sequence 분포 초기화"] --&gt; B["J개 후보 action sequence 샘플링"]
+  B --&gt; C["learned latent dynamics model 안에서 rollout"]
+  C --&gt; D["reward model로 predicted reward sum 계산"]
+  D --&gt; E["상위 K개 후보 선택"]
+  E --&gt; F["상위 후보의 평균과 분산으로 distribution 갱신"]
+  F --&gt; G{"I번 반복?"}
+  G -- "반복" --&gt; B
+  G -- "종료" --&gt; H["최종 평균 action sequence 반환"]</code></pre>
+<table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(H\)</span></td>
+<td>planning horizon</td>
+<td>12</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(I\)</span></td>
+<td>CEM optimization iteration</td>
+<td>10</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(J\)</span></td>
+<td>candidate action sequence 수</td>
+<td>1000</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(K\)</span></td>
+<td>elite candidate 수</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>MPC, Model Predictive Control은 긴 action sequence를 계획하더라도, 실제 환경에는 첫 번째 action만 실행하고 다음 step에서 다시 planning하는 방식이다.</p>
+<p>PlaNet에서는 CEM이 최종적으로 얻은 평균 action sequence 중 첫 번째 action, 즉 <span class="arithmatex">\(\mu_t\)</span>만 실행한 뒤 다음 observation을 받아 belief state를 갱신하고 다시 CEM planning을 수행한다.</p>
+<hr>
+<h2 id="3-rssm">3. 결정론적이면서 확률론적인 모델 구조: RSSM<a class="headerlink" href="#3-rssm" title="Permanent link">¶</a></h2>
+<h3 id="31-rssm">3.1 RSSM 구조<a class="headerlink" href="#31-rssm" title="Permanent link">¶</a></h3>
+<p>PlaNet의 핵심 모델은 <strong>RSSM, Recurrent State Space Model</strong>이다.</p>
+<p>논문은 세 가지 모델 구조를 비교한다.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/03_planet.png" data-desc-position="bottom"><img alt="Figure 2: Latent dynamics model designs" src="../../assets/planet/03_planet.png" width="760"></a>
+<br>
+<figcaption>RSSM은 hidden state와 stochastic state를 함께 사용하는 구조다.</figcaption>
+</figure>
+<p>첫째, <strong>RNN / GRU 같은 결정론적 모델</strong>이다.<br>
+결정론적 모델은 hidden state가 하나의 값으로 정해진다. 과거 정보를 기억하는 데는 강하다.</p>
+<p>하지만 여러 가능한 미래를 표현하기 어렵다.</p>
+<p>미래가 불확실한 환경에서 “하나의 미래”만 예측하면, planner가 모델의 오류를 계속 이용하기가 쉬워진다.</p>
+<p>둘째, <strong>SSM, State Space Model 같은 확률론적 모델</strong>이다.<br>
+SSM은 stochastic state를 사용하므로 여러 가능한 미래를 표현할 수 있다.</p>
+<p>하지만 순수하게 확률적인 transition만 사용하면 긴 시간 동안 정보를 안정적으로 기억하기 어렵다.</p>
+<p>셋째, PlaNet이 사용하는 <strong>RSSM</strong>이다.<br>
+RSSM은 결정론적 상태와 확률론적 상태를 함께 사용한다.</p>
+<p>결정론적 상태 <span class="arithmatex">\(h_t\)</span>는 RNN처럼 과거 정보를 누적해서 기억한다.</p>
+<p>확률론적 상태 <span class="arithmatex">\(s_t\)</span>는 불확실성과 여러 가능한 미래를 표현한다.</p>
+<p>논문에서 RSSM은 다음처럼 정의된다.</p>
+<div class="arithmatex">\[ 
+h_t = f(h_{t-1}, s_{t-1}, a_{t-1})  
+\]</div>
+<div class="arithmatex">\[  
+s_t \sim p(s_t \mid h_t)  
+\]</div>
+<div class="arithmatex">\[ 
+o_t \sim p(o_t \mid h_t, s_t)  
+\]</div>
+<div class="arithmatex">\[ 
+r_t \sim p(r_t \mid h_t, s_t)  
+\]</div>
+<p>각 항은 다음처럼 정리할 수 있다.</p>
+<table>
+<thead>
+<tr>
+<th>항</th>
+<th>의미</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(h_t\)</span></td>
+<td>deterministic state</td>
+<td>RNN처럼 과거 정보를 누적해서 기억한다.</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(s_t\)</span></td>
+<td>stochastic state</td>
+<td>불확실성과 여러 가능한 미래를 표현한다.</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(a_{t-1}\)</span></td>
+<td>이전 action</td>
+<td>다음 상태를 예측할 때 함께 사용된다.</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(o_t\)</span></td>
+<td>observation</td>
+<td>latent state가 실제 이미지를 설명하는지 학습하는 신호다.</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(r_t\)</span></td>
+<td>reward</td>
+<td>planning에서 action sequence를 평가하는 기준이 된다.</td>
+</tr>
+</tbody>
+</table>
+<p>즉 RSSM은 상태를 deterministic part와 stochastic part로 나누고, 이 둘을 함께 사용해 observation과 reward를 예측한다.</p>
+<h3 id="32-objective-function">3.2 Objective Function<a class="headerlink" href="#32-objective-function" title="Permanent link">¶</a></h3>
+<p>PlaNet은 latent dynamics model을 학습하기 위해 variational objective를 사용한다.</p>
+<p>여기서 variational objective는 <strong>직접 관측할 수 없는 latent state를 학습하기 위한 목적함수</strong>라고 이해하면 된다.</p>
+<p>PlaNet이 실제로 받는 것은 pixel observation이다. latent state <span class="arithmatex">\(s_t\)</span>는 환경이 주는 정답 값이 아니라, 모델 내부에서 추론해야 하는 숨은 상태다.</p>
+<p>그래서 encoder <span class="arithmatex">\(q(s_t \mid o_{\leq t}, a_{&lt;t})\)</span>가 observation history를 보고 현재 latent state를 근사적으로 추론한다.</p>
+<p>이렇게 추론한 latent state를 이용해 observation과 reward를 설명하고, transition model의 예측도 함께 맞춘다.</p>
+<p>모델은 두 가지를 동시에 잘해야 한다.</p>
+<p>첫째, <strong>reconstruction term과 reward term</strong>을 통해 latent state가 observation과 reward를 잘 설명해야 한다.<br>
+둘째, <strong>KL term</strong>을 통해 transition model이 이전 latent state와 action만으로 다음 latent state를 잘 예측해야 한다.</p>
+<p>(아래 식에는 reward loss가 생략되어 있으며, reconstruction term과 같은 방식으로 추가된다.) </p>
+<p>기본 형태는 다음과 같다.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\ln p(o_{1:T} \mid a_{1:T})  
+&amp;\ge  
+\sum_{t=1}^{T}  
+\Big(  
+\mathbb{E}_{q(s_t \mid o_{\leq t}, a_{&lt;t})}  
+\left[\ln p(o_t \mid s_t)\right] \\
+&amp;\quad -
+\mathbb{E}_{q(s_{t-1} \mid o_{\leq t-1}, a_{&lt;t-1})}  
+\left[  
+\mathrm{KL}  
+\left(  
+q(s_t \mid o_{\leq t}, a_{&lt;t})  
+\,\|\,  
+p(s_t \mid s_{t-1}, a_{t-1})  
+\right)  
+\right]  
+\Big)
+\end{aligned}
+\]</div>
+<p>이 수식은 크게 두 부분으로 나눌 수 있다.</p>
+<p><strong>Reconstruction term</strong></p>
+<div class="arithmatex">\[
+\mathbb{E}_{q(s_t \mid o_{\leq t}, a_{&lt;t})}  
+[\ln p(o_t \mid s_t)]  
+\]</div>
+<p>이 항은 현재 latent state <span class="arithmatex">\(s_t\)</span>가 observation <span class="arithmatex">\(o_t\)</span>를 잘 설명하는지 평가한다.</p>
+<p>직관적으로 말하면 다음과 같다.</p>
+<blockquote>
+<p>encoder가 이미지를 보고 latent state를 추론했다.<br>
+그렇다면 그 latent state에서 다시 이미지를 복원했을 때 원래 observation과 비슷해야 한다.</p>
+</blockquote>
+<p>매 time step의 image를 통해 latent state가 환경 정보를 담도록 학습된다.</p>
+<p><strong>KL term / Complexity term</strong></p>
+<div class="arithmatex">\[
+\mathrm{KL}  
+(  
+q(s_t \mid o_{\leq t}, a_{&lt;t})  
+|  
+p(s_t \mid s_{t-1}, a_{t-1})  
+)  
+\]</div>
+<p>이 항은 posterior <span class="arithmatex">\(q\)</span>와 prior <span class="arithmatex">\(p\)</span>가 얼마나 다른지 측정한다.</p>
+<table>
+<thead>
+<tr>
+<th>분포</th>
+<th>어떻게 얻는가</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>posterior <span class="arithmatex">\(q\)</span></td>
+<td>encoder가 실제 observation을 보고 추론한다.</td>
+<td>현재 이미지를 봤을 때 latent state가 어디에 있을지 나타낸다.</td>
+</tr>
+<tr>
+<td>prior <span class="arithmatex">\(p\)</span></td>
+<td>transition model이 이전 latent state와 action만으로 예측한다.</td>
+<td>observation 없이 다음 latent state가 어디로 갈지 나타낸다.</td>
+</tr>
+</tbody>
+</table>
+<p>따라서 KL term은 다음과 같은 역할을 한다.</p>
+<blockquote>
+<p>observation을 보고 추론한 상태 <span class="arithmatex">\(q\)</span>와<br>
+모델이 미리 예측한 상태 <span class="arithmatex">\(p\)</span>가 가까워지도록 만든다.</p>
+</blockquote>
+<p>planning은 실제 행동을 실행하기 전에 미래를 가상으로 평가하는 단계이므로, 아직 미래 observation이 존재하지 않는다.</p>
+<p>따라서 agent는 현재 latent state와 action sequence만으로 미래 latent state를 예측해야 한다.</p>
+<p>따라서 transition model <span class="arithmatex">\(p(s_t \mid s_{t-1}, a_{t-1})\)</span>의 예측이 posterior <span class="arithmatex">\(q\)</span>와 가까워지는 것이 중요하다.</p>
+<p>정리하면 PlaNet의 학습 loss는 다음과 같이 이해할 수 있다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>전체 loss
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>= image reconstruction loss
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>+ reward prediction loss
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>+ transition prior와 posterior 사이의 KL loss
+</code></pre></div>
+<hr>
+<h2 id="4-latent-overshooting">4. 잠재공간에서 미래를 어떻게 예상할까?: Latent Overshooting<a class="headerlink" href="#4-latent-overshooting" title="Permanent link">¶</a></h2>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/04_planet.png" data-desc-position="bottom"><img alt="Figure 3: Unrolling schemes" src="../../assets/planet/04_planet.png" width="760"></a>
+<br>
+<figcaption>Latent overshooting은 여러 step 뒤의 latent prediction도 posterior와 가까워지도록 학습하는 방법이다.</figcaption>
+</figure>
+<p>표준 variational objective는 기본적으로 다음과 같은 <strong>one-step prediction</strong>을 학습한다.</p>
+<div class="arithmatex">\[
+p(s_t \mid s_{t-1}, a_{t-1})  
+\]</div>
+<p>하지만 planning에서는 한 step만 예측하지 않고, horizon만큼 transition model을 반복해서 rollout한다.</p>
+<p>예를 들어 horizon이 12라면 다음과 같은 자기 예측을 이어가야 한다.</p>
+<div class="arithmatex">\[
+s_t \rightarrow s_{t+1} \rightarrow s_{t+2} \rightarrow \cdots \rightarrow s_{t+12}
+\]</div>
+<p>문제는 one-step prediction의 작은 오차가 여러 step 동안 반복되면서 누적될 수 있다는 점이다.</p>
+<p>또한 학습에서는 stochastic transition이 주로 one-step KL regularizer로만 맞춰지기 때문에, 긴 transition chain 전체를 직접 훈련하기 어렵다.</p>
+<p>Latent overshooting은 이 문제를 해결하기 위해 등장한다. 핵심 아이디어는 다음과 같다.</p>
+<blockquote>
+<p>한 step 예측만 맞추지 말고, 여러 step 뒤의 latent state도 맞추도록 학습하자.</p>
+</blockquote>
+<p><strong>Figure 3(c) 예시</strong></p>
+<p>시간 1에서 posterior <span class="arithmatex">\(s_{1|1}\)</span>을 얻었다고 하자.</p>
+<p>Latent overshooting은 실제 observation <span class="arithmatex">\(o_2, o_3\)</span>를 보지 않은 채 transition model만으로 <span class="arithmatex">\(s_{2|1}\)</span>, <span class="arithmatex">\(s_{3|1}\)</span>을 rollout한다.</p>
+<p>그리고 이렇게 예측한 <span class="arithmatex">\(s_{3|1}\)</span>이, 실제 observation까지 보고 추론한 posterior <span class="arithmatex">\(s_{3|3}\)</span>과 가까워지도록 학습한다.</p>
+<p>즉 one-step 예측뿐 아니라, 여러 step 뒤까지 latent prediction이 맞도록 transition model을 압박한다.</p>
+<h3 id="41-multi-step-prediction">4.1 Multi-step prediction<a class="headerlink" href="#41-multi-step-prediction" title="Permanent link">¶</a></h3>
+<p>논문은 먼저 <span class="arithmatex">\(d\)</span>-step prediction을 정의한다.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+p(s_t \mid s_{t-d})
+&amp;= \int
+\prod_{\tau=t-d+1}^{t}
+p(s_{\tau} \mid s_{\tau-1})
+\, ds_{t-d+1:t-1}
+\end{aligned}
+\]</div>
+<p>이 수식은 어렵게 보이지만 의미는 단순하다.</p>
+<p><span class="arithmatex">\(s_{t-d}\)</span>에서 시작해서 transition model을 <span class="arithmatex">\(d\)</span>번 반복하면 <span class="arithmatex">\(s_t\)</span>에 도달한다.</p>
+<p>그런데 중간 상태들 <span class="arithmatex">\(s_{t-d+1}, \dots, s_{t-1}\)</span>는 확률 변수다.</p>
+<p>따라서 가능한 중간 경로들을 모두 고려해야 한다.</p>
+<p>그래서 적분이 들어간다.</p>
+<p>특히 <span class="arithmatex">\(d=1\)</span>이면 다음과 같다.</p>
+<div class="arithmatex">\[
+p(s_t \mid s_{t-1})  
+\]</div>
+<p>즉 기존 one-step transition과 동일해진다.</p>
+<p>논문도 <span class="arithmatex">\(d=1\)</span>인 경우 원래 모델의 one-step transition을 회복한다고 설명한다.</p>
+<h3 id="42-fixed-distance-d-objective">4.2 Fixed distance <span class="arithmatex">\(d\)</span>에 대한 objective<a class="headerlink" href="#42-fixed-distance-d-objective" title="Permanent link">¶</a></h3>
+<p>그다음 논문은 fixed distance <span class="arithmatex">\(d\)</span>에 대해 multi-step predictive distribution을 학습하는 variational bound를 만든다.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\ln p_d(o_{1:T})
+&amp;\ge
+\sum_{t=1}^{T}
+\Bigg(
+\mathbb{E}_{q(s_t \mid o_{\leq t})}
+\left[
+\ln p(o_t \mid s_t)
+\right] \\
+&amp;\quad -
+\mathbb{E}_{\substack{
+p(s_{t-1} \mid s_{t-d}) \\
+q(s_{t-d} \mid o_{\leq t-d})
+}}
+\left[
+D_{\mathrm{KL}}
+\left(
+q(s_t \mid o_{\leq t})
+\,\|\, 
+p(s_t \mid s_{t-1})
+\right)
+\right]
+\Bigg)
+\end{aligned}
+\]</div>
+<p>이 수식의 핵심은 KL term이다.</p>
+<p>표준 objective에서는 <span class="arithmatex">\(s_{t-1}\)</span>에서 <span class="arithmatex">\(s_t\)</span>를 한 step 예측하고, 그것을 posterior와 비교한다.</p>
+<p>반면 latent overshooting에서는 <span class="arithmatex">\(s_{t-d}\)</span>에서 시작해 모델을 여러 step rollout한다.</p>
+<p>그 rollout을 통해 <span class="arithmatex">\(s_{t-1}\)</span>까지 도달한 뒤, 마지막으로 <span class="arithmatex">\(s_t\)</span>를 예측한다.</p>
+<p>그리고 이 예측을 실제 observation을 보고 추론한 posterior <span class="arithmatex">\(q(s_t \mid o_{\leq t})\)</span>와 비교한다.</p>
+<p>즉 다음과 같은 구조다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>posterior at t-d
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>      ↓
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>model rollout
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>      ↓
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>multi-step prior near t
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>      ↓
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>posterior at t와 KL로 비교
+</code></pre></div>
+<p>이렇게 하면 모델은 단순히 “바로 다음 상태”만 맞추지 않는다.</p>
+<p>여러 step 동안 자기 예측만으로 굴러간 뒤에도 올바른 latent state에 도달하는지를 함께 학습한다.</p>
+<h3 id="43-1-le-d-le-d-latent-overshooting">4.3 모든 거리 <span class="arithmatex">\(1 \le d \le D\)</span>에 대한 Latent Overshooting<a class="headerlink" href="#43-1-le-d-le-d-latent-overshooting" title="Permanent link">¶</a></h3>
+<p>fixed distance <span class="arithmatex">\(d\)</span>만 사용하면 특정 거리의 예측만 좋아질 수 있다.</p>
+<p>하지만 planning에서는 horizon 안의 모든 거리에서 예측이 좋아야 한다.</p>
+<p>그래서 논문은 <span class="arithmatex">\(d=1\)</span>부터 <span class="arithmatex">\(D\)</span>까지 모든 거리에 대한 objective를 평균낸다.</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\frac{1}{D}
+\sum_{d=1}^{D}
+\ln p_d(o_{1:T})
+&amp;\ge
+\sum_{t=1}^{T}
+\Bigg(
+\mathbb{E}_{q(s_t \mid o_{\leq t})}
+\left[
+\ln p(o_t \mid s_t)
+\right] \\
+&amp;\quad -
+\frac{1}{D}
+\sum_{d=1}^{D}
+\beta_d
+\mathbb{E}_{\substack{
+p(s_{t-1} \mid s_{t-d}) \\
+q(s_{t-d} \mid o_{\leq t-d})
+}}
+\left[
+D_{\mathrm{KL}}
+\left(
+q(s_t \mid o_{\leq t})
+\,\|\, 
+p(s_t \mid s_{t-1})
+\right)
+\right]
+\Bigg)
+\end{aligned}
+\]</div>
+<p>여기서 <span class="arithmatex">\(\beta_d\)</span>는 각 overshooting distance에 얼마나 가중치를 줄지 정하는 계수다.</p>
+<p>이 수식은 한마디로 다음과 같다.</p>
+<blockquote>
+<p><span class="arithmatex">\(1\)</span>-step, <span class="arithmatex">\(2\)</span>-step, ..., <span class="arithmatex">\(D\)</span>-step prediction을 모두 latent space에서 훈련하자.</p>
+</blockquote>
+<p>중요한 점은 이 비교가 observation space가 아니라 <strong>latent space</strong>에서 이루어진다는 것이다.</p>
+<p>이미지를 매번 생성해 reconstruction loss를 거는 대신, PlaNet은 multi-step prior와 posterior를 latent space에서 KL로 비교한다.</p>
+<p>그래서 observation overshooting보다 훨씬 가볍게 multi-step regularization을 적용할 수 있다.</p>
+<blockquote>
+<p>observation overshooting은 여러 step 뒤의 prediction을 image observation까지 복원해서 맞추는 방식이다.</p>
+</blockquote>
+<p>다만 최종 RSSM agent에서는 latent overshooting이 꼭 필요하지 않았고, RSSM에서는 오히려 약간 성능이 낮아졌다고 보고된다.</p>
+<p>따라서 이 논문에서 latent overshooting은 최종 성능의 핵심 요소라기보다, <strong>latent sequence model을 multi-step prediction에 맞게 학습시키려는 보조 아이디어</strong>에 가깝다.</p>
+<hr>
+<h2 id="5-6-task-4-experiment">5. 6가지 Task에서 4가지 중요 지점 살펴보기: Experiment<a class="headerlink" href="#5-6-task-4-experiment" title="Permanent link">¶</a></h2>
+<p>PlaNet은 DeepMind Control Suite의 여섯 가지 image-based continuous control task에서 평가된다.</p>
+<p>모든 task에서 agent가 받는 관측은 <span class="arithmatex">\(64 \times 64 \times 3\)</span> 크기의 third-person camera image뿐이다.</p>
+<p>즉 agent는 simulator의 true state를 직접 받지 않는다.</p>
+<h3 id="51-6-task">5.1 실험에 사용된 6가지 task<a class="headerlink" href="#51-6-task" title="Permanent link">¶</a></h3>
+<p><strong>1. Cartpole Swing Up</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/05_planet.png" data-desc-position="bottom"><img alt="Cartpole Swing Up" src="../../assets/planet/05_planet.png" width="260"></a></p>
+<p>Cartpole Swing Up은 pole을 위로 세우는 task다. 이 task는 긴 planning horizon이 필요하다.</p>
+<p>pole을 바로 세울 수 없기 때문에 먼저 swing motion을 만들어야 한다.</p>
+<p>또한 camera가 고정되어 있어 cart가 화면 밖으로 나갈 수 있다.</p>
+<p>따라서 agent는 보이지 않는 cart의 위치를 latent state 안에 기억해야 한다.</p>
+<p><strong>2. Reacher Easy</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/06_planet.png" data-desc-position="bottom"><img alt="Reacher Easy" src="../../assets/planet/06_planet.png" width="260"></a></p>
+<p>Reacher Easy는 로봇 팔의 손끝을 목표 위치로 이동시키는 task다.</p>
+<p>reward가 dense하게 계속 주어지는 것이 아니다.</p>
+<p>hand와 goal area가 겹칠 때 sparse reward가 주어진다.</p>
+<p>따라서 단순히 가까워지는 모든 순간에 보상을 받는 환경보다 탐색이 더 어렵다.</p>
+<p><strong>3. Cheetah Run</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/07_planet.png" data-desc-position="bottom"><img alt="Cheetah Run" src="../../assets/planet/07_planet.png" width="260"></a></p>
+<p>Cheetah Run은 cheetah 형태의 agent가 앞으로 달리는 task다.</p>
+<p>이 task는 action space와 state space가 더 크다.</p>
+<p>또한 달리는 과정에서 contact dynamics가 포함된다. 따라서 단순한 균형 잡기보다 dynamics 예측이 더 어렵다.</p>
+<p><strong>4. Finger Spin</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/08_planet.png" data-desc-position="bottom"><img alt="Finger Spin" src="../../assets/planet/08_planet.png" width="260"></a></p>
+<p>Finger Spin은 손가락 모양의 agent가 물체를 회전시키는 task다.</p>
+<p>finger와 object 사이의 접촉이 중요하므로 contact dynamics를 잘 예측해야 한다.</p>
+<p>작은 접촉 차이가 미래 상태를 크게 바꿀 수 있기 때문에 모델 기반 planning에 까다로운 환경이다.</p>
+<p><strong>5. Cup Catch</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/09_planet.png" data-desc-position="bottom"><img alt="Cup Catch" src="../../assets/planet/09_planet.png" width="260"></a></p>
+<p>Cup Catch는 컵으로 공을 받는 task다.</p>
+<p>reward는 공을 잡았을 때만 주어지는 sparse reward다.</p>
+<p>따라서 agent는 reward가 거의 없는 구간에서도 미래의 성공 가능성을 latent dynamics로 예측해야 한다.</p>
+<p><strong>6. Walker Walk</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/10_planet.png" data-desc-position="bottom"><img alt="Walker Walk" src="../../assets/planet/10_planet.png" width="260"></a></p>
+<p>Walker Walk는 walker가 먼저 일어서고, 그다음 걸어야 하는 task다.</p>
+<p>처음에는 바닥에 누워 있는 상태에서 시작할 수 있고, ground와의 충돌을 예측해야 한다.</p>
+<p>따라서 균형, 접촉, 긴 horizon의 문제가 함께 들어 있다.</p>
+<hr>
+<h3 id="52-1-planet-model-free">5.2 실험 1: PlaNet과 model-free 알고리즘 비교<a class="headerlink" href="#52-1-planet-model-free" title="Permanent link">¶</a></h3>
+<p><strong>Figure 4는 PlaNet을 model-free 알고리즘인 A3C, D4PG와 비교한다.</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/11_planet.png" data-desc-position="bottom"><img alt="Figure 4: PlaNet vs A3C/D4PG, RSSM vs SSM/GRU" src="../../assets/planet/11_planet.png" width="760"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/16_planet.png" data-desc-position="bottom"><img alt="Table 1: PlaNet comparison results" src="../../assets/planet/16_planet.png" width="760"></a></p>
+<p>여기서 중요한 점은 PlaNet이 <strong>true state가 아니라 pixel observation만 사용한다는 것</strong>이다.</p>
+<p>그럼에도 PlaNet은 훨씬 적은 episode로 model-free 알고리즘과 비슷하거나 더 좋은 성능을 보인다.</p>
+<blockquote>
+<p>PlaNet은 model-free 방식보다 훨씬 적은 interaction으로도 강한 성능을 낼 수 있다.</p>
+</blockquote>
+<p>Table 1에서도 PlaNet은 1,000 episode만으로 여러 task에서 D4PG에 가까운 성능을 낸다.</p>
+<p>특히 Cheetah Run에서는 D4PG보다 높은 점수를 기록하지만, Finger Spin에서는 D4PG가 더 강하다.</p>
+<p>즉 이 실험은 PlaNet이 pixel observation만으로도 model-based RL의 장점인 <strong>sample efficiency</strong>를 잘 보여준다는 점을 강조한다.</p>
+<hr>
+<h3 id="53-2-rssm-ssm-gru">5.3 실험 2: RSSM, SSM, GRU 모델 구조 비교<a class="headerlink" href="#53-2-rssm-ssm-gru" title="Permanent link">¶</a></h3>
+<p>Figure 4는 PlaNet의 RSSM 구조를 다른 dynamics model과도 비교한다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/11_planet.png" data-desc-position="bottom"><img alt="Figure 4: RSSM, SSM, GRU model design comparison" src="../../assets/planet/11_planet.png" width="760"></a></p>
+<p>비교 대상은 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>특징</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RSSM</td>
+<td>deterministic path + stochastic state</td>
+</tr>
+<tr>
+<td>SSM</td>
+<td>purely stochastic state-space model</td>
+</tr>
+<tr>
+<td>GRU</td>
+<td>purely deterministic recurrent model</td>
+</tr>
+</tbody>
+</table>
+<p>이 실험은 단순한 deterministic model이나 purely stochastic model보다 RSSM이 더 안정적으로 학습된다는 점을 보여준다.</p>
+<p>논문은 transition function 안의 deterministic element와 stochastic element가 모두 중요하다고 보고한다.</p>
+<p>특히 stochastic component가 없으면 agent가 제대로 학습하지 못했다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/12_planet.png" data-desc-position="bottom"><img alt="Figure 10: Open-loop video predictions" src="../../assets/planet/12_planet.png" width="720"></a></p>
+<p>Figure 10은 test episode에서 open-loop video prediction을 보여준다.</p>
+<p>앞의 몇 frame은 context로 주어지고, 이후 frame은 모델이 스스로 예측한다.</p>
+<p>논문은 RSSM이 Cheetah 환경에서 50 step 미래까지 pixel-level로 정확한 예측을 달성했다고 설명한다.</p>
+<p>반면 SSM과 GRU는 긴 open-loop prediction에서 예측이 빠르게 부정확해진다.</p>
+<p>SSM은 장기 정보를 안정적으로 유지하기 어렵고, GRU는 stochastic한 미래를 표현하기 어렵기 때문이다.</p>
+<p>이 실험의 핵심 메시지는 다음과 같다.</p>
+<blockquote>
+<p>Planning을 위해서는 단순히 이미지를 잘 복원하는 모델만으로 부족하다.<br>
+긴 horizon 동안 안정적으로 미래를 예측할 수 있는 latent dynamics model이 필요하다.<br>
+RSSM은 기억을 담당하는 deterministic path와 불확실성을 담당하는 stochastic state를 결합해 이 문제를 해결한다.</p>
+</blockquote>
+<hr>
+<h3 id="54-3-planning">5.4 실험 3: Planning을 하지 않는 방식과 비교<a class="headerlink" href="#54-3-planning" title="Permanent link">¶</a></h3>
+<p><strong>Figure 5는 PlaNet을 두 가지 약화된 agent design과 비교한다.</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/13_planet.png" data-desc-position="bottom"><img alt="Figure 5: PlaNet vs Random collection vs Random shooting" src="../../assets/planet/13_planet.png" width="760"></a></p>
+<p>비교 대상은 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th>Agent design</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PlaNet</td>
+<td>planning으로 데이터를 수집하고, CEM으로 action sequence를 반복 개선</td>
+</tr>
+<tr>
+<td>Random collection</td>
+<td>데이터를 random action으로 수집</td>
+</tr>
+<tr>
+<td>Random shooting</td>
+<td>CEM 없이 1000개 action sequence 중 가장 좋은 것을 바로 선택</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Random collection</strong></p>
+<p>Random collection은 새로운 episode를 수집할 때 planning 없이 random action만 사용하는 방식이다.</p>
+<p>이 방식은 task 해결에 필요한 상태 공간을 충분히 방문하지 못할 수 있다.</p>
+<p>예를 들어 Cartpole에서 pole을 세우거나, Walker가 일어나 걷거나, Finger가 물체를 안정적으로 돌리는 행동은 random action만으로 자주 나오기 어렵다.</p>
+<p>그러면 모델은 중요한 상태 전이를 배우지 못하고, 그 모델을 사용한 planning도 좋아지기 어렵다.</p>
+<p>PlaNet은 현재까지 학습한 모델로 planning한 뒤 실제 환경에서 데이터를 모으기 때문에, 시간이 지날수록 task-relevant한 영역의 데이터를 더 많이 수집할 수 있다.</p>
+<p><strong>Random shooting</strong></p>
+<p>Random shooting은 CEM 없이 매 step 1000개의 action sequence를 한 번 샘플링하고, 그중 reward가 가장 높게 예측되는 후보를 선택한다.</p>
+<p>겉으로는 planning처럼 보이지만, 후보를 한 번 뽑고 끝난다는 점에서 CEM과 다르다.</p>
+<p>CEM은 좋은 후보들을 고른 뒤, 그 후보들의 평균과 분산으로 action distribution을 다시 맞춘다.</p>
+<p>그리고 새 distribution에서 다시 후보를 뽑으며 action search를 반복적으로 개선한다.</p>
+<p>논문은 이러한 iterative search가 모든 task에서 성능을 향상시켰다고 보고한다.</p>
+<p>이 실험의 핵심 메시지는 다음과 같다.</p>
+<blockquote>
+<p>PlaNet의 성능은 단순히 모델을 학습했기 때문에 나온 것이 아니다.<br>
+좋은 데이터를 모으는 online collection과, action sequence를 반복 개선하는 CEM planning이 함께 필요하다.</p>
+</blockquote>
+<hr>
+<h3 id="55-4-single-agent-individual-agents">5.5 실험 4: Single agent와 Individual agents 비교<a class="headerlink" href="#55-4-single-agent-individual-agents" title="Permanent link">¶</a></h3>
+<p><strong>Figure 6과 Figure 7은 하나의 PlaNet agent를 여섯 task에 모두 학습시킨 경우와, task별로 따로 학습한 agent들을 비교한다.</strong></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/14_planet.png" data-desc-position="bottom"><img alt="Figure 6: Single agent vs Separate agents" src="../../assets/planet/14_planet.png" width="420"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/planet/15_planet.png" data-desc-position="bottom"><img alt="Figure 7: Per-task performance of a single agent" src="../../assets/planet/15_planet.png" width="760"></a></p>
+<p>하나의 PlaNet agent는 task별 individual agents보다 느리게 학습하지만, 결국 여섯 task를 모두 해결할 수 있다.</p>
+<p>실험 설정은 간단하다.</p>
+<p>일반적인 실험에서는 task마다 별도의 agent를 학습하지만, single agent 실험에서는 하나의 agent가 여섯 task를 모두 학습한다.</p>
+<p>agent는 task id를 따로 받지 않고, image observation만 보고 현재 task를 추론해야 한다.</p>
+<p>task마다 action space 크기가 다르기 때문에, 논문에서는 action space를 padding해서 맞춘다.</p>
+<p>Figure 6과 Figure 7은 single agent가 느리지만 모든 task를 학습할 수 있음을 보여준다.</p>
+<p>이 실험의 핵심 메시지는 다음과 같다.</p>
+<blockquote>
+<p>하나의 latent dynamics model이 시각적으로 서로 다른 여러 domain의 dynamics를 함께 학습할 수 있다.</p>
+</blockquote>
+<p>이것은 PlaNet이 단일 task용 모델을 넘어, 여러 task에서 공유 가능한 world model의 가능성을 가진다는 점을 보여준다.</p>
+<hr>
+<h2 id="6">6. 결론<a class="headerlink" href="#6" title="Permanent link">¶</a></h2>
+<p>논문에서 중요한 기여는 세 가지로 정리할 수 있다.</p>
+<ul>
+<li><strong>Latent space planning</strong></li>
+<li>고차원 픽셀 공간이 아니라 compact한 latent space에서 planning한다.</li>
+<li>
+<p>매번 미래 이미지를 생성하지 않고도 더 긴 horizon을 다룰 수 있게 했다.</p>
+</li>
+<li>
+<p><strong>RSSM 구조</strong></p>
+</li>
+<li>deterministic path로 장기 정보를 기억한다.</li>
+<li>
+<p>stochastic state로 불확실성과 multiple futures를 표현한다.</p>
+</li>
+<li>
+<p><strong>Latent overshooting</strong></p>
+</li>
+<li>one-step objective를 넘어 multi-step prediction을 latent space에서 훈련하는 방법을 제안했다.</li>
+<li>최종 RSSM agent에서는 반드시 필요하지 않았지만, latent sequence model을 planning에 맞게 훈련하려는 시도였다.</li>
+</ul>
+<p><strong>한계</strong></p>
+<ul>
+<li>매 step마다 CEM planning을 수행해야 하므로 계산 비용이 크다.</li>
+<li>observation reconstruction 중심의 representation이 복잡한 현실 환경에서 항상 최선은 아닐 수 있다.</li>
+</ul>
+<p><strong>앞으로의 개선 방향</strong></p>
+<ul>
+<li>temporal abstraction으로 더 긴 horizon을 효율적으로 다룬다.</li>
+<li>value function으로 planning horizon 이후의 reward를 추정한다.</li>
+<li>gradient-based planning이나 reconstruction 없는 representation learning을 탐색한다.</li>
+<li>Dreamer 계열처럼 latent dynamics 안에서 policy와 value를 직접 학습하는 방향으로 발전한다.</li>
+</ul>
+<p>한 문장으로 마무리하면 다음과 같다.</p>
+<blockquote>
+<p><strong>PlaNet은 픽셀 세계를 그대로 예측하려 한 모델이 아니다.<br>
+행동 선택에 필요한 미래를 latent space 안에서 예측하고, 그 예측 위에서 planning을 수행한 모델이다.</strong></p>
+</blockquote>
+
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/edit/main/docs/review/planet.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
+  </a>
+
+
+
+  
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/raw/main/docs/review/planet.md" title="Download source" class="md-content__button md-icon" download="">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"></path></svg>
+  </a>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
