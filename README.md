@@ -22,7 +22,7 @@
 | 5 | 2026-04-22 | 이재호 | [MuZero](https://arxiv.org/abs/1911.08265) (Nature 2020) | [YouTube](https://youtu.be/lo_hqRgoCv8) / [Review](https://pseudo-lab.github.io/hello-world-models/review/muzero/) |
 | 6 | 2026-05-06 | 김주연 | [DreamerV3](https://arxiv.org/abs/2301.04104) (ICLR 2023) | [YouTube](https://youtu.be/tLY_HhKNfbA) / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v3/) |
 | 7 | 2026-05-13 | 장보아 | [Trajectory Transformer](https://arxiv.org/abs/2106.02039) (NeurIPS 2021) | [YouTube](https://youtu.be/mL0sW_qOjng?si=tRaPSt5kqkRVrEdM) / [Review](https://pseudo-lab.github.io/hello-world-models/review/trajectory-transformer/) |
-| 8 | 2026-05-20 | 유지형 | [V-JEPA](https://arxiv.org/abs/2404.08471) (arXiv 2023) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa/) |
+| 8 | 2026-05-20 | 유지형 | [V-JEPA](https://arxiv.org/abs/2404.08471) (arXiv 2023) | [YouTube](https://youtu.be/0m8iObnI80U) / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa/) |
 | 9 | 2026-06-03 | 이재호 | [GAIA-1](https://arxiv.org/abs/2309.17080) (arXiv 2023) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/gaia-1/) |
 | 10 | 2026-06-10 | 김현수 | [VideoWorld 2](https://arxiv.org/pdf/2602.10102) (CVPR 2026) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/decision-transformer/) |
 | 11 | 2026-06-17 | 김주연 | [V-JEPA 2](https://ai.meta.com/research/publications/v-jepa-2-self-supervised-video-models-enable-understanding-prediction-and-planning/) (arXiv 2025) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa-2/) |
