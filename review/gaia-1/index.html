@@ -1,0 +1,2622 @@
+<!DOCTYPE html><html lang="ko" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="World Models 논문 리뷰 및 스터디 자료">
+      
+      
+      
+      
+        <link rel="prev" href="../v-jepa-2/">
+      
+      
+        <link rel="next" href="../genie/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+  <title>Hello, World! — World Models Study</title>
+
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gaia-1-a-generative-world-model-for-autonomous-driving" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../.." title="Hello, World!" class="md-header__button md-logo" aria-label="Hello, World!" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hello, World! — World Models Study
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GAIA-1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Pseudo-Lab/hello-world-models" title="저장소로 이동" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Pseudo-Lab/hello-world-models
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hello, World!" class="md-nav__button md-logo" aria-label="Hello, World!" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Hello, World!
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Pseudo-Lab/hello-world-models" title="저장소로 이동" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Pseudo-Lab/hello-world-models
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Latent World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Latent World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../world-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    World Models (2018)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../planet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PlaNet (2019)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dreamer (2020)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../muzero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MuZero (2020)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer-v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DreamerV2 (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer-v3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DreamerV3 (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Sequence-Based World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Sequence-Based World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decision-transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decision Transformer (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trajectory-transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trajectory Transformer (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Predictive World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Predictive World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v-jepa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V-JEPA (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v-jepa-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V-JEPA 2 (2025)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Generative World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Generative World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    GAIA-1 (2023)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    GAIA-1 (2023)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#0-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-gaia-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. GAIA-1은 어떤 문제를 풀려고 했나?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. GAIA-1은 어떤 문제를 풀려고 했나?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 이 논문이 풀려고 한 문제
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 기존 접근의 한계
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 핵심 아이디어
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-token-sequence-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 자율주행 세계를 token sequence로 바꾸자: Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 자율주행 세계를 token sequence로 바꾸자: Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 전체 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-image-tokenizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Image Tokenizer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-action-conditioned-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Action-Conditioned Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-autoregressive-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Autoregressive Transformer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-video-diffusion-decoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Video Diffusion Decoder
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-gaia-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 GAIA-1 알고리즘 형태
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-world-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 이전 world model / 생성형 모델 계열과의 연결
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 이전 world model / 생성형 모델 계열과의 연결">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dreamer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dreamer 계열과 연결
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trajectory-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trajectory Transformer 계열과 연결
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jepa" class="md-nav__link">
+    <span class="md-ellipsis">
+      JEPA 계열과 연결
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 이 논문의 기여는 무엇인가?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 이 논문의 기여는 무엇인가?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 핵심 기여
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 이 논문이 새롭게 보여준 관점
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Experiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Experiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-gaia-1-benchmark-capability" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 GAIA-1의 실험은 benchmark보다 capability 중심이다
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-data-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Data Sampling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-sampling-strategy-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Sampling Strategy와 Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-qualitative-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Qualitative Capabilities: 생성 결과에서 확인한 능력
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 결론과 한계
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 결론과 한계">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 논문 결론
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 이 논문에서 가져갈 핵심 메시지
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 한계
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 최종 요약표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-gaia-2-gaia-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 후속 흐름: GAIA-2와 GAIA-3는 무엇이 다르고, 왜 달라졌나?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 후속 흐름: GAIA-2와 GAIA-3는 무엇이 다르고, 왜 달라졌나?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 한 줄 흐름
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-gaia-2-multi-camera-world-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 GAIA-2: 더 제어 가능한 multi-camera world model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-gaia-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 GAIA-3: 생성 세계를 평가 도구로 바꾸기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-gaia-1-gaia-2-gaia-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 GAIA-1 → GAIA-2 → GAIA-3 발전 방향
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      참고문헌 / 출처
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genie (2024)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cosmos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cosmos (2025)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#0-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-gaia-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. GAIA-1은 어떤 문제를 풀려고 했나?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. GAIA-1은 어떤 문제를 풀려고 했나?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 이 논문이 풀려고 한 문제
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 기존 접근의 한계
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 핵심 아이디어
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-token-sequence-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 자율주행 세계를 token sequence로 바꾸자: Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 자율주행 세계를 token sequence로 바꾸자: Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 전체 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-image-tokenizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Image Tokenizer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-action-conditioned-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Action-Conditioned Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-autoregressive-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Autoregressive Transformer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-video-diffusion-decoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Video Diffusion Decoder
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-gaia-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 GAIA-1 알고리즘 형태
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-world-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 이전 world model / 생성형 모델 계열과의 연결
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 이전 world model / 생성형 모델 계열과의 연결">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dreamer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dreamer 계열과 연결
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trajectory-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trajectory Transformer 계열과 연결
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jepa" class="md-nav__link">
+    <span class="md-ellipsis">
+      JEPA 계열과 연결
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 이 논문의 기여는 무엇인가?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 이 논문의 기여는 무엇인가?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 핵심 기여
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 이 논문이 새롭게 보여준 관점
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Experiment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Experiment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-gaia-1-benchmark-capability" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 GAIA-1의 실험은 benchmark보다 capability 중심이다
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-data-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Data Sampling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-sampling-strategy-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Sampling Strategy와 Scaling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-qualitative-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Qualitative Capabilities: 생성 결과에서 확인한 능력
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 결론과 한계
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 결론과 한계">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 논문 결론
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 이 논문에서 가져갈 핵심 메시지
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 한계
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 최종 요약표
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-gaia-2-gaia-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 후속 흐름: GAIA-2와 GAIA-3는 무엇이 다르고, 왜 달라졌나?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 후속 흐름: GAIA-2와 GAIA-3는 무엇이 다르고, 왜 달라졌나?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 한 줄 흐름
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-gaia-2-multi-camera-world-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 GAIA-2: 더 제어 가능한 multi-camera world model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-gaia-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 GAIA-3: 생성 세계를 평가 도구로 바꾸기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-gaia-1-gaia-2-gaia-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 GAIA-1 → GAIA-2 → GAIA-3 발전 방향
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      참고문헌 / 출처
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="gaia-1-a-generative-world-model-for-autonomous-driving">GAIA-1: A Generative World Model for Autonomous Driving<a class="headerlink" href="#gaia-1-a-generative-world-model-for-autonomous-driving" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Information</p>
+<ul>
+<li><strong>Title:</strong> GAIA-1: A Generative World Model for Autonomous Driving</li>
+<li><strong>Venue:</strong> arXiv 2023</li>
+<li><strong>Paper:</strong> <a href="https://arxiv.org/abs/2309.17080">arXiv</a></li>
+<li><strong>Homepage:</strong> <a href="https://wayve.ai/thinking/scaling-gaia-1/">Wayve</a></li>
+<li><strong>Presenter:</strong> 이재호</li>
+<li><strong>Last updated:</strong> 2026-06-07</li>
+</ul>
+</div>
+<h2 id="0-summary">0. Summary<a class="headerlink" href="#0-summary" title="Permanent link">¶</a></h2>
+<p>GAIA-1은 <strong>자율주행 장면을 <code>video + text + action</code> token sequence로 바꾸고, GPT처럼 다음 image token을 예측한 뒤, diffusion decoder로 미래 주행 비디오를 생성하는 generative world model</strong>이다.</p>
+<p>직관적으로 정리하면 다음과 같다.</p>
+<blockquote>
+<p><strong>“내 차가 지금 이 장면에서 이렇게 움직이면, 앞으로 도로가 어떻게 변할까?”를 비디오로 상상하는 모델</strong></p>
+</blockquote>
+<p><strong>핵심 방법론</strong></p>
+<ol>
+<li>
+<p><strong>Multimodal tokenization</strong><br>
+   주행 video, text prompt, ego action을 Transformer가 다룰 수 있는 token sequence로 바꾼다.</p>
+</li>
+<li>
+<p><strong>Autoregressive world model</strong><br>
+   언어 모델이 다음 단어를 예측하듯, GAIA-1은 다음 image token을 예측한다.</p>
+</li>
+<li>
+<p><strong>Video diffusion decoder</strong><br>
+   예측된 image token을 사람이 볼 수 있는 high-quality future driving video로 복원한다.</p>
+</li>
+</ol>
+<p><strong>핵심 기여</strong></p>
+<ol>
+<li>
+<p><strong>자율주행 world modeling을 next-token prediction 문제로 재정의했다.</strong><br>
+   world model을 reward/state 예측 중심의 latent model이 아니라, action/text-conditioned future video generation으로 확장했다.</p>
+</li>
+<li>
+<p><strong>생성형 모델 기반 neural simulator의 가능성을 보여줬다.</strong><br>
+   policy를 직접 학습하는 논문은 아니지만, 자율주행 모델 학습·검증에 쓸 수 있는 controllable future generator의 방향을 제시한다.</p>
+</li>
+</ol>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_1.png" data-desc-position="bottom"><img alt="World Model Survey" src="../../assets/gaia-1/gaia-1_1.png"></a></p>
+<blockquote>
+<p>2023년 이후 world model 논의는 RL 내부의 latent dynamics model을 넘어, <strong>application-level video generation world model</strong>로 확장되고 있다. GAIA-1은 이 흐름에서 자율주행 video generation을 action/text-conditioned future prediction 문제로 연결한 사례다.<br>
+출처: <em>Understanding World or Predicting Future? A Comprehensive Survey of World Models</em></p>
+</blockquote>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_2.png" data-desc-position="bottom"><img alt="Sora as World Simulator" src="../../assets/gaia-1/gaia-1_2.png"></a></p>
+<blockquote>
+<p>최근에는 Dreamer 계열의 RSSM처럼 latent dynamics를 recurrent하게 예측하는 방식만이 아니라, <strong>Transformer 기반 sequence modeling</strong>과 <strong>diffusion 기반 video generation</strong>이 world model 연구에서 더 큰 관심을 얻고 있다. 이 변화는 Sora 같은 비디오 생성 모델을 world simulator 관점에서 해석하려는 논의와도 이어진다.<br>
+출처: <em>Is Sora a World Simulator? A Comprehensive Survey on General World Models and Beyond</em></p>
+</blockquote>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_3.png" data-desc-position="bottom"><img alt="GAIA-1 overview" src="../../assets/gaia-1/gaia-1_3.png"></a></p>
+<blockquote>
+<p><strong>이미지 설명:</strong> GAIA-1의 핵심 입력과 출력을 한 장으로 보여주는 overview이다. 과거 주행 video, text condition, ego action을 조건으로 받아 미래 driving video를 생성한다는 전체 문제 설정을 압축해서 보여준다.</p>
+</blockquote>
+<hr>
+<h2 id="1-gaia-1">1. GAIA-1은 어떤 문제를 풀려고 했나?<a class="headerlink" href="#1-gaia-1" title="Permanent link">¶</a></h2>
+<h3 id="11">1.1 이 논문이 풀려고 한 문제<a class="headerlink" href="#11" title="Permanent link">¶</a></h3>
+<p>자율주행에서 어려운 점은 단순히 현재 장면을 인식하는 것이 아니다. 핵심은 다음 질문이다.</p>
+<blockquote>
+<p><strong>현재 도로 상황에서 내 차가 특정 행동을 하면, 앞으로 어떤 미래들이 가능할까?</strong></p>
+</blockquote>
+<p>수식으로 쓰면 다음과 같다.</p>
+<div class="arithmatex">\[
+p(x_{t+1:t+H} \mid x_{\leq t}, a_{t:t+H}, c)
+\]</div>
+<table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x_{\leq t}\)</span></td>
+<td>지금까지 본 주행 비디오</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(a_{t:t+H}\)</span></td>
+<td>앞으로 ego-vehicle이 취할 action, 예: speed, curvature</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(c\)</span></td>
+<td>text condition, 예: rainy night, red traffic light</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x_{t+1:t+H}\)</span></td>
+<td>앞으로 생성될 미래 주행 비디오</td>
+</tr>
+</tbody>
+</table>
+<p>즉 GAIA-1의 목표는 단순한 video generation이 아니라, <strong>action과 text에 의해 조절되는 미래 driving scenario 생성</strong>이다.</p>
+<hr>
+<h3 id="12">1.2 기존 접근의 한계<a class="headerlink" href="#12" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>기존 흐름</th>
+<th>장점</th>
+<th>한계</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>기존 world model / model-based RL</td>
+<td>행동에 따른 미래 예측, planning에 유리</td>
+<td>보통 low-dimensional latent 중심이라 고화질 주행 비디오 생성이 약함</td>
+</tr>
+<tr>
+<td>기존 video generation</td>
+<td>시각적으로 그럴듯한 비디오 생성</td>
+<td>action-conditioned dynamics, 즉 “내가 이렇게 운전하면 미래가 어떻게 달라지나?”가 약함</td>
+</tr>
+</tbody>
+</table>
+<p>GAIA-1은 이 둘을 합치려 한다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>World Model의 장점: 행동에 따른 미래 예측
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>+
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Generative Video Model의 장점: 현실적인 비디오 생성
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>=
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>GAIA-1: Generative World Model for Autonomous Driving
+</code></pre></div>
+<hr>
+<h3 id="13">1.3 핵심 아이디어<a class="headerlink" href="#13" title="Permanent link">¶</a></h3>
+<p>GAIA-1은 world modeling 문제를 다음처럼 바꾼다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>미래 비디오 예측 문제
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>→ discrete image token sequence 예측 문제
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>→ next-token prediction 문제
+</code></pre></div>
+<p>즉, 언어모델이 다음 단어를 예측하듯이 GAIA-1은 다음 image token을 예측한다.</p>
+<div class="arithmatex">\[
+p_\theta(z_{1:N} \mid c)
+= \prod_{i=1}^{N} p_\theta(z_i \mid z_{&lt;i}, c)
+\]</div>
+<p>여기서:</p>
+<table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(z_i\)</span></td>
+<td>image token</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(z_{&lt;i}\)</span></td>
+<td>이전 image token들</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(c\)</span></td>
+<td>video context, action, text condition</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>GAIA-1은 자율주행 세계를 GPT가 읽을 수 있는 token sequence로 바꾼 뒤, 다음 token을 예측하게 만든 모델이다.</strong></p>
+</blockquote>
+<hr>
+<h2 id="2-token-sequence-methods">2. 자율주행 세계를 token sequence로 바꾸자: Methods<a class="headerlink" href="#2-token-sequence-methods" title="Permanent link">¶</a></h2>
+<h3 id="21">2.1 전체 구조<a class="headerlink" href="#21" title="Permanent link">¶</a></h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_4.png" data-desc-position="bottom"><img alt="GAIA-1 pipeline" src="../../assets/gaia-1/gaia-1_4.png"></a></p>
+<blockquote>
+<p><strong>Keyword:</strong> Tokenizer, Autoregressive Transformer, Diffusion Decoder</p>
+<p><strong>이미지 설명:</strong> GAIA-1의 전체 pipeline은 세 단계로 읽으면 된다. 먼저 video, text, action을 token sequence로 바꾸고, autoregressive Transformer가 미래 image token을 예측한다. 마지막으로 diffusion decoder가 예측된 token을 사람이 볼 수 있는 주행 비디오로 복원한다.</p>
+</blockquote>
+<p>GAIA-1은 크게 3단계로 이해하면 된다.</p>
+<pre class="mermaid"><code>flowchart LR
+    V[Past Video Frames] --&gt; IT[Image Tokenizer&lt;br/&gt;discrete image tokens]
+    T[Text Prompt] --&gt; TE[T5 Text Encoder&lt;br/&gt;text tokens]
+    A[Action&lt;br/&gt;speed / curvature] --&gt; AE[Action Projection&lt;br/&gt;action tokens]
+
+    IT --&gt; S[Interleaved Token Sequence&lt;br/&gt;text - image - action]
+    TE --&gt; S
+    AE --&gt; S
+
+    S --&gt; WM[World Model&lt;br/&gt;Autoregressive Transformer]
+    WM --&gt; FT[Future Image Tokens]
+    FT --&gt; VD[Video Diffusion Decoder]
+    VD --&gt; FV[Future Driving Video]</code></pre>
+<p>핵심은 이거다.</p>
+<table>
+<thead>
+<tr>
+<th>구성요소</th>
+<th>역할</th>
+<th>리뷰 우선순위</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image tokenizer</td>
+<td>주행 이미지를 discrete token으로 압축</td>
+<td>A</td>
+</tr>
+<tr>
+<td>Text encoder</td>
+<td>텍스트 조건을 token으로 변환</td>
+<td>B</td>
+</tr>
+<tr>
+<td>Action encoder</td>
+<td>speed, curvature를 token representation으로 변환</td>
+<td>A</td>
+</tr>
+<tr>
+<td>Autoregressive Transformer</td>
+<td>과거 token을 보고 다음 image token 예측</td>
+<td>A</td>
+</tr>
+<tr>
+<td>Video diffusion decoder</td>
+<td>예측된 token을 고화질 비디오로 복원</td>
+<td>B</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="22-image-tokenizer">2.2 Image Tokenizer<a class="headerlink" href="#22-image-tokenizer" title="Permanent link">¶</a></h3>
+<p>이미지를 픽셀 그대로 예측하면 너무 크고 복잡하다. 그래서 GAIA-1은 이미지를 discrete token으로 바꾼다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Raw image
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>→ image tokenizer
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>→ [token_1, token_2, token_3, ...]
+</code></pre></div>
+<p>언어 모델과 비교하면 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th>Language Model</th>
+<th>GAIA-1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>문장을 단어/token으로 나눔</td>
+<td>이미지를 image token으로 나눔</td>
+</tr>
+<tr>
+<td>다음 단어 예측</td>
+<td>다음 image token 예측</td>
+</tr>
+<tr>
+<td>문장 생성</td>
+<td>미래 주행 비디오 생성</td>
+</tr>
+</tbody>
+</table>
+<p>중요한 점은 image token이 단순한 픽셀 조각이 아니라, <strong>차량, 도로, 하늘, 차선 같은 semantic structure를 담도록 유도</strong>된다는 점이다. GAIA-1은 DINO feature distillation을 사용해 token이 더 semantic한 정보를 담도록 만든다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_5.png" data-desc-position="bottom"><img alt="Image tokenizer" src="../../assets/gaia-1/gaia-1_5.png"></a></p>
+<blockquote>
+<p><strong>Keyword:</strong> Discrete Image Token, DINO Distillation, Semantic Representation</p>
+<p><strong>이미지 설명:</strong> 원본 이미지를 픽셀 그대로 예측하지 않고 discrete image token으로 압축하는 과정을 보여준다. DINO feature distillation을 통해 token이 단순한 색·질감보다 장면의 의미 구조를 더 잘 담도록 만든다.</p>
+</blockquote>
+<hr>
+<h3 id="23-action-conditioned-generation">2.3 Action-Conditioned Generation<a class="headerlink" href="#23-action-conditioned-generation" title="Permanent link">¶</a></h3>
+<p>GAIA-1이 단순 video generation과 다른 이유는 <strong>action condition</strong>이 들어간다는 점이다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>현재 장면 + 행동 → 행동에 맞는 미래 장면
+</code></pre></div>
+<p>자율주행에서 action은 보통 다음과 같이 해석할 수 있다.</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>speed</td>
+<td>ego-vehicle의 속도</td>
+</tr>
+<tr>
+<td>curvature</td>
+<td>ego-vehicle이 얼마나 휘어서 이동하는지, 즉 조향 방향</td>
+</tr>
+</tbody>
+</table>
+<p>예시:</p>
+<table>
+<thead>
+<tr>
+<th>같은 현재 장면</th>
+<th>action</th>
+<th>생성되어야 하는 미래</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>로터리에 접근 중</td>
+<td>직진</td>
+<td>로터리를 지나 직진하는 영상</td>
+</tr>
+<tr>
+<td>로터리에 접근 중</td>
+<td>우회전</td>
+<td>오른쪽 도로로 진입하는 영상</td>
+</tr>
+<tr>
+<td>앞차에 접근 중</td>
+<td>감속</td>
+<td>앞차와 거리 유지</td>
+</tr>
+<tr>
+<td>앞차에 접근 중</td>
+<td>가속</td>
+<td>앞차와 가까워짐</td>
+</tr>
+</tbody>
+</table>
+<p>이 개념이 world model과 연결된다.</p>
+<blockquote>
+<p><strong>World model의 핵심은 “미래가 어떻게 될까?”가 아니라 “내가 이 행동을 하면 미래가 어떻게 될까?”이다.</strong></p>
+</blockquote>
+<hr>
+<h3 id="24-autoregressive-transformer">2.4 Autoregressive Transformer<a class="headerlink" href="#24-autoregressive-transformer" title="Permanent link">¶</a></h3>
+<p>GAIA-1의 world model은 autoregressive Transformer다.</p>
+<p>직관적으로 보면:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>이전 token들 → 다음 token 예측
+</code></pre></div>
+<p>GAIA-1에서는:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>과거 image token + text token + action token
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>→ 다음 image token
+</code></pre></div>
+<p>수식으로 단순화하면:</p>
+<div class="arithmatex">\[
+\mathcal{L}_{WM}
+= - \sum_i \log p_\theta(z_i^{img} \mid z_{&lt;i}^{img}, z_{\leq i}^{text}, z_{\leq i}^{act})
+\]</div>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(z_i^{img}\)</span></td>
+<td>예측해야 하는 현재 image token</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(z_{&lt;i}^{img}\)</span></td>
+<td>이전 image token들</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(z_{\leq i}^{text}\)</span></td>
+<td>text condition</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(z_{\leq i}^{act}\)</span></td>
+<td>action condition</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathcal{L}_{WM}\)</span></td>
+<td>실제 다음 image token의 likelihood를 높이는 loss</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>실제 주행 데이터에서 다음 image token을 잘 맞히도록 학습한다.</strong></p>
+</blockquote>
+<hr>
+<h3 id="25-video-diffusion-decoder">2.5 Video Diffusion Decoder<a class="headerlink" href="#25-video-diffusion-decoder" title="Permanent link">¶</a></h3>
+<p>Transformer가 예측하는 것은 사람이 볼 수 있는 비디오가 아니라 image token이다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[134, 22, 991, 7, ...]
+</code></pre></div>
+<p>이 token을 실제 비디오로 복원하기 위해 diffusion decoder를 사용한다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>future image tokens
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>→ video diffusion decoder
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>→ high-quality future driving video
+</code></pre></div>
+<p>Diffusion decoder는 노이즈를 점점 제거하면서 비디오를 복원하는 모델이라고 이해하면 된다.</p>
+<p>간단한 diffusion training objective는 다음처럼 볼 수 있다.</p>
+<div class="arithmatex">\[
+\mathcal{L}_{dec}
+= \mathbb{E}_{x, \epsilon, \tau}
+\left[\lVert \epsilon - \epsilon_\phi(x_\tau, \tau, z) \rVert^2 \right]
+\]</div>
+<table>
+<thead>
+<tr>
+<th>기호</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(x\)</span></td>
+<td>실제 비디오 frame sequence</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\epsilon\)</span></td>
+<td>추가한 노이즈</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(x_\tau\)</span></td>
+<td>노이즈가 섞인 비디오</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(z\)</span></td>
+<td>image token condition</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\epsilon_\phi\)</span></td>
+<td>decoder가 예측한 노이즈</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Transformer는 미래의 구조를 예측하고, diffusion decoder는 그 구조를 실제처럼 보이는 비디오로 렌더링한다.</strong></p>
+</blockquote>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_6.png" data-desc-position="bottom"><img alt="Video diffusion decoder" src="../../assets/gaia-1/gaia-1_6.png"></a></p>
+<blockquote>
+<p><strong>Keyword:</strong> Video Diffusion Decoder, Reconstruction, High-quality Rendering</p>
+<p><strong>이미지 설명:</strong> decoder가 image token 조건을 받아 실제 비디오 frame sequence를 복원하도록 학습되는 방식을 보여준다. Transformer가 예측한 구조를 diffusion decoder가 시각적으로 자연스러운 주행 영상으로 렌더링하는 단계다.</p>
+</blockquote>
+<h3 id="26-gaia-1">2.6 GAIA-1 알고리즘 형태<a class="headerlink" href="#26-gaia-1" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Algorithm: GAIA-1 Future Video Generation
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>Input:
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  - context video frames x_{≤t}
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>  - optional text prompt c
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>  - future ego actions a_{t:t+H}
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Step 1. Video frames를 image tokenizer로 discrete image tokens로 변환한다.
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>Step 2. Text prompt를 text tokens로 변환한다.
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>Step 3. Speed / curvature action을 action tokens로 변환한다.
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>Step 4. text - image - action 순서로 token sequence를 구성한다.
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>Step 5. Autoregressive Transformer가 다음 image token을 순서대로 예측한다.
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>Step 6. Top-k sampling으로 다양성과 안정성의 균형을 맞춘다.
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>Step 7. Video diffusion decoder가 예측된 image tokens를 pixel-space video로 복원한다.
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>Output:
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>  - action/text 조건에 맞는 future driving video
+</code></pre></div>
+<hr>
+<h2 id="3-world-model">3. 이전 world model / 생성형 모델 계열과의 연결<a class="headerlink" href="#3-world-model" title="Permanent link">¶</a></h2>
+<h3 id="dreamer">Dreamer 계열과 연결<a class="headerlink" href="#dreamer" title="Permanent link">¶</a></h3>
+<p>Dreamer는 world model 안에서 imagined trajectory를 만들고, 그 상상 속 trajectory로 actor-critic을 학습한다.</p>
+<table>
+<thead>
+<tr>
+<th>비교</th>
+<th>Dreamer 계열</th>
+<th>GAIA-1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>핵심 질문</td>
+<td>상상 속에서 어떻게 더 좋은 행동을 배울까?</td>
+<td>행동 조건을 넣으면 어떤 미래 비디오가 생성될까?</td>
+</tr>
+<tr>
+<td>world model 출력</td>
+<td>latent state, reward, continuation</td>
+<td>future image tokens / video</td>
+</tr>
+<tr>
+<td>학습 목적</td>
+<td>policy improvement</td>
+<td>controllable future video generation</td>
+</tr>
+<tr>
+<td>planning/control</td>
+<td>actor-critic 학습에 직접 연결</td>
+<td>neural simulator 가능성은 있지만 policy 학습은 직접 수행하지 않음</td>
+</tr>
+<tr>
+<td>관측 복원</td>
+<td>representation 학습 신호로 사용</td>
+<td>최종 결과물로 realistic video 생성</td>
+</tr>
+</tbody>
+</table>
+<p>정리:</p>
+<blockquote>
+<p><strong>Dreamer는 “상상해서 행동을 배우는 모델”이고, GAIA-1은 “행동 조건을 넣어 미래 장면을 생성하는 모델”이다.</strong></p>
+</blockquote>
+<hr>
+<h3 id="trajectory-transformer">Trajectory Transformer 계열과 연결<a class="headerlink" href="#trajectory-transformer" title="Permanent link">¶</a></h3>
+<p>Trajectory Transformer는 RL을 state/action/reward의 sequence modeling 문제로 본다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Trajectory Transformer:
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>(s_t, a_t, r_t, s_{t+1}, a_{t+1}, r_{t+1}, ...)
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>→ sequence modeling
+</code></pre></div>
+<p>GAIA-1도 유사하게 world modeling을 sequence modeling으로 바꾼다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>GAIA-1:
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>(text token, image token, action token, ...)
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>→ next image token prediction
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>비교</th>
+<th>Trajectory Transformer</th>
+<th>GAIA-1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>데이터 단위</td>
+<td>state, action, reward trajectory</td>
+<td>video, text, action tokens</td>
+</tr>
+<tr>
+<td>모델</td>
+<td>Transformer</td>
+<td>Autoregressive Transformer</td>
+</tr>
+<tr>
+<td>생성 대상</td>
+<td>reward가 높은 trajectory</td>
+<td>plausible future driving video</td>
+</tr>
+<tr>
+<td>decoding</td>
+<td>beam search planning</td>
+<td>top-k sampling, text guidance, diffusion decoding</td>
+</tr>
+<tr>
+<td>핵심 연결</td>
+<td>RL을 sequence modeling으로 재해석</td>
+<td>world modeling을 next-token prediction으로 재해석</td>
+</tr>
+</tbody>
+</table>
+<p>정리:</p>
+<blockquote>
+<p><strong>Trajectory Transformer가 “강화학습을 하나의 sequence modeling 문제로 보자”였다면, GAIA-1은 “자율주행 세계를 multimodal token sequence로 보자”이다.</strong></p>
+</blockquote>
+<hr>
+<h3 id="jepa">JEPA 계열과 연결<a class="headerlink" href="#jepa" title="Permanent link">¶</a></h3>
+<p>JEPA 계열은 pixel을 직접 예측하기보다 <strong>representation space에서 미래 또는 가려진 부분을 예측</strong>하는 방향이다.</p>
+<table>
+<thead>
+<tr>
+<th>비교</th>
+<th>JEPA / V-JEPA</th>
+<th>GAIA-1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>핵심 철학</td>
+<td>pixel detail보다 abstract representation 예측</td>
+<td>raw pixel 대신 discrete image token 예측</td>
+</tr>
+<tr>
+<td>생성형 여부</td>
+<td>대체로 non-generative representation learning</td>
+<td>generative video world model</td>
+</tr>
+<tr>
+<td>예측 공간</td>
+<td>learned representation / embedding space</td>
+<td>discrete image token space + pixel video decoding</td>
+</tr>
+<tr>
+<td>장점</td>
+<td>semantic representation, sample efficiency</td>
+<td>controllable future video generation</td>
+</tr>
+<tr>
+<td>공통점</td>
+<td>픽셀을 직접 맞히는 부담을 줄임</td>
+<td>픽셀 대신 압축 representation을 예측</td>
+</tr>
+</tbody>
+</table>
+<p>정리:</p>
+<blockquote>
+<p><strong>JEPA는 “픽셀 말고 의미 표현을 예측하자”이고, GAIA-1은 “미래를 pixel이 아니라 discrete image token으로 예측한 뒤 diffusion으로 복원하자”이다.</strong></p>
+</blockquote>
+<hr>
+<h2 id="4">4. 이 논문의 기여는 무엇인가?<a class="headerlink" href="#4" title="Permanent link">¶</a></h2>
+<h3 id="41">4.1 핵심 기여<a class="headerlink" href="#41" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">번호</th>
+<th>기여</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>자율주행 world modeling을 next-token prediction으로 재정의</td>
+<td>LLM식 scaling과 training objective를 자율주행 비디오에 적용</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>video, text, action을 통합한 multimodal world model</td>
+<td>현재 장면뿐 아니라 action과 language로 미래를 제어</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>autoregressive Transformer + video diffusion decoder 결합</td>
+<td>high-level dynamics와 high-quality rendering을 분리</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>대규모 실제 주행 데이터 기반 학습</td>
+<td>London driving data 4,700시간, 약 420M images 규모</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>neural simulator 가능성 제시</td>
+<td>synthetic data, adversarial scenarios, validation에 활용 가능</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="42">4.2 이 논문이 새롭게 보여준 관점<a class="headerlink" href="#42" title="Permanent link">¶</a></h3>
+<p>기존에는 world model을 주로 이렇게 생각했다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>현재 latent state + action
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>→ 다음 latent state / reward
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>→ planning or policy learning
+</code></pre></div>
+<p>GAIA-1은 관점을 바꾼다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>현재 video + action + text
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>→ 미래 image tokens
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>→ future driving video
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>→ neural simulator
+</code></pre></div>
+<p>이 전환이 중요한 이유는 다음과 같다.</p>
+<table>
+<thead>
+<tr>
+<th>관점</th>
+<th>기존 world model</th>
+<th>GAIA-1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>목표</td>
+<td>control / planning</td>
+<td>realistic future generation</td>
+</tr>
+<tr>
+<td>표현</td>
+<td>compact latent</td>
+<td>discrete image tokens</td>
+</tr>
+<tr>
+<td>결과물</td>
+<td>policy 학습에 필요한 내부 상태</td>
+<td>사람이 볼 수 있는 driving video</td>
+</tr>
+<tr>
+<td>평가</td>
+<td>reward, return, success rate</td>
+<td>realism, controllability, scaling, qualitative capability</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-experiment">5. Experiment<a class="headerlink" href="#5-experiment" title="Permanent link">¶</a></h2>
+<h3 id="51-gaia-1-benchmark-capability">5.1 GAIA-1의 실험은 benchmark보다 capability 중심이다<a class="headerlink" href="#51-gaia-1-benchmark-capability" title="Permanent link">¶</a></h3>
+<p>GAIA-1의 실험은 RL benchmark 점수보다 <strong>주행 세계를 얼마나 그럴듯하게 예측하고 조작할 수 있는지</strong>를 보여주는 데 초점이 있다.</p>
+<p>섹션 5는 세 가지 축으로 읽으면 된다.</p>
+<ul>
+<li><strong>Data:</strong> 2019~2023년 런던 데이터로 충분히 크게 학습했는가?</li>
+<li><strong>Scaling:</strong> next-token prediction world model에서도 scaling trend가 보이는가?</li>
+<li><strong>Capabilities:</strong> long rollout, multiple futures, text/action control이 실제로 나타나는가?</li>
+</ul>
+<hr>
+<h3 id="52-data-sampling">5.2 Data Sampling<a class="headerlink" href="#52-data-sampling" title="Permanent link">¶</a></h3>
+<p>GAIA-1의 데이터 설정은 다음처럼 요약할 수 있다.</p>
+<ul>
+<li><strong>데이터:</strong> 2019~2023년 런던 데이터</li>
+<li><strong>규모:</strong> 약 4,700시간, 약 420M unique images</li>
+<li><strong>입력:</strong> 25Hz 주행 비디오</li>
+<li><strong>검증:</strong> 400시간 validation data + geofenced validation region</li>
+</ul>
+<p>핵심은 데이터를 많이 쓰는 것만이 아니라, <strong>sampling distribution을 조절했다는 점</strong>이다. 논문은 latitude, longitude, weather category, steering behavior, speed behavior 등을 기준으로 sampling을 조정한다. 특정 지역이나 특정 날씨에 치우치면 모델이 주행 규칙을 배운 것이 아니라 자주 본 장면을 외울 수 있기 때문이다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_7.png" data-desc-position="bottom"><img alt="London driving data" src="../../assets/gaia-1/gaia-1_7.png"></a></p>
+<blockquote>
+<p><strong>Figure 설명:</strong> 논문 Figure 5의 data sampling 그림이다. 위쪽은 latitude, longitude, weather에 대해 실제 데이터 분포와 sampling 후 분포를 비교하고, 아래쪽은 empirical / sampled / validation 좌표 heatmap을 보여준다. 즉, 학습 데이터의 지역·날씨 편향을 줄이고 geofenced validation을 따로 둔 설정을 보여준다.</p>
+</blockquote>
+<hr>
+<h3 id="53-sampling-strategy-scaling">5.3 Sampling Strategy와 Scaling<a class="headerlink" href="#53-sampling-strategy-scaling" title="Permanent link">¶</a></h3>
+<p>GAIA-1은 image token을 autoregressive하게 생성한다. 따라서 token을 어떻게 뽑는지가 중요하다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_8.png" data-desc-position="bottom"><img alt="World model sampling strategy" src="../../assets/gaia-1/gaia-1_8.png"></a></p>
+<blockquote>
+<p><strong>Figure 설명:</strong> 논문 Figure 6의 sampling strategy 비교다. Argmax는 perplexity가 너무 낮아 다양성이 사라지고, 전체 distribution에서 sampling하면 unreliable tail 때문에 perplexity spike가 생긴다. Top-k sampling은 real token과 더 비슷한 perplexity 분포를 만들어, 다양성과 안정성의 균형을 맞춘다.</p>
+</blockquote>
+<p>Scaling 분석도 같은 맥락에서 읽으면 된다. GAIA-1은 future prediction을 discrete image token의 next-token prediction 문제로 바꾸었기 때문에, validation cross-entropy로 모델 크기에 따른 성능 변화를 볼 수 있다.</p>
+<p>주의할 점은 이 지표가 driving score가 아니라는 것이다. Cross-entropy가 낮다는 것은 다음 image token을 더 잘 예측한다는 뜻이지, 곧바로 안전한 driving decision을 보장한다는 뜻은 아니다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_9.png" data-desc-position="bottom"><img alt="Scaling law" src="../../assets/gaia-1/gaia-1_9.png"></a></p>
+<blockquote>
+<p><strong>Figure 설명:</strong> 논문 Figure 8의 scaling 분석이다. 작은 모델들의 validation cross-entropy를 power-law로 맞추어 6.5B 규모 GAIA-1 world model의 최종 loss를 예측한다. 오른쪽은 모델 규모별 training cross-entropy curve를 보여준다.</p>
+</blockquote>
+<hr>
+<h3 id="54-qualitative-capabilities">5.4 Qualitative Capabilities: 생성 결과에서 확인한 능력<a class="headerlink" href="#54-qualitative-capabilities" title="Permanent link">¶</a></h3>
+<p>GAIA-1의 qualitative experiment는 모델이 단순히 그럴듯한 frame을 만드는지보다, <strong>주행 세계의 구조와 동역학을 어느 정도 담고 있는지</strong>를 보여준다.</p>
+<p><strong>Long driving scenario.</strong><br>
+짧은 clip이 아니라 몇 분 길이의 imagined driving video를 생성한다. 도로 구조, 차량 위치, 건물 같은 요소가 시간에 따라 유지되는지가 핵심이다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_10.png" data-desc-position="bottom"><img alt="Long driving scenario" src="../../assets/gaia-1/gaia-1_10.png"></a></p>
+<blockquote>
+<p><strong>Figure 설명:</strong> GAIA-1이 완전히 상상한 주행 장면을 긴 시간 동안 이어서 생성하는 예시다. 장기 rollout에서 장면의 구조와 움직임이 크게 무너지지 않는지를 확인하는 Figure다.</p>
+</blockquote>
+<p><strong>Multiple plausible futures.</strong><br>
+같은 초기 context에서도 여러 미래가 가능하다. GAIA-1은 repeated sampling으로 하나의 정답 미래가 아니라 가능한 미래들의 분포를 생성한다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_11.png" data-desc-position="bottom"><img alt="Multiple plausible futures" src="../../assets/gaia-1/gaia-1_11.png"></a></p>
+<blockquote>
+<p><strong>Figure 설명:</strong> 같은 context에서 서로 다른 plausible future가 생성되는 예시다. 이 Figure는 GAIA-1이 deterministic predictor가 아니라 multimodal future를 다루는 generative world model이라는 점을 보여준다.</p>
+</blockquote>
+<p><strong>Text-conditioned generation.</strong><br>
+Text prompt로 날씨, 조명, 장면 속성을 바꾼다. 이는 GAIA-1이 language condition을 통해 scene attribute를 제어할 수 있음을 보여준다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_12.png" data-desc-position="bottom"><img alt="Text-conditioned generation" src="../../assets/gaia-1/gaia-1_12.png"></a></p>
+<blockquote>
+<p><strong>Figure 설명:</strong> text prompt를 바꾸어 weather와 illumination 같은 scene attribute를 조절하는 예시다. 주행 맥락은 유지하면서 시각적 조건을 바꿀 수 있는지를 보여준다.</p>
+</blockquote>
+<p><strong>Action-conditioned generation.</strong><br>
+Speed와 curvature 같은 ego action 조건을 바꾸면 미래 장면도 달라진다. 이 부분이 GAIA-1을 일반 video generation이 아니라 world model에 가깝게 만든다.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/gaia-1/gaia-1_13.png" data-desc-position="bottom"><img alt="Action-conditioned generation" src="../../assets/gaia-1/gaia-1_13.png"></a></p>
+<blockquote>
+<p><strong>Figure 설명:</strong> ego vehicle의 steering/action 조건을 바꾸면 생성되는 미래도 달라지는 예시다. 논문은 out-of-distribution 행동에서도 도로 geometry와 주변 차량의 반응이 비교적 일관되게 나타나는 사례를 보여준다.</p>
+</blockquote>
+<hr>
+<h2 id="6">6. 결론과 한계<a class="headerlink" href="#6" title="Permanent link">¶</a></h2>
+<h3 id="61">6.1 논문 결론<a class="headerlink" href="#61" title="Permanent link">¶</a></h3>
+<p>GAIA-1의 결론은 다음과 같이 정리할 수 있다.</p>
+<blockquote>
+<p><strong>자율주행 world model을 LLM식 next-token prediction 문제로 바꾸고, diffusion decoder를 결합하면, action과 text로 제어 가능한 realistic driving video simulator를 만들 수 있다.</strong></p>
+</blockquote>
+<hr>
+<h3 id="62">6.2 이 논문에서 가져갈 핵심 메시지<a class="headerlink" href="#62" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>핵심 메시지</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>World model의 범위가 넓어지고 있다</td>
+<td>이제 world model은 reward/state 예측뿐 아니라 realistic video generation까지 포함</td>
+</tr>
+<tr>
+<td>생성형 모델과 RL/world model이 만난다</td>
+<td>next-token prediction, Transformer, diffusion이 자율주행 world model에 사용됨</td>
+</tr>
+<tr>
+<td>action conditioning이 중요하다</td>
+<td>그냥 그럴듯한 영상이 아니라 “행동에 따른 미래”를 생성해야 world model에 가까움</td>
+</tr>
+<tr>
+<td>representation choice가 중요하다</td>
+<td>pixel을 직접 예측하지 않고 discrete token을 예측함</td>
+</tr>
+<tr>
+<td>아직 policy 논문은 아니다</td>
+<td>neural simulator 가능성을 보여주지만 closed-loop agent는 아님</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="63">6.3 한계<a class="headerlink" href="#63" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>한계</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real-time inference 아님</td>
+<td>autoregressive generation이 계산량이 큼</td>
+</tr>
+<tr>
+<td>Closed-loop policy evaluation 부족</td>
+<td>실제 driving decision 성능과 직접 연결되지는 않음</td>
+</tr>
+<tr>
+<td>Single-camera 중심</td>
+<td>완전한 surround multi-camera simulator는 아님</td>
+</tr>
+<tr>
+<td>정량 safety metric 부족</td>
+<td>생성 품질이 안전성으로 이어지는지 별도 검증 필요</td>
+</tr>
+<tr>
+<td>학습 데이터 편향 가능성</td>
+<td>London driving data 중심이므로 지역 일반화는 추가 검증 필요</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="7">7. 최종 요약표<a class="headerlink" href="#7" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>정리</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>논문 한 문장</td>
+<td>GAIA-1은 video/text/action 조건으로 미래 주행 비디오를 생성하는 generative world model이다.</td>
+</tr>
+<tr>
+<td>문제</td>
+<td>자율주행에서는 ego action에 따라 달라지는 여러 가능한 미래를 예측해야 한다.</td>
+</tr>
+<tr>
+<td>해결</td>
+<td>image tokenization + autoregressive Transformer + video diffusion decoder</td>
+</tr>
+<tr>
+<td>핵심 수식</td>
+<td><span class="arithmatex">\(p(x_{t+1:t+H} \mid x_{\leq t}, a_{t:t+H}, c)\)</span></td>
+</tr>
+<tr>
+<td>Dreamer 연결</td>
+<td>world model 기반 imagination이지만, policy learning이 아니라 video generation 중심</td>
+</tr>
+<tr>
+<td>Trajectory Transformer 연결</td>
+<td>RL/world modeling을 sequence modeling 문제로 바꾸는 흐름</td>
+</tr>
+<tr>
+<td>JEPA 연결</td>
+<td>pixel 대신 representation/token을 예측한다는 철학</td>
+</tr>
+<tr>
+<td>실험 성격</td>
+<td>scaling + qualitative capabilities 중심</td>
+</tr>
+<tr>
+<td>기여</td>
+<td>자율주행 world model을 multimodal next-token prediction + video diffusion으로 구현</td>
+</tr>
+<tr>
+<td>한계</td>
+<td>real-time 아님, closed-loop policy 검증 부족, safety metric 부족</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="8-gaia-2-gaia-3">8. 후속 흐름: GAIA-2와 GAIA-3는 무엇이 다르고, 왜 달라졌나?<a class="headerlink" href="#8-gaia-2-gaia-3" title="Permanent link">¶</a></h2>
+<blockquote>
+<p>핵심은 <strong>GAIA-2 = 더 잘 제어되는 multi-camera synthetic world</strong>, 
+<strong>GAIA-3 = 안전성 평가/검증에 쓸 수 있는 repeatable world</strong>로 기억하면 된다.</p>
+</blockquote>
+<hr>
+<h3 id="81">8.1 한 줄 흐름<a class="headerlink" href="#81" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>GAIA-1
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>video + text + action으로 미래 주행 비디오를 생성할 수 있음을 보여줌
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>        ↓
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>GAIA-2
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>multi-camera, structured conditioning, latent diffusion으로
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>더 현실적이고 제어 가능한 주행 시뮬레이션을 만듦
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>        ↓
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>GAIA-3
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>생성된 세계를 단순 합성 데이터가 아니라
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>자율주행 모델의 safety evaluation / what-if test에 사용
+</code></pre></div>
+<blockquote>
+<p><strong>GAIA-2는 “자율주행용 영상을 더 잘 만들자”이고, GAIA-3는 “그 생성 세계로 자율주행 모델을 더 잘 시험하자”이다.</strong></p>
+</blockquote>
+<hr>
+<h3 id="82-gaia-2-multi-camera-world-model">8.2 GAIA-2: 더 제어 가능한 multi-camera world model<a class="headerlink" href="#82-gaia-2-multi-camera-world-model" title="Permanent link">¶</a></h3>
+<p>GAIA-1은 action/text-conditioned future video generation의 가능성을 보여줬지만, 실제 자율주행 시스템에 바로 쓰기에는 몇 가지 한계가 있었다. 실제 차량은 single-camera가 아니라 여러 카메라를 동시에 사용하고, 장기 생성에서는 temporal smoothness가 중요하며, 도로 구조·agent·날씨·지역 같은 조건을 더 세밀하게 제어해야 한다.</p>
+<p>그래서 GAIA-2는 GAIA-1의 <strong>AR discrete image token + diffusion decoder</strong> 흐름에서, <strong>continuous video latent + latent diffusion world model</strong> 쪽으로 이동한다. 핵심은 단순히 더 예쁜 비디오를 만드는 것이 아니라, 자율주행 모델 학습과 검증에 필요한 조건을 구조적으로 바꿀 수 있는 synthetic scenario generator를 만드는 것이다.</p>
+<p>정리하면 GAIA-2의 변화는 다음 세 가지다.</p>
+<ul>
+<li><strong>표현:</strong> discrete image token 중심에서 continuous video latent로 이동한다.</li>
+<li><strong>시야:</strong> single/few-view 중심에서 multi-camera generation으로 확장한다.</li>
+<li><strong>조건 제어:</strong> text/action뿐 아니라 ego dynamics, 3D agents, road semantics, weather, time, region, camera geometry를 더 명시적으로 다룬다.</li>
+</ul>
+<hr>
+<h3 id="83-gaia-3">8.3 GAIA-3: 생성 세계를 평가 도구로 바꾸기<a class="headerlink" href="#83-gaia-3" title="Permanent link">¶</a></h3>
+<p>GAIA-2가 “더 잘 제어되는 synthetic driving world를 만들자”에 가까웠다면, GAIA-3는 목적을 더 실용적인 방향으로 옮긴다. 핵심은 생성형 world model을 <strong>offline safety evaluation suite</strong>로 사용하는 것이다.</p>
+<p>자율주행 평가는 어렵다. 실제 도로 테스트는 필요하지만 위험 상황은 드물고, rare safety case를 의도적으로 재현하기도 어렵다. GAIA-3는 같은 실제 주행 seed scene을 유지한 채 ego trajectory나 visual condition을 바꾸어, <strong>what-if / counterfactual test</strong>를 반복 가능하게 만들려 한다.</p>
+<p>GAIA-3에서 중요한 기능은 다음처럼 요약할 수 있다.</p>
+<ul>
+<li><strong>Safety-critical scenario generation:</strong> 충돌, near-miss, 차선 이탈 같은 위험 상황을 생성한다.</li>
+<li><strong>World-on-rails evaluation:</strong> 원본 장면의 구조를 유지하면서 ego 행동만 바꾸어 비교한다.</li>
+<li><strong>Embodiment transfer:</strong> 같은 장면을 다른 차량 또는 카메라 rig 관점으로 다시 렌더링한다.</li>
+<li><strong>Controlled visual diversity:</strong> motion과 구조는 유지하고 날씨, 조명, 텍스처를 바꾸어 robustness를 본다.</li>
+</ul>
+<p>즉 GAIA-3는 “아무 장면이나 생성하는 모델”보다, <strong>자율주행 모델을 반복 가능하게 시험하기 위한 통제된 world model</strong>에 가깝다.</p>
+<hr>
+<h3 id="84-gaia-1-gaia-2-gaia-3">8.4 GAIA-1 → GAIA-2 → GAIA-3 발전 방향<a class="headerlink" href="#84-gaia-1-gaia-2-gaia-3" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>flowchart LR
+    G1[GAIA-1&lt;br/&gt;Action/Text-conditioned&lt;br/&gt;future video generation]
+    G2[GAIA-2&lt;br/&gt;Controllable multi-camera&lt;br/&gt;latent diffusion world model]
+    G3[GAIA-3&lt;br/&gt;Safety evaluation&lt;br/&gt;world-on-rails what-if tests]
+
+    G1 --&gt;|더 현실적이고 제어 가능한 synthetic world 필요| G2
+    G2 --&gt;|생성된 세계를 실제 평가/검증에 연결할 필요| G3</code></pre>
+<table>
+<thead>
+<tr>
+<th>전환</th>
+<th>달라진 점</th>
+<th>왜 달라졌나?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GAIA-1 → GAIA-2</td>
+<td>AR discrete token 중심에서 continuous latent diffusion + multi-camera로 이동</td>
+<td>실제 자율주행 입력은 multi-camera이고, 장기 생성의 temporal smoothness와 조건 제어가 중요하기 때문</td>
+</tr>
+<tr>
+<td>GAIA-2 → GAIA-3</td>
+<td>synthetic scenario generation에서 structured offline evaluation으로 이동</td>
+<td>자율주행 모델이 좋아질수록 실제 도로에서 의미 있는 failure를 찾기 어렵고, rare safety case를 반복 가능하게 시험해야 하기 때문</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_1">참고문헌 / 출처<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
+<ol>
+<li>
+<p>Anthony Hu et al., <strong>GAIA-1: A Generative World Model for Autonomous Driving</strong>, arXiv:2309.17080, 2023.<br>
+   https://arxiv.org/abs/2309.17080</p>
+</li>
+<li>
+<p>ar5iv HTML version of <strong>GAIA-1: A Generative World Model for Autonomous Driving</strong>.<br>
+   https://ar5iv.labs.arxiv.org/html/2309.17080</p>
+</li>
+<li>
+<p>Jingtao Ding et al., <strong>Understanding World or Predicting Future? A Comprehensive Survey of World Models</strong>, arXiv:2411.14499, 2024.<br>
+   https://arxiv.org/abs/2411.14499</p>
+</li>
+<li>
+<p>Zheng Zhu et al., <strong>Is Sora a World Simulator? A Comprehensive Survey on General World Models and Beyond</strong>, arXiv:2405.03520, 2024.<br>
+   https://arxiv.org/abs/2405.03520</p>
+</li>
+<li>
+<p>Wayve, <strong>Scaling GAIA-1: 9-billion parameter generative world model for autonomous driving</strong>, 2023.<br>
+   https://wayve.ai/thinking/scaling-gaia-1/</p>
+</li>
+<li>
+<p>Danijar Hafner et al., <strong>Mastering Diverse Domains through World Models</strong>, arXiv:2301.04104, 2023.<br>
+   https://arxiv.org/abs/2301.04104</p>
+</li>
+<li>
+<p>Michael Janner, Qiyang Li, Sergey Levine, <strong>Offline Reinforcement Learning as One Big Sequence Modeling Problem</strong>, arXiv:2106.02039, 2021.<br>
+   https://arxiv.org/abs/2106.02039</p>
+</li>
+<li>
+<p>Mahmoud Assran et al., <strong>Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture</strong>, arXiv:2301.08243, 2023.<br>
+   https://arxiv.org/abs/2301.08243</p>
+</li>
+<li>
+<p>Meta AI, <strong>V-JEPA: The next step toward advanced machine intelligence</strong>, 2024.<br>
+   https://ai.meta.com/blog/v-jepa-yann-lecun-ai-model-video-joint-embedding-predictive-architecture/</p>
+</li>
+<li>
+<p>Lloyd Russell et al., <strong>GAIA-2: A Controllable Multi-View Generative World Model for Autonomous Driving</strong>, arXiv:2503.20523, 2025.<br>
+   https://arxiv.org/abs/2503.20523</p>
+</li>
+<li>
+<p>ar5iv HTML version of <strong>GAIA-2: A Controllable Multi-View Generative World Model for Autonomous Driving</strong>.<br>
+   https://ar5iv.labs.arxiv.org/html/2503.20523v1</p>
+</li>
+<li>
+<p>Wayve, <strong>GAIA-2: Pushing the Boundaries of Video Generative Models for Safer Assisted and Automated Driving</strong>, 2025.<br>
+    https://wayve.ai/thinking/gaia-2/</p>
+</li>
+<li>
+<p>Wayve, <strong>GAIA-3: Scaling World Models to Power Safety and Evaluation</strong>, 2025.<br>
+    https://wayve.ai/thinking/gaia-3/</p>
+</li>
+<li>
+<p>Wayve, <strong>Wayve launches GAIA-3, advancing world models from simulation to evaluation</strong>, 2025.<br>
+    https://wayve.ai/press/wayve-launches-gaia3/</p>
+</li>
+</ol>
+
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/edit/main/docs/review/gaia-1.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
+  </a>
+
+
+
+  
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/raw/main/docs/review/gaia-1.md" title="Download source" class="md-content__button md-icon" download="">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"></path></svg>
+  </a>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
