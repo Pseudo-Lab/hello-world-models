@@ -1,0 +1,1632 @@
+<!DOCTYPE html><html lang="ko" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="World Models 논문 리뷰 및 스터디 자료">
+      
+      
+      
+      
+        <link rel="prev" href="../trajectory-transformer/">
+      
+      
+        <link rel="next" href="../v-jepa-2/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+  <title>Hello, World! — World Models Study</title>
+
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#v-jepa-video-joint-embedding-predictive-architecture" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../.." title="Hello, World!" class="md-header__button md-logo" aria-label="Hello, World!" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hello, World! — World Models Study
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              V-JEPA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Pseudo-Lab/hello-world-models" title="저장소로 이동" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Pseudo-Lab/hello-world-models
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hello, World!" class="md-nav__button md-logo" aria-label="Hello, World!" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Hello, World!
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Pseudo-Lab/hello-world-models" title="저장소로 이동" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Pseudo-Lab/hello-world-models
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Latent World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Latent World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../world-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    World Models (2018)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../planet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PlaNet (2019)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dreamer (2020)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../muzero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MuZero (2020)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer-v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DreamerV2 (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer-v3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DreamerV3 (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Sequence-Based World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Sequence-Based World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decision-transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decision Transformer (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trajectory-transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trajectory Transformer (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Predictive World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Predictive World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    V-JEPA (2023)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    V-JEPA (2023)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jepa-i-jepa" class="md-nav__link">
+    <span class="md-ellipsis">
+      배경: JEPA와 I-JEPA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="배경: JEPA와 I-JEPA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#energy-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      Energy-Based 관점에서 본 세 가지 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-jepa" class="md-nav__link">
+    <span class="md-ellipsis">
+      I-JEPA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image에서 Video로의 확장
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      전체 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3d-tubelet" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Tubelet 토큰화
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3d-multi-block-tube-masking" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Multi-block Tube Masking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목표와 표현 붕괴 방지
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      네트워크 구성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pretraining" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pretraining
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experiments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-vs-pixel-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature vs Pixel Prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pretraining-data-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pretraining Data Distribution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attentive-probing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attentive Probing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#masking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Masking 전략
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      참고문헌
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v-jepa-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V-JEPA 2 (2025)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Generative World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Generative World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gaia-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAIA-1 (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genie (2024)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cosmos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cosmos (2025)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jepa-i-jepa" class="md-nav__link">
+    <span class="md-ellipsis">
+      배경: JEPA와 I-JEPA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="배경: JEPA와 I-JEPA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#energy-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      Energy-Based 관점에서 본 세 가지 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-jepa" class="md-nav__link">
+    <span class="md-ellipsis">
+      I-JEPA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image에서 Video로의 확장
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Method
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      전체 구조
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3d-tubelet" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Tubelet 토큰화
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3d-multi-block-tube-masking" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Multi-block Tube Masking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목표와 표현 붕괴 방지
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      네트워크 구성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pretraining" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pretraining
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Experiments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Experiments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-vs-pixel-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature vs Pixel Prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pretraining-data-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pretraining Data Distribution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attentive-probing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attentive Probing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#masking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Masking 전략
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discussion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      참고문헌
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="v-jepa-video-joint-embedding-predictive-architecture">V-JEPA: Video Joint Embedding Predictive Architecture<a class="headerlink" href="#v-jepa-video-joint-embedding-predictive-architecture" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Information</p>
+<ul>
+<li><strong>Title:</strong> V-JEPA: Video Joint Embedding Predictive Architecture (Revisiting Feature Prediction for Learning Visual Representations from Video)</li>
+<li><strong>Venue:</strong> arXiv 2023</li>
+<li><strong>Paper:</strong> <a href="https://arxiv.org/abs/2404.08471">arXiv</a></li>
+<li><strong>Code:</strong> <a href="https://github.com/facebookresearch/jepa">GitHub</a></li>
+<li><strong>Blog:</strong> <a href="https://ai.meta.com/blog/v-jepa-yann-lecun-ai-model-video-joint-embedding-predictive-architecture/">Meta AI</a></li>
+<li><strong>Presenter:</strong> 유지형</li>
+<li><strong>Last updated:</strong> 2026-08-02</li>
+</ul>
+</div>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
+<p>V-JEPA(Video Joint-Embedding Predictive Architecture)는 라벨 없이 비디오만으로 시공간 표현을 학습하는 self-supervised 모델이다. 핵심 아이디어는 <strong>가려진 영역의 픽셀을 복원하지 않고, representation space(표현 공간)에서 가려진 영역의 표현을 예측</strong>하는 것이다. Meta의 FAIR가 발표했으며, I-JEPA(이미지)를 비디오로 확장한 후속 연구다.</p>
+<p>기존 self-supervised learning(SSL)은 크게 두 갈래로 나눌 수 있다.</p>
+<ul>
+<li><strong>Invariance-based method</strong> (SimCLR, SimSiam, BYOL): 같은 이미지에서 나온 여러 augmentation view의 표현이 비슷해지도록 학습한다. 분류에는 강력하지만 augmentation에 대한 강한 사전 지식에 의존하고, 다른 modality나 task로 확장하기 어렵다.</li>
+<li><strong>Generative method</strong> (MAE, BEiT): 입력의 일부를 가린 뒤 원본 픽셀을 복원하도록 학습한다. 사전 지식이 덜 필요하고 modality에 유연하지만, 조명·텍스처·노이즈 같은 <strong>의미와 무관한 저수준 디테일까지 복원</strong>하느라 모델 용량을 낭비한다.</li>
+</ul>
+<p>V-JEPA가 속한 JEPA 계열은 이 둘의 중간 지점에서 출발한다. 세상을 이해하는 데 필요한 것은 모든 픽셀이 아니라 <strong>의미(semantics)</strong> 라는 관점에서, 중요한 정보만 담은 표현 공간에서 예측을 수행한다.</p>
+<h2 id="jepa-i-jepa">배경: JEPA와 I-JEPA<a class="headerlink" href="#jepa-i-jepa" title="Permanent link">¶</a></h2>
+<h3 id="energy-based">Energy-Based 관점에서 본 세 가지 구조<a class="headerlink" href="#energy-based" title="Permanent link">¶</a></h3>
+<p>SSL은 입력 쌍 <span class="arithmatex">\((x, y)\)</span>가 의미적으로 유사할 때 낮은 energy를, 유사하지 않을 때 높은 energy를 할당하도록 학습하는 energy-based model로 통합해 설명할 수 있다. 이 관점에서 표현 학습 구조는 세 가지로 구분된다.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/v-jepa/01_v-jepa.png" data-desc-position="bottom"><img alt="Joint-Embedding, Generative, Joint-Embedding Predictive Architecture의 비교" src="../../assets/v-jepa/01_v-jepa.png"></a>
+<br>
+<figcaption>I-JEPA, Figure 2</figcaption>
+</figure>
+<ul>
+<li><strong>(a) Joint-Embedding Architecture (JEA):</strong> 유사한 입력 <span class="arithmatex">\(x, y\)</span>에는 비슷한 embedding을, 유사하지 않은 입력에는 서로 다른 embedding을 출력하도록 학습한다. 이미지에서는 동일 이미지에 hand-crafted augmentation을 적용해 유사한 쌍을 만든다(= invariance-based method).</li>
+<li><strong>(b) Generative Architecture:</strong> decoder 네트워크가 <span class="arithmatex">\(x\)</span>로부터 <span class="arithmatex">\(y\)</span>를 픽셀·토큰 공간에서 직접 재구성한다. 추가 조건 변수 <span class="arithmatex">\(z\)</span>(예: position embedding)가 어떤 부분을 복원할지 지시한다.</li>
+<li><strong>(c) Joint-Embedding Predictive Architecture (JEPA):</strong> 직접 재구성하는 대신, 관측된 context <span class="arithmatex">\(x\)</span>의 표현을 바탕으로 target <span class="arithmatex">\(y\)</span>의 표현을 <strong>predictor network로 예측</strong>한다. loss는 입력 공간이 아니라 <strong>representation space에서 계산</strong>되므로, 픽셀·토큰 수준의 세부 복원보다 더 추상적이고 의미적인 정보를 학습하도록 유도한다.</li>
+</ul>
+<p>JEPA도 JEA처럼 표현이 상수로 뭉개지는 representation collapse 문제가 있어, 비대칭적인 encoder 구조 등으로 이를 방지한다. 결과적으로 JEPA는 불변성 기반 방법과 생성 기반 방법의 중간 지점에서 의미 중심의 표현 학습을 목표로 한다.</p>
+<h3 id="i-jepa">I-JEPA<a class="headerlink" href="#i-jepa" title="Permanent link">¶</a></h3>
+<p>I-JEPA는 이미지에 JEPA를 적용한 모델로, V-JEPA의 직접적인 출발점이다. 세 가지 모듈로 구성된다.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/v-jepa/02_v-jepa.png" data-desc-position="bottom"><img alt="I-JEPA 구조: context encoder, target encoder, predictor" src="../../assets/v-jepa/02_v-jepa.png" width="620"></a>
+<br>
+<figcaption>I-JEPA, Figure 3</figcaption>
+</figure>
+<ul>
+<li><strong>Context Encoder <span class="arithmatex">\(f_\theta\)</span>:</strong> context 이미지를 입력받아 patch 단위 표현을 만든다.</li>
+<li><strong>Target Encoder <span class="arithmatex">\(f_{\bar\theta}\)</span>:</strong> 전체 이미지를 입력받아 target 표현을 만든다. 예측 대상은 원본 픽셀이 아니라 이 표현이다.</li>
+<li><strong>Predictor <span class="arithmatex">\(g_\phi\)</span>:</strong> context 표현과 예측할 위치 정보(mask token)를 입력받아 target 영역의 표현을 예측한다. loss는 예측 표현과 target 표현 사이의 표현 공간 거리다.</li>
+</ul>
+<p>Encoder가 모든 입력에 상수를 출력하면 loss가 0이 되는 trivial solution이 존재한다. I-JEPA는 이를 막기 위해 <strong>Target Encoder를 stop-gradient로 고정하고, Context Encoder의 EMA(Exponential Moving Average)로 갱신</strong>한다. EMA는 새로 학습된 가중치로 바로 덮어쓰는 대신 이전 가중치와 서서히 섞는 방식으로, target을 천천히 움직이는 안정적인 목표로 만들어 준다.</p>
+<p>I-JEPA는 augmentation, negative sample, pixel reconstruction 없이도 <strong>feature prediction만으로 강력한 이미지 표현을 학습</strong>할 수 있음을 보였다. V-JEPA는 이 결과를 비디오로 확장한다.</p>
+<h2 id="image-video">Image에서 Video로의 확장<a class="headerlink" href="#image-video" title="Permanent link">¶</a></h2>
+<p>비디오는 이미지보다 훨씬 풍부한 시공간 정보를 담고 있어 표현 학습의 잠재력이 크다. 하지만 두 가지 어려움이 있다.</p>
+<ul>
+<li><strong>시공간 redundancy가 크다.</strong> 한 프레임의 일부를 가려도 인접 패치나 앞뒤 프레임으로 쉽게 추측할 수 있어, 마스킹·예측 과제가 너무 쉬워지고 학습 신호가 약해진다.</li>
+<li><strong>모션 이해가 필요하다.</strong> 물체가 어떻게 움직이는지는 정적 이미지만으로는 절대 학습할 수 없다.</li>
+</ul>
+<p>V-JEPA는 이 문제를 <strong>3D tube masking</strong>으로 푼다. 공간 블록을 시간 축 전체로 늘려 가리면 앞뒤 프레임을 참고해 손쉽게 채우는 지름길이 막히고, 그 위에서 feature prediction을 비디오로 확장한다. 그 덕분에 인터넷 스케일 이미지로 학습한 대형 모델조차 힘겨워하는 <strong>모션 이해(SSv2)</strong>에서 이미지 기반 모델을 큰 차이로 앞선다.</p>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">¶</a></h2>
+<h3 id="_1">전체 구조<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<p>V-JEPA는 I-JEPA와 동일하게 Context Encoder <span class="arithmatex">\(E_\theta\)</span>, EMA로 갱신되는 Target Encoder <span class="arithmatex">\(\overline{E}_\theta\)</span>, Predictor <span class="arithmatex">\(P_\phi\)</span>의 세 모듈로 구성된다. I-JEPA 구조를 비디오에 맞춰 정리하면 각 모듈의 역할은 다음과 같다.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/v-jepa/03_v-jepa.png" data-desc-position="bottom"><img alt="V-JEPA 구조: Context Encoder, Target Encoder(EMA), Predictor, L1 loss" src="../../assets/v-jepa/03_v-jepa.png" width="640"></a>
+<br>
+<figcaption>V-JEPA, Figure 3</figcaption>
+</figure>
+<ul>
+<li><strong>Context Encoder <span class="arithmatex">\(E_\theta\)</span>:</strong> 마스킹 후 남은(가시) 비디오 토큰을 입력받아 patch 단위 표현을 만든다. 표준 ViT를 사용한다.</li>
+<li><strong>Target Encoder <span class="arithmatex">\(\overline{E}_\theta\)</span>:</strong> 마스킹하지 않은 전체 비디오를 입력받아 target 표현을 만든다. 예측 대상은 원본 픽셀이 아니라 이 표현이며, 역시 표준 ViT다. Context Encoder의 EMA로 갱신된다.</li>
+<li><strong>Predictor <span class="arithmatex">\(P_\phi\)</span>:</strong> Context 표현과, 예측할 위치를 알려 주는 mask token(위치 정보 포함)을 입력받아 가려진 영역의 target 표현을 예측한다. encoder보다 훨씬 작은 narrow ViT를 사용한다.</li>
+</ul>
+<p>학습 안정성을 높이고 representation collapse를 방지하기 위해, Target Encoder는 <strong>stop-gradient로 고정하고 Context Encoder의 EMA(Exponential Moving Average)로 갱신</strong>한다. EMA는 새로 학습한 가중치로 바로 덮어쓰는 대신 이전 가중치와 서서히 섞는 방식으로, target을 천천히 움직이는 안정적인 목표로 만들어 준다.</p>
+<p>I-JEPA와 비교했을 때 핵심 변화는 세 가지다.</p>
+<ul>
+<li><strong>입력:</strong> 정적 이미지 → 비디오 클립(16 frames × 224 × 224)</li>
+<li><strong>토큰:</strong> 2D patch → 3D tubelet (2 frames × 16 × 16)</li>
+<li><strong>마스킹:</strong> 2D multi-block → 3D tube multi-block (short-range + long-range)</li>
+</ul>
+<p>여기에 loss를 L2에서 L1으로 바꾼다.</p>
+<h3 id="3d-tubelet">3D Tubelet 토큰화<a class="headerlink" href="#3d-tubelet" title="Permanent link">¶</a></h3>
+<p>ViT는 1D 토큰 시퀀스를 입력으로 받으므로 비디오를 토큰화해야 한다. V-JEPA는 3D convolution 기반 토크나이저를 사용한다.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/v-jepa/04_v-jepa.png" data-desc-position="bottom"><img alt="3D convolution 기반 토큰화 파이프라인" src="../../assets/v-jepa/04_v-jepa.png" width="720"></a>
+<br>
+<figcaption>V-JEPA, Figure 7</figcaption>
+</figure>
+<ul>
+<li><strong>입력:</strong> <span class="arithmatex">\(16 \times 224 \times 224 \times 3\)</span> (16 프레임, 224×224 해상도, RGB)</li>
+<li><strong>3D Conv 필터:</strong> <span class="arithmatex">\(2 \times 16 \times 16\)</span>, temporal stride 2, spatial stride 16</li>
+<li><strong>결과:</strong> <span class="arithmatex">\(8 \times 14 \times 14 = 1568\)</span>개 토큰, 각 토큰에 3D sin-cos positional embedding을 더한다.</li>
+</ul>
+<p>즉 하나의 토큰(<strong>tubelet</strong>)은 2개 프레임에 걸친 16×16 픽셀 블록으로, 이미지의 2D patch를 시간 축으로 확장한 형태다. 처음부터 시공간 정보가 결합된 표현 단위를 형성한다.</p>
+<h3 id="3d-multi-block-tube-masking">3D Multi-block Tube Masking<a class="headerlink" href="#3d-multi-block-tube-masking" title="Permanent link">¶</a></h3>
+<p>비디오의 시공간 redundancy 때문에 마스킹 설계가 학습 신호의 질을 좌우한다. 한 프레임 일부만 가리면 인접 패치로 추측할 수 있고(공간 누설), 한 프레임만 가리면 앞뒤 프레임으로 보간할 수 있다(시간 누설). 예측 과제가 너무 쉬워지면 의미 있는 표현을 학습하지 못한다.</p>
+<p>해결책은 <strong>tube 형태 + multi-block 마스킹</strong>이다. 공간 블록을 시간 축 전체로 확장한 "비디오를 관통하는 튜브"를 두 종류로 사용한다.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/v-jepa/05_v-jepa.png" data-desc-position="bottom"><img alt="Short-range mask와 long-range mask 예시" src="../../assets/v-jepa/05_v-jepa.png" width="470"></a>
+<br>
+<figcaption>V-JEPA, Figure 2</figcaption>
+</figure>
+<ul>
+<li><strong>Short-range mask:</strong> scale 0.15의 작은 블록 8개의 합집합 → 세밀한 지역적 예측 능력</li>
+<li><strong>Long-range mask:</strong> scale 0.7의 큰 블록 2개의 합집합 → 전역적·맥락적 예측 능력</li>
+</ul>
+<p>두 마스크 모두 시간 축 전체로 확장하므로 평균 마스킹 비율이 약 90%에 이른다. short-range와 long-range는 서로 다른 종류의 특징을 포착하도록 유도하는 상호 보완적(complementary) 과제를 형성한다.</p>
+<h3 id="_2">학습 목표와 표현 붕괴 방지<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<p>가장 단순한 학습 목표는 예측된 표현과 target 표현의 거리를 줄이는 것이다.</p>
+<div class="arithmatex">\[
+\min_{\theta,\phi}\; \big\lVert P_\phi\big(E_\theta(x),\,\Delta_y\big) - E_\theta(y) \big\rVert_1
+\]</div>
+<p>여기서 <span class="arithmatex">\(x\)</span>는 마스킹된(관측된) 비디오, <span class="arithmatex">\(y\)</span>는 예측 대상 영역, <span class="arithmatex">\(\Delta_y\)</span>는 예측할 위치를 알려 주는 mask token의 위치 정보, <span class="arithmatex">\(E_\theta\)</span>는 Context Encoder, <span class="arithmatex">\(P_\phi\)</span>는 Predictor다. 그러나 이 목표에는 <strong>representation collapse</strong>라는 함정이 있다. <span class="arithmatex">\(E_\theta\)</span>가 모든 입력에 대해 같은 상수를 출력하면 loss가 0이 되어, 표현이 아무 정보도 담지 않게 된다.</p>
+<p>V-JEPA는 두 가지 장치로 이를 막는다. target 쪽 encoder를 별도의 <strong>Target Encoder <span class="arithmatex">\(\overline{E}_\theta\)</span></strong> 로 두고, 여기에 <strong>stop-gradient <span class="arithmatex">\(\operatorname{sg}(\cdot)\)</span></strong> 를 적용해 gradient 흐름을 차단한다. 그리고 <span class="arithmatex">\(\overline{E}_\theta\)</span>를 Context Encoder <span class="arithmatex">\(E_\theta\)</span>의 <strong>EMA</strong>로 갱신한다(momentum 0.998 → 1.0). 최종 목표는 다음과 같다.</p>
+<div class="arithmatex">\[
+\min_{\theta,\phi}\; \big\lVert P_\phi\big(E_\theta(x),\,\Delta_y\big) - \operatorname{sg}\big(\overline{E}_\theta(y)\big) \big\rVert_1
+\]</div>
+<p>target을 천천히 움직이는 고정점처럼 취급함으로써, encoder가 상수 해로 무너지지 않고 유의미한 표현을 학습하도록 만든다.</p>
+<p><strong>L2 대신 L1 사용 이유.</strong> L1 loss의 optimal predictor는 조건부 중앙값(conditional median)이다.</p>
+<div class="arithmatex">\[
+P^\star\big(E_\theta(x)\big) = \arg\min_{P} \big\lVert P\big(E_\theta(x)\big) - Y \big\rVert_1 = \operatorname{median}\big(Y \mid E_\theta(x)\big)
+\]</div>
+<p>여기서 <span class="arithmatex">\(Y\)</span>는 target 표현이다. L1을 최소화하는 것은 곧 MAD(Median Absolute Deviation)를 줄이는 방향이며, 이는 encoder가 비디오 정보를 최대한 담도록 유도한다. 저자들은 실험적으로도 L1이 L2보다 안정적이었다고 보고한다.</p>
+<h3 id="_3">네트워크 구성<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Encoders:</strong> Context Encoder와 Target Encoder 모두 표준 ViT를 사용한다. ViT-L/16(200M), ViT-H/16(630M), ViT-H/16₃₈₄(630M, 해상도 384)의 세 모델을 학습한다.</li>
+<li><strong>Predictor:</strong> narrow ViT로, transformer block 12개에 embedding dim 384다. Context Encoder(ViT-H의 dim=1280)보다 훨씬 작다. predictor가 너무 크면 encoder가 좋은 표현을 만들지 않으므로, <strong>표현 학습의 부담을 encoder가 지도록 predictor를 의도적으로 작게 유지</strong>한다.</li>
+<li><strong>Mask token:</strong> 모든 mask token은 하나의 공유 learnable vector에 3D sin-cos positional embedding을 더해, 위치만으로 서로 구분된다.</li>
+</ul>
+<h2 id="pretraining">Pretraining<a class="headerlink" href="#pretraining" title="Permanent link">¶</a></h2>
+<p><strong>Pretraining Data: VideoMix2M.</strong> 약 200만 개 비디오를 결합한 사전학습 데이터셋이다.</p>
+<ul>
+<li><strong>HowTo100M (HT):</strong> 약 100만 개 instructional 비디오 — 다양한 시각적 맥락</li>
+<li><strong>Kinetics-400/600/700 (K710):</strong> 행동 인식 비디오(중복 제거) — 외형(appearance)</li>
+<li><strong>Something-Something-v2 (SSv2):</strong> 물체 상호작용 중심 모션 비디오 — 모션(motion)</li>
+</ul>
+<p>외형(K710)·모션(SSv2)·맥락(HT)을 보완적으로 결합한 구성이다.</p>
+<p><strong>학습 설정.</strong> 입력은 16 frames에 frame skip 4(약 3초), 해상도 224(ViT-L/H) 또는 384(ViT-H₃₈₄)다. batch size는 3072(ViT-L/H) 또는 2400(ViT-H₃₈₄), 총 90K iteration을 AdamW + cosine LR로 학습한다.</p>
+<p><strong>두 가지 평가 프로토콜.</strong> 표현 자체의 품질과 task 특화 성능을 나눠서 본다.</p>
+<ul>
+<li><strong>Frozen Evaluation:</strong> encoder 가중치를 고정하고 가벼운 probe만 학습한다. 표현 자체의 품질을 본다.</li>
+<li><strong>End-to-end Fine-tuning:</strong> encoder까지 모두 업데이트한다. task 특화 성능의 상한선을 본다.</li>
+</ul>
+<p><strong>평가 task.</strong> 비디오는 Kinetics-400(외형 기반), SSv2(모션 기반), AVA(spatio-temporal action detection)를, 이미지는 ImageNet-1K, Places205, iNaturalist 2021을 사용한다. 이미지 task에서는 한 프레임을 16번 복제해 정적 비디오 클립으로 만들어 입력한다.</p>
+<h2 id="experiments">Experiments<a class="headerlink" href="#experiments" title="Permanent link">¶</a></h2>
+<h3 id="feature-vs-pixel-prediction">Feature vs Pixel Prediction<a class="headerlink" href="#feature-vs-pixel-prediction" title="Permanent link">¶</a></h3>
+<p>가장 중요한 질문은 "feature space 예측이 정말 pixel space 예측보다 좋은가?"이다. 동일한 ViT-L/16, 동일한 VideoMix2M, 동일한 90K iteration, multi-block masking에서 <strong>loss만 바꿔</strong> 비교한다. 픽셀 예측은 MAE, feature 예측은 V-JEPA에 해당한다.</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Arch.</th>
+<th style="text-align: center;">K400 (frozen)</th>
+<th style="text-align: center;">SSv2 (frozen)</th>
+<th style="text-align: center;">IN1K (frozen)</th>
+<th style="text-align: center;">K400-ft</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pixels</td>
+<td>ViT-L/16</td>
+<td style="text-align: center;">68.6</td>
+<td style="text-align: center;">66.0</td>
+<td style="text-align: center;">73.3</td>
+<td style="text-align: center;">85.4</td>
+</tr>
+<tr>
+<td><strong>Features</strong></td>
+<td>ViT-L/16</td>
+<td style="text-align: center;"><strong>73.7</strong></td>
+<td style="text-align: center;"><strong>66.2</strong></td>
+<td style="text-align: center;"><strong>74.8</strong></td>
+<td style="text-align: center;"><strong>85.6</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table 1. Pixels vs. Featurized Targets — frozen backbone + attentive probe, K400-ft는 fine-tuning. (source: V-JEPA, Table 1)</em></p>
+<p>Frozen 평가에서 모든 비디오·이미지 task에 대해 feature 예측이 우세하며, K400 기준 68.6 → 73.7로 <strong>+5.1점</strong> 향상된다. Fine-tuning에서는 격차가 좁혀지는데, 표현 자체의 품질 차이는 frozen에서 가장 잘 드러나기 때문이다. pixel 복원은 의미와 무관한 저수준 정보까지 학습하느라 용량을 낭비하는 반면, feature 예측은 encoder가 표현에 담을 정보를 스스로 선택하므로 의미 있는 정보만 남긴다.</p>
+<h3 id="pretraining-data-distribution">Pretraining Data Distribution<a class="headerlink" href="#pretraining-data-distribution" title="Permanent link">¶</a></h3>
+<p>데이터의 양과 다양성이 표현 품질에 어떤 영향을 주는지, compute budget을 고정(90K iter, batch 3072)한 채 데이터 구성만 바꿔 비교한다.</p>
+<table>
+<thead>
+<tr>
+<th>Arch.</th>
+<th>Data</th>
+<th style="text-align: center;">#Samples</th>
+<th style="text-align: center;">K400</th>
+<th style="text-align: center;">SSv2</th>
+<th style="text-align: center;">IN1K</th>
+<th style="text-align: center;">Avg.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ViT-L/16</td>
+<td>K710</td>
+<td style="text-align: center;">700K</td>
+<td style="text-align: center;">75.8</td>
+<td style="text-align: center;">63.2</td>
+<td style="text-align: center;">73.7</td>
+<td style="text-align: center;">70.9</td>
+</tr>
+<tr>
+<td>ViT-L/16</td>
+<td>K710+SSv2</td>
+<td style="text-align: center;">900K</td>
+<td style="text-align: center;">72.9</td>
+<td style="text-align: center;">67.4</td>
+<td style="text-align: center;">72.8</td>
+<td style="text-align: center;">71.0</td>
+</tr>
+<tr>
+<td>ViT-L/16</td>
+<td>K710+HT</td>
+<td style="text-align: center;">1900K</td>
+<td style="text-align: center;">74.5</td>
+<td style="text-align: center;">64.2</td>
+<td style="text-align: center;">74.8</td>
+<td style="text-align: center;">71.1</td>
+</tr>
+<tr>
+<td>ViT-L/16</td>
+<td>VideoMix2M</td>
+<td style="text-align: center;">2000K</td>
+<td style="text-align: center;">73.7</td>
+<td style="text-align: center;">66.2</td>
+<td style="text-align: center;">74.8</td>
+<td style="text-align: center;">71.5</td>
+</tr>
+<tr>
+<td>ViT-H/16</td>
+<td>K710+SSv2</td>
+<td style="text-align: center;">900K</td>
+<td style="text-align: center;">75.7</td>
+<td style="text-align: center;">66.8</td>
+<td style="text-align: center;">73.7</td>
+<td style="text-align: center;">72.0</td>
+</tr>
+<tr>
+<td>ViT-H/16</td>
+<td>VideoMix2M</td>
+<td style="text-align: center;">2000K</td>
+<td style="text-align: center;">74.0</td>
+<td style="text-align: center;">68.5</td>
+<td style="text-align: center;">75.9</td>
+<td style="text-align: center;">72.8</td>
+</tr>
+</tbody>
+</table>
+<p><em>Table 2. Pretraining Data Distribution — frozen backbone + attentive probe, Avg.는 task 평균. (source: V-JEPA, Table 2)</em></p>
+<p>V-JEPA도 SSL의 일반적 경향처럼 데이터 스케일링 효과를 보인다(평균 성능이 데이터가 커질수록 상승). 다만 특정 task에 특화하려면 관련 데이터가 필요하다 — 예컨대 모션 중심 SSv2 성능은 SSv2를 포함할 때 크게 오른다. 다양성과 특화 사이의 trade-off가 존재한다.</p>
+<h3 id="attentive-probing">Attentive Probing<a class="headerlink" href="#attentive-probing" title="Permanent link">¶</a></h3>
+<p>V-JEPA encoder 출력은 1568개 토큰 시퀀스라서, 분류를 위해 하나의 벡터로 풀링(pooling)해야 한다. 풀링 방식이 성능을 좌우한다.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Arch.</th>
+<th style="text-align: center;">K400 (Avg)</th>
+<th style="text-align: center;">K400 (Att)</th>
+<th style="text-align: center;">SSv2 (Avg)</th>
+<th style="text-align: center;">SSv2 (Att)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V-JEPA</td>
+<td>ViT-L/16</td>
+<td style="text-align: center;">56.7</td>
+<td style="text-align: center;"><strong>73.7</strong></td>
+<td style="text-align: center;">50.1</td>
+<td style="text-align: center;"><strong>66.2</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table 3. Average Pooling vs. Attentive Pooling — frozen evaluation. (source: V-JEPA, Table 3)</em></p>
+<p>Attentive pooling(learnable query + cross-attention으로 중요한 토큰에 가중치 부여)이 average pooling 대비 K400 <strong>+17.3점</strong>, SSv2 <strong>+16.1점</strong> 향상된다. JEPA loss는 unnormalized라서 encoder 출력이 선형 분리 가능하다는 보장이 없기 때문이다. 즉 표현 자체의 품질 문제가 아니라 표현을 어떻게 활용하느냐의 문제이며, attentive probing은 DINOv2·OpenCLIP 등 다른 모델에서도 성능을 높인다(V-JEPA에만 한정되지 않는다).</p>
+<h3 id="masking">Masking 전략<a class="headerlink" href="#masking" title="Permanent link">¶</a></h3>
+<p>무엇을(target) 어떻게 가리고 무엇으로(context) 예측할지가 학습에 미치는 영향을 본다.</p>
+<table>
+<thead>
+<tr>
+<th>Masking</th>
+<th style="text-align: center;">K400</th>
+<th style="text-align: center;">SSv2</th>
+<th style="text-align: center;">IN1K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>random-tube[0.9]</td>
+<td style="text-align: center;">51.5</td>
+<td style="text-align: center;">46.4</td>
+<td style="text-align: center;">55.6</td>
+</tr>
+<tr>
+<td>causal multi-block[6]</td>
+<td style="text-align: center;">61.3</td>
+<td style="text-align: center;">49.8</td>
+<td style="text-align: center;">66.9</td>
+</tr>
+<tr>
+<td>causal multi-block[12]</td>
+<td style="text-align: center;">71.9</td>
+<td style="text-align: center;">63.6</td>
+<td style="text-align: center;">72.2</td>
+</tr>
+<tr>
+<td><strong>multi-block (제안)</strong></td>
+<td style="text-align: center;"><strong>72.9</strong></td>
+<td style="text-align: center;"><strong>67.4</strong></td>
+<td style="text-align: center;"><strong>72.8</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table 4. Ablating Prediction Task — ViT-L/16, frozen evaluation. (source: V-JEPA, Table 4)</em></p>
+<ul>
+<li><strong>random-tube[0.9]:</strong> 무작위 tube 90% 마스킹 → 인접 정보로 쉽게 복원 가능(정보 누설)</li>
+<li><strong>causal multi-block[p]:</strong> 앞쪽 <span class="arithmatex">\(p\)</span> 프레임만 context로 사용 → 시간 범위 제한</li>
+<li><strong>multi-block(제안):</strong> 전체 시간 축 + 크고 연속적인 블록 마스킹(short + long range)</li>
+</ul>
+<p>제안한 multi-block 방식이 모든 방식보다 우수하다. 큰 연속 블록을 시간 축 전체로 확장해야 정보 누설을 차단할 수 있다. <strong>"무엇을 가릴지"가 학습 신호의 질을 결정한다</strong>는 것이 feature prediction의 핵심 설계 포인트다.</p>
+<h2 id="discussion">Discussion<a class="headerlink" href="#discussion" title="Permanent link">¶</a></h2>
+<p>V-JEPA는 self-supervised feature prediction만을 <strong>단일 목표(stand-alone objective)</strong> 로 사용해 비디오 표현을 학습한다. 사전학습된 encoder, 텍스트, negative sample, pixel reconstruction 같은 부가 신호가 전혀 필요 없다.</p>
+<ul>
+<li><strong>범용 표현:</strong> 모델 파라미터 수정 없이(frozen) 다양한 이미지·비디오 다운스트림 task를 해결하며, action recognition, spatio-temporal action detection, image classification에서 기존 video representation 방법들을 능가한다.</li>
+<li><strong>모션 이해의 우위:</strong> 인터넷 스케일 이미지로 학습한 대형 모델조차 모션 task에서는 한계를 보이는 반면, V-JEPA는 세밀한 모션 이해가 필요한 task에서 특히 강하다.</li>
+<li><strong>Label efficiency:</strong> 적은 라벨로도 다운스트림 성능을 잘 유지해, 라벨이 부족한 실제 응용 환경에서도 강력한 사전학습 기반을 제공한다.</li>
+</ul>
+<h2 id="_4">참고문헌<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2404.08471">V-JEPA: Revisiting Feature Prediction for Learning Visual Representations from Video (arXiv)</a></li>
+<li><a href="https://arxiv.org/abs/2301.08243">I-JEPA: Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture (arXiv)</a></li>
+<li><a href="https://github.com/facebookresearch/jepa">V-JEPA code (GitHub)</a></li>
+<li><a href="https://ai.meta.com/blog/v-jepa-yann-lecun-ai-model-video-joint-embedding-predictive-architecture/">V-JEPA: The next step toward advanced machine intelligence (Meta AI Blog)</a></li>
+</ul>
+
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/edit/main/docs/review/v-jepa.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
+  </a>
+
+
+
+  
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/raw/main/docs/review/v-jepa.md" title="Download source" class="md-content__button md-icon" download="">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"></path></svg>
+  </a>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
