@@ -4,6 +4,10 @@
 
 참여 방법: 매주 수요일 오후 9시, 가짜연구소 Discord ROOM-AK로 입장!
 
+- 📚 리뷰 사이트: https://pseudo-lab.github.io/hello-world-models/
+- ▶️ 발표 영상 재생목록: [Hello, World! — World Models Paper Review](https://www.youtube.com/playlist?list=PLyP9gclj-bv5Iyw74oNIj47zwbka8MAFz)
+- 📺 가짜연구소 YouTube 채널: https://www.youtube.com/@pseudo-lab
+
 ## Contributors
 - 유정화 [Jeonghwa Yoo] | [Github](https://github.com/jeongHwarr) | [Linkedin](https://www.linkedin.com/in/jeonghwa-yoo-8403a716b/) |
 - 김주연 [Juyeon Kim] | [Github](https://github.com/JYeonKim) | [Linkedin](https://www.linkedin.com/in/ju-yeon-kim) |
@@ -28,123 +32,25 @@
 | 11 | 2026-06-17 | 김주연 | [V-JEPA 2](https://ai.meta.com/research/publications/v-jepa-2-self-supervised-video-models-enable-understanding-prediction-and-planning/) (arXiv 2025) | [YouTube](https://youtu.be/oR6p-T99E48) / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa-2/) |
 | 12 | 2026-06-24 | 이재호 | [Genie](https://arxiv.org/abs/2402.15391) (ICML 2024) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/genie/) |
 | 13 | 2026-07-01 | 유지형 | [Cosmos](https://arxiv.org/abs/2501.03575) (arXiv 2025) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/cosmos/) |
+| 14 | 2026-10-07 |  |  | YouTube / Review |
+| 15 | 2026-10-14 |  |  | YouTube / Review |
+| 16 | 2026-10-21 |  |  | YouTube / Review |
+| 17 | 2026-10-28 |  |  | YouTube / Review |
+| 18 | 2026-11-04 |  |  | YouTube / Review |
+| 19 | 2026-11-11 |  |  | YouTube / Review |
+| 20 | 2026-11-18 |  |  | YouTube / Review |
+| 21 | 2026-11-25 |  |  | YouTube / Review |
+| 22 | 2026-12-02 |  |  | YouTube / Review |
+| 23 | 2026-12-09 |  |  | YouTube / Review |
+| 24 | 2026-12-16 |  |  | YouTube / Review |
+| 25 | 2026-12-23 |  |  | YouTube / Review |
 
-## MkDocs 사용 가이드
+## 가이드
 
-### 1. 환경 설정
+스터디 자료를 만들 때 참고하는 가이드입니다.
 
-```bash
-git clone https://github.com/Pseudo-Lab/hello-world-models.git
-cd hello-world-models
-pip install -r requirements.txt
-```
-
-### 2. 로컬에서 사이트 확인
-
-```bash
-mkdocs serve
-```
-http://127.0.0.1:8000 에서 확인 가능. 파일 수정 시 자동 반영.
-
-### 3. 리뷰 문서 작성
-
-`docs/review/` 폴더에 마크다운 파일을 추가합니다.
-
-#### 3-1. Frontmatter 작성
-
-파일 최상단에 아래 형식의 frontmatter를 작성합니다. nav 자동 생성에 사용됩니다.
-
-```yaml
----
-title: "논문 제목"
-year: 2024
-venue: NeurIPS
-domain: latent-world-models
----
-```
-
-`domain`은 아래 중 하나를 사용합니다:
-- `latent-world-models`
-- `sequence-based-world-models`
-- `predictive-world-models`
-- `generative-world-models`
-
-#### 3-2. Information 섹션 작성
-
-```markdown
-!!! info "Information"
-    - **Title:** 논문 제목
-    - **Venue:** NeurIPS 2024
-    - **Paper:** [arXiv](https://arxiv.org/abs/xxxx.xxxxx)
-    - **Project:** [Project Page](링크)  ← 있을 때만
-    - **Code:** [GitHub](링크)           ← 있을 때만
-    - **Presenter:** 발표자
-    - **Last updated:** 2026-03-16
-```
-
-#### 3-3. 이미지 삽입
-
-이미지는 `docs/assets/` 폴더에 저장하고 아래 형식으로 삽입합니다.
-
-**기본 이미지:**
-```markdown
-![이미지 설명](../assets/이미지파일.png)
-```
-
-**크기 조절:**
-```markdown
-![이미지 설명](../assets/이미지파일.png){ width="600" }
-```
-
-**캡션 포함 이미지:**
-```markdown
-<figure markdown="span">
-  ![이미지 설명](../assets/이미지파일.png){ width="600" }
-  <figcaption>Figure 1. 캡션 내용 (source: 출처)</figcaption>
-</figure>
-```
-
-#### 3-4. 수식 작성
-
-인라인 수식:
-```markdown
-$E = mc^2$
-```
-
-블록 수식:
-```markdown
-$$
-\mathcal{L} = \mathbb{E}_{t, x_0, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]
-$$
-```
-
-#### 3-5. 접기/펼치기 (Details)
-
-```markdown
-??? note "클릭하여 펼치기"
-    숨겨진 내용이 여기에 표시됩니다.
-```
-
-기본 펼침 상태:
-```markdown
-???+ note "클릭하여 접기"
-    기본으로 펼쳐진 상태입니다.
-```
-
-### 4. Nav 자동 생성
-
-문서 추가 후 아래 스크립트를 실행하면 `mkdocs.yml`의 nav가 도메인별 > 연도순으로 자동 갱신됩니다.
-
-```bash
-python scripts/generate_nav.py
-```
-
-### 5. 배포
-
-`main` 브랜치에 push하면 GitHub Actions가 자동으로 사이트를 빌드하고 GitHub Pages에 배포합니다.
-
-```bash
-git add .
-git commit -m "Add: 논문 리뷰 추가"
-git push
-```
+| 가이드 | 내용 |
+| :-- | :-- |
+| [MkDocs 리뷰 페이지 작성](guides/mkdocs.md) | 로컬 환경 설정, 리뷰 문서 작성 규칙(frontmatter, 이미지, 수식), nav 생성, 배포 |
+| [Marp 발표자료](templates/marp/README.md) | 마크다운으로 슬라이드 만들기, review 테마 적용, PDF·PPTX 추출 |
+| [PPT 제작 (ppt-maker)](templates/ppt-maker/CLAUDE.md) | HTML 삽화를 PNG로 캡처하고 python-pptx로 리뷰 PPT를 빌드하는 워크플로우. 디자인 규칙은 [DESIGN_GUIDE](templates/ppt-maker/DESIGN_GUIDE.md) 참고 |
