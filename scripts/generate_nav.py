@@ -2,7 +2,12 @@
 frontmatter의 domain과 year를 기반으로 mkdocs.yml의 nav를 자동 생성하는 스크립트.
 
 사용법: python scripts/generate_nav.py
+
+mkdocs.yml에는 PyYAML의 safe_load가 읽지 못하는 태그(!!python/name:...)가 있으므로,
+파일 전체를 다시 쓰지 않고 nav 블록만 찾아 교체한다.
 """
+
+from __future__ import annotations
 
 import re
 from pathlib import Path
@@ -63,13 +68,17 @@ def generate_nav() -> list:
 
 
 def update_mkdocs_yml(nav: list) -> None:
-    with open(MKDOCS_YML, encoding="utf-8") as f:
-        config = yaml.safe_load(f)
+    text = MKDOCS_YML.read_text(encoding="utf-8")
 
-    config["nav"] = nav
+    # 최상위 nav: 키부터 다음 최상위 키(또는 파일 끝) 직전까지가 nav 블록이다
+    match = re.search(r"^nav:[^\n]*\n(?:(?:[ \t-].*)?\n)*", text, re.MULTILINE)
+    if not match:
+        raise SystemExit("mkdocs.yml에서 최상위 nav: 블록을 찾지 못했습니다.")
 
-    with open(MKDOCS_YML, "w", encoding="utf-8") as f:
-        yaml.dump(config, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+    nav_yaml = yaml.dump(
+        {"nav": nav}, default_flow_style=False, allow_unicode=True, sort_keys=False
+    )
+    MKDOCS_YML.write_text(text[: match.start()] + nav_yaml + text[match.end() :], encoding="utf-8")
 
 
 if __name__ == "__main__":
