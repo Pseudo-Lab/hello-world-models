@@ -2,7 +2,7 @@
 title: "Dreamer"
 year: 2020
 venue: ICLR
-domain: latent-world-models
+domain: model-based-rl
 ---
 
 # Dream to Control: Learning Behaviors by Latent Imagination (Dreamer)

@@ -30,15 +30,15 @@ http://127.0.0.1:8000 에서 확인 가능. 파일 수정 시 자동 반영.
 title: "논문 제목"
 year: 2024
 venue: NeurIPS
-domain: latent-world-models
+domain: model-based-rl
 ---
 ```
 
 `domain`은 아래 중 하나를 사용합니다:
-- `latent-world-models`
-- `sequence-based-world-models`
-- `predictive-world-models`
-- `generative-world-models`
+- `model-based-rl`: 월드 모델 안에서 계획하거나 행동을 학습하는 강화학습 (PlaNet, Dreamer, MuZero 등)
+- `sequence-based-world-models`: 시퀀스 모델링으로 강화학습 문제를 푸는 접근 (Decision Transformer 등)
+- `predictive-world-models`: 예측 기반 표현 학습 (V-JEPA 등)
+- `generative-world-models`: 영상을 생성하는 월드 모델 (GAIA-1, Genie, Cosmos 등)
 
 ### 3-2. Information 섹션 작성
 
