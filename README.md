@@ -8,7 +8,7 @@
   <a href="https://github.com/Pseudo-Lab/hello-world-models/stargazers"><img src="https://img.shields.io/github/stars/Pseudo-Lab/hello-world-models" alt="Stars" /></a>
 </div>
 
-본 프로젝트는 [가짜연구소(PseudoLab)](https://www.linkedin.com/company/pseudolab/)에서 진행하는 [World Models 스터디](https://pseudo-lab.com/projects/c1baa992-5fdd-4acf-8e51-007e0f4e8d8d)입니다. World Models 관련 논문을 리뷰하고 스터디 자료를 정리하는 공간입니다.
+본 프로젝트는 가짜연구소(PseudoLab)에서 진행하는 World Models 스터디입니다. World Models 관련 논문을 리뷰하고 스터디 자료를 정리하는 공간입니다.
 
 참여 방법: 매주 수요일 오후 9시, 가짜연구소 Discord [ROOM-AK](https://discord.gg/EPurkHVtp2)로 입장!
 
