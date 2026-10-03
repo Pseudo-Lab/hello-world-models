@@ -1,20 +1,24 @@
 # Hello, World! — World Models Study
 
-본 프로젝트는 [가짜연구소(PseudoLab)](https://www.linkedin.com/company/pseudolab/)에서 진행하는 [World Models 스터디](https://pseudo-lab.com/projects/ee36e216-4876-49c4-899e-636e9b7e20a8)입니다. World Models 관련 논문을 리뷰하고 스터디 자료를 정리하는 공간입니다.
+<div align="center">
+  <a href="https://pseudo-lab.com/projects/c1baa992-5fdd-4acf-8e51-007e0f4e8d8d"><img src="https://img.shields.io/badge/PseudoLab-S13-3776AB" alt="PseudoLab 13th season" /></a>
+  <a href="https://discord.gg/EPurkHVtp2"><img src="https://img.shields.io/badge/Discord-BF40BF?logo=discord&logoColor=white" alt="Discord Community" /></a>
+  <a href="https://pseudo-lab.github.io/hello-world-models/"><img src="https://img.shields.io/badge/Review_Site-3F51B5?logo=materialformkdocs&logoColor=white" alt="Review Site" /></a>
+  <a href="https://www.youtube.com/playlist?list=PLyP9gclj-bv5Iyw74oNIj47zwbka8MAFz"><img src="https://img.shields.io/badge/YouTube-FF0000?logo=youtube&logoColor=white" alt="YouTube Playlist" /></a>
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/stargazers"><img src="https://img.shields.io/github/stars/Pseudo-Lab/hello-world-models" alt="Stars" /></a>
+</div>
 
-참여 방법: 매주 수요일 오후 9시, 가짜연구소 Discord ROOM-AK로 입장!
+본 프로젝트는 [가짜연구소(PseudoLab)](https://www.linkedin.com/company/pseudolab/)에서 진행하는 [World Models 스터디](https://pseudo-lab.com/projects/c1baa992-5fdd-4acf-8e51-007e0f4e8d8d)입니다. World Models 관련 논문을 리뷰하고 스터디 자료를 정리하는 공간입니다.
 
-- 📚 리뷰 사이트: https://pseudo-lab.github.io/hello-world-models/
-- ▶️ 발표 영상 재생목록: [Hello, World! — World Models Paper Review](https://www.youtube.com/playlist?list=PLyP9gclj-bv5Iyw74oNIj47zwbka8MAFz)
-- 📺 가짜연구소 YouTube 채널: https://www.youtube.com/@pseudo-lab
+참여 방법: 매주 수요일 오후 9시, 가짜연구소 Discord [ROOM-AK](https://discord.gg/EPurkHVtp2)로 입장!
 
 ## Contributors
 - 유정화 [Jeonghwa Yoo] | [Github](https://github.com/jeongHwarr) | [Linkedin](https://www.linkedin.com/in/jeonghwa-yoo-8403a716b/) |
 - 김주연 [Juyeon Kim] | [Github](https://github.com/JYeonKim) | [Linkedin](https://www.linkedin.com/in/ju-yeon-kim) |
-- 장보아 [Boa Jang] | [Github](https://github.com/Jang-Boa) | [Linkedin](https://www.linkedin.com/in/boa-jang-93a72918a) |
+- 장보아 [Boa Jang] | [Github](https://github.com/Boa-Jang) | [Linkedin](https://www.linkedin.com/in/boa-jang-93a72918a) |
 - 이재호 [Jaeho Lee] | [Github](https://github.com/ORE24) | [Linkedin](https://www.linkedin.com/in/jae-ho-lee-82b418303) |
 - 유지형 [Jihyeong Yoo] | [Github](https://github.com/Yoojihyeong566) | [Linkedin](https://www.linkedin.com/in/ji-hyeong-yoo-99b701326) |
-  
+
 ## Reviewed Papers
 | idx | Date | Presenter | Paper | Resources |
 | :--: | :--: | :--: | :--: | :--: |
