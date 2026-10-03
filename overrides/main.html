@@ -3,3 +3,14 @@
 {% block htmltitle %}
   <title>Hello, World! — World Models Study</title>
 {% endblock %}
+
+{% block extrahead %}
+  <script>
+    /* 페이지를 그리기 전에 목차 접힘 상태를 적용해 깜빡임을 막는다 */
+    try {
+      if (localStorage.getItem("hwm.sidebarCollapsed") === "1") {
+        document.documentElement.classList.add("sidebar-collapsed")
+      }
+    } catch (e) {}
+  </script>
+{% endblock %}

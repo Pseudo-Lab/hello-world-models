@@ -29,6 +29,8 @@ theme:
   - search.suggest
   - content.code.copy
   custom_dir: overrides
+  icon:
+    logo: material/home
 plugins:
 - search
 - glightbox:
@@ -59,6 +61,7 @@ extra_css:
 extra_javascript:
 - javascripts/mathjax.js
 - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+- javascripts/sidebar-toggle.js
 nav:
 - Home: index.md
 - Latent World Models:
