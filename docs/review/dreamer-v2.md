@@ -2,7 +2,7 @@
 title: "DreamerV2"
 year: 2021
 venue: ICLR
-domain: latent-world-models
+domain: model-based-rl
 ---
 
 # Mastering Atari with Discrete World Models (DreamerV2)

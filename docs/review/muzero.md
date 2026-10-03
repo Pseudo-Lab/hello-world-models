@@ -2,7 +2,7 @@
 title: "MuZero"
 year: 2020
 venue: Nature
-domain: latent-world-models
+domain: model-based-rl
 ---
 
 # Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model (MuZero)

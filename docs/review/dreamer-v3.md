@@ -2,7 +2,7 @@
 title: "DreamerV3"
 year: 2023
 venue: ICLR
-domain: latent-world-models
+domain: model-based-rl
 ---
 
 # Mastering Diverse Domains through World Models (DreamerV3)

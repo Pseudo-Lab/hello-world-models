@@ -64,7 +64,7 @@ extra_javascript:
 - javascripts/sidebar-toggle.js
 nav:
 - Home: index.md
-- Latent World Models:
+- Model-Based RL:
   - World Models (2018): review/world-models.md
   - PlaNet (2019): review/planet.md
   - Dreamer (2020): review/dreamer.md

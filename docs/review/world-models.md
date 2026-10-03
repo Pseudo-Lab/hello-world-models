@@ -2,7 +2,7 @@
 title: "World Models"
 year: 2018
 venue: NeurIPS
-domain: latent-world-models
+domain: model-based-rl
 ---
 
 # World Models

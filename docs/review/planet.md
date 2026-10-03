@@ -2,7 +2,7 @@
 title: "PlaNet"
 year: 2019
 venue: ICML
-domain: latent-world-models
+domain: model-based-rl
 ---
 
 # Learning Latent Dynamics for Planning from Pixels (PlaNet)
