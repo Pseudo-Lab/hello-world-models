@@ -21,11 +21,11 @@ domain: model-based-rl
 
 논문의 문제의식은 **“새로운 과제마다 전문가가 알고리즘을 다시 튜닝해야 한다면 강화학습의 실제 적용이 어렵다”** 는 점이다. 이 문제를 해결하기 위해 논문은 고정 하이퍼파라미터로 여러 영역을 학습하는 DreamerV3를 제안한다.
 
-![Figure 1](../assets/dreamerV3/Pasted image 20260506185233.png)
+![Figure 1](../assets/dreamer-v3/Pasted image 20260506185233.png)
 
 실제로 Figure 1에서 Dreamer가 특정 영역 전용 알고리즘이 아니라 여러 영역에서 작동한다는 것을 보여준다. Atari, ProcGen, DMLab, Minecraft, Atari100k, Proprio Control, Visual Control, BSuite에서 Dreamer와 비교 알고리즘의 성능을 요약한 것을 볼 수 있는데, Dreamer가 고정 설정으로 PPO 및 다수 전문 알고리즘보다 높은 성능을 보인다.
 
-![Figure 2](../assets/dreamerV3/Pasted image 20260506185305.png)
+![Figure 2](../assets/dreamer-v3/Pasted image 20260506185305.png)
 
 Figure 2에서는 Control Suite, Atari, ProcGen, DMLab, Minecraft의 예시 화면을 볼 수 있다. 실험 영역이 굉장히 다양하다는 것을 확인할 수 있으며, Dreamer는 로봇 제어, 비디오게임, 3D 미로, Minecraft 같은 서로 다른 시각 구조를 가진 환경에서 평가되는 것 또한 확인할 수 있다.
 
@@ -33,7 +33,7 @@ Figure 2에서는 Control Suite, Atari, ProcGen, DMLab, Minecraft의 예시 화�
 
 논문에서는 DreamerV3가 세 신경망으로 구성된다고 설명한다. 세계 모델(world model)은 가능한 행동의 결과를 예측하고, 비평가(critic)는 그 결과의 가치를 판단하며, 행위자(actor)는 가장 가치 있는 결과로 가는 행동을 선택한다. 세 구성 요소는 환경 상호작용 중 재생 경험(replayed experience)에서 동시에 학습된다.
 
-![Figure 3](../assets/dreamerV3/Pasted image 20260506185553.png)
+![Figure 3](../assets/dreamer-v3/Pasted image 20260506185553.png)
 
 ### 전체 학습 파이프라인
 
@@ -58,7 +58,7 @@ Figure 2에서는 Control Suite, Atari, ProcGen, DMLab, Minecraft의 예시 화�
 
 논문에서 중요한 점은 세계 모델이 단순히 보상만 맞히는 것이 아니라 입력 재구성(reconstruction)도 함께 수행한다는 점이다. 이는 표현 $z_t$가 과제 보상에만 맞춘 좁은 정보가 아니라, 환경을 이해하는 데 필요한 풍부한 정보를 담도록 만든다. Figure 6의 학습 신호 제거 실험에서도 Dreamer가 보상·가치 그래디언트보다 비지도 재구성 목표(unsupervised reconstruction objective)에 크게 의존한다고 설명한다.
 
-![Figure 4](../assets/dreamerV3/Pasted image 20260506190036.png)
+![Figure 4](../assets/dreamer-v3/Pasted image 20260506190036.png)
 
 Figure 4에서는 DMLab 미로와 사족 보행 로봇에서 5개 문맥 이미지(context image)를 보고 45프레임 뒤까지 예측한 결과를 보여준다. 모델은 중간 실제 이미지를 보지 않고 주어진 행동 시퀀스만으로 미래 화면을 예측하는 것을 볼 수 있는데, 세계 모델이 단기 픽셀 복원만 하는 것이 아니라 긴 시간의 환경 구조를 학습한다는 점을 확인할 수 있다.
 
@@ -167,19 +167,19 @@ twohot 목표에 대한 범주형 교차 엔트로피 손실을 나타낸다. tw
 
 각 벤치마크는 서로 다른 입력·행동·보상 구조를 갖는다. Dreamer의 핵심 주장은 세계 모델과 강건성 기법 덕분에 환경마다 하이퍼파라미터를 새로 맞추지 않아도 된다는 것이다.
 
-![Figure 5](../assets/dreamerV3/Pasted image 20260506195114.png)
+![Figure 5](../assets/dreamer-v3/Pasted image 20260506195114.png)
 
 Figure 5는 Iron Ingot, Iron Pickaxe, Diamond를 발견한 학습 에이전트 비율을 보여준다. 평균 반환만으로는 실제로 다이아몬드까지 도달했는지 알기 어렵기 때문에, 후반 아이템 발견 여부를 따로 보여주는데, 비교된 알고리즘들은 Iron Pickaxe까지는 어느 정도 진행하지만,  Dreamer만 다이아몬드를 발견했음을 볼 수 있다.
 
-![Figure 6](../assets/dreamerV3/Pasted image 20260506195404.png)
+![Figure 6](../assets/dreamer-v3/Pasted image 20260506195404.png)
 
 Figure 6에서는 강건성 기법 제거, 학습 신호 제거, 모델 크기 확장, 재생 비율(replay ratio) 확장을 비교한다. KL 목적, 반환 정규화(return normalization), symexp twohot 회귀, 관측 symlog가 평균 성능에 기여한다. 또한 재구성 손실(reconstruction loss)이 표현 학습에서 특히 중요하다고 논문에서는 설명한다. 모델 크기 확장과 재생 비율 확장 결과는 Crafter와 DMLab Goals 설정에서 분석된다. 따라서 “모든 가능한 환경에서 항상 같은 방식으로 증가한다”가 아니라, 논문이 실험한 설정에서 계산 자원을 늘리면 성능과 데이터 효율성이 예측 가능하게 증가한다는 의미로 해석해야 한다.
 
-![Figure 1](../assets/dreamerV3/Pasted image 20260506195809.png)
+![Figure 1](../assets/dreamer-v3/Pasted image 20260506195809.png)
 
 ## Atari 결과 (Atari)
 
-![Table 6](../assets/dreamerV3/Pasted image 20260506200128.png)
+![Table 6](../assets/dreamer-v3/Pasted image 20260506200128.png)
 
 Atari 벤치마크는 57개 Atari 2600 게임으로 구성되고, 예산은 200M 프레임이다. 논문에서는 고정 행동(sticky action) 시뮬레이터 설정을 사용한다. 비교 대상은 PPO, Rainbow, IQN, MuZero 등이다.
 
@@ -189,7 +189,7 @@ Atari 벤치마크는 57개 Atari 2600 게임으로 구성되고, 예산은 200M
 
 ## ProcGen 결과 (ProcGen)
 
-![Table 7](../assets/dreamerV3/Pasted image 20260506200230.png)
+![Table 7](../assets/dreamer-v3/Pasted image 20260506200230.png)
 
 ProcGen은 16개 게임으로 구성되며, 무작위 레벨(randomized level)과 시각적 방해(visual distraction)를 통해 에이전트의 강건성과 일반화를 평가한다. 논문은 어려움 난이도(hard difficulty)와 무제한 레벨(unlimited level) 설정을 사용하고, 50M 프레임에서 비교한다.
 
@@ -199,7 +199,7 @@ Table 7에서 정규화 평균(normalized mean)은 Dreamer 66.01, PPG 64.89, 본
 
 ## DMLab 결과 (DMLab)
 
-![Table 8](../assets/dreamerV3/Pasted image 20260506200248.png)
+![Table 8](../assets/dreamer-v3/Pasted image 20260506200248.png)
 
 DMLab은 30개 3D 과제로 구성되며, 공간 추론(spatial reasoning)과 시간 추론(temporal reasoning)을 요구한다. 논문은 100M 프레임에서 Dreamer를 평가하고, 일부 기준 알고리즘(baseline)은 1B 또는 10B 환경 스텝 결과도 함께 비교한다.
 
@@ -209,7 +209,7 @@ Table 8에서 인간 평균 상한(human mean capped)은 Dreamer 71.4%, PPO 35.9
 
 ## Atari100k 결과 (Atari100k)
 
-![Table 9](../assets/dreamerV3/Pasted image 20260506200308.png)
+![Table 9](../assets/dreamer-v3/Pasted image 20260506200308.png)
 
 Atari100k는 26개 Atari 게임에서 400K 환경 스텝, 즉 행동 반복(action repeat)을 고려하면 100K 에이전트 스텝만 허용하는 데이터 효율성 벤치마크이다. 논문에서는 이를 약 2시간의 게임 시간에 해당한다고 설명한다.
 

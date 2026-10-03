@@ -158,9 +158,9 @@ Dreamer는 특정한 한 표현 학습만 강제하지 않는다. 논문은 **�
 ### 1. 전체 구조
 
 Dreamer의 전체 흐름은 Figure 1, Figure 3, Algorithm 1로 요약된다.
-  ![Figure 1](../assets/dreamer/Pasted image 20260407000838.png)
-  ![Figure 3](../assets/dreamer/Pasted image 20260407000918.png)
-  ![Algorithm 1](../assets/dreamer/Pasted image 20260407000937.png)
+  ![Figure 1](../assets/dreamer/01_figure_1.png)
+  ![Figure 3](../assets/dreamer/02_figure_3.png)
+  ![Algorithm 1](../assets/dreamer/03_algorithm_1.png)
 
 이 구조를 간략히 시각화로 보이면 다음과 같다.
 
@@ -305,7 +305,7 @@ SH --> Vh["가치 모델 v_psi(s_tau+H)"]
 
 이 그림이 의미하는 바는 간단하다. **앞부분은 직접 상상한 보상으로 계산하고, 끝부분은 가치 모델이 요약한다**는 것이다.
 
-![Figure 4](../assets/dreamer/Pasted image 20260407001947.png)
+![Figure 4](../assets/dreamer/04_figure_4.png)
 
 Figure 4는 바로 이 가치 모델이 얼마나 중요한지를 보여준다. 가치 모델이 있으면 상상 지평 길이에 덜 민감해지고, 장기 과제를 더 잘 푼다.
 
@@ -431,7 +431,7 @@ $$
 
 ### 1. 실험 설정
 
-![Figure 2](../assets/dreamer/Pasted image 20260407003507.png)
+![Figure 2](../assets/dreamer/05_figure_2.png)
 
 논문은 DeepMind Control Suite의 시각 제어 20개 과제를 사용한다. Figure 2는 Cup, Acrobot, Hopper, Walker, Quadruped의 예시 이미지를 보여준다. 이 과제들은 접촉 동역학(contact dynamics), 희소 보상(sparse rewards), 많은 자유도(degrees of freedom), 3차원 장면을 포함한다.
 
@@ -449,7 +449,7 @@ $$
 
 ### 3. 주요 정량 결과(Table G)
 
-![Figure G](../assets/dreamer/Pasted image 20260407003821.png)
+![Figure G](../assets/dreamer/06_figure_g.png)
 
 논문 부록 G의 연속 제어 최종 점수는 다음과 같다. A3C는 proprio 입력, D4PG와 PlaNet, Dreamer는 pixel 입력을 사용한다. 또한 PlaNet 점수는 action repeat를 $R = 2$로 고정하여 다시 실행한 값이다.
 
@@ -459,7 +459,7 @@ $$
 
 둘째, Dreamer의 진짜 장점은 **샘플 효율성(sample efficiency)** 이다. 논문 Figure 6의 핵심 문장은 다음과 같이 요약할 수 있다.
 
-![Figure 6](../assets/dreamer/Pasted image 20260407003954.png)
+![Figure 6](../assets/dreamer/07_figure_6.png)
 
 - Dreamer: 평균 823, 5 × 10^6 환경 스텝  
 - PlaNet: 평균 333, 5 × 10^6 환경 스텝  
@@ -469,7 +469,7 @@ $$
 
 ### 4. Figure 4: 왜 가치 모델이 그렇게 중요한가
 
-![Figure 4](../assets/dreamer/Pasted image 20260407004228.png)
+![Figure 4](../assets/dreamer/08_figure_4.png)
 
 Figure 4는 Dreamer를 세 가지와 비교한다.
 
@@ -483,7 +483,7 @@ Figure 4는 Dreamer를 세 가지와 비교한다.
 
 ### 5. Figure 5: Dreamer의 월드 모델은 정말 미래를 예측하는가
 
-![Figure 5](../assets/dreamer/Pasted image 20260407004724.png)
+![Figure 5](../assets/dreamer/09_figure_5.png)
 
 Figure 5는 두 개의 hold-out trajectory에 대해, 처음 5장의 실제 이미지만 보고 **행동 정보만으로 45스텝 앞까지 재구성한 결과**를 보여준다. 그림만 보면 완벽한 픽셀 수준 예언은 아니지만, 긴 시간 동안 물체의 위치와 움직임을 꽤 잘 따라간다.
 
@@ -491,18 +491,18 @@ Figure 5는 두 개의 hold-out trajectory에 대해, 처음 5장의 실제 이�
 
 ### 6. Figure 7과 Figure 10: 장기 과제에서 왜 Dreamer가 강한가
 
-![Figure 7](../assets/dreamer/Pasted image 20260407004829.png)
+![Figure 7](../assets/dreamer/10_figure_7.png)
 
 Figure 7은 Acrobot Swingup, Hopper Hop, Pendulum Swingup, Quadruped Walk 같은 장기 신용 할당(long-horizon credit assignment) 문제가 필요한 과제에서 Dreamer가 특히 강함을 보여준다. 논문은 장기 보상을 연결해야 하는 이런 과제에서는 **상상 구간 안의 보상만 최적화하는 방법이 쉽게 실패**한다고 해석한다.
 
-![Figure 10](../assets/dreamer/Pasted image 20260407004920.png)
+![Figure 10](../assets/dreamer/11_figure_10.png)
 
 Figure 10의 전체 학습 곡선을 보면 Dreamer는 20개 중 대부분에서 No value와 PlaNet을 앞선다. 논문은 horizon 20 설정에서 Dreamer가 20개 중 16개 과제에서 우세하고, 4개는 비긴다고 서술한다.
 
 ### 7. Figure 8과 Figure 11: 표현 학습이 성능을 좌우한다
-![Figure 8](../assets/dreamer/Pasted image 20260407005034.png)
+![Figure 8](../assets/dreamer/12_figure_8.png)
 
-![Figure 11](../assets/dreamer/Pasted image 20260407005007.png)
+![Figure 11](../assets/dreamer/13_figure_11.png)
 
 Dreamer는 표현 학습을 분리해서 볼 수 있는 구조를 가진다. Figure 8과 Figure 11은 다음 순서를 보여준다.
 
