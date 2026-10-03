@@ -136,7 +136,7 @@ env.close()
 
 그런데도 우리는 공을 친다. 어떻게?
 
-![We learn to perceive time spatially when we read comics. According to cartoonist and comics theorist Scott McCloud, “in the world of comics, time and space are one and the same.” Art © Scott McCloud.](../assets/01_worldmodel_fig1.png)
+![We learn to perceive time spatially when we read comics. According to cartoonist and comics theorist Scott McCloud, “in the world of comics, time and space are one and the same.” Art © Scott McCloud.](../assets/world-models/01_worldmodel_fig1.png)
 
 > 뇌가 공의 궤적을 **미리 예측**하고, 그 예측에 맞춰 **반사적으로** 몸을 움직이기 때문이다.
 > 
@@ -151,7 +151,7 @@ env.close()
 
 ### [강화 학습 (RL)](https://dalpo0814.tistory.com/52)의 두 가지 접근법
 
-![Taxonomy of RL algorithms (https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#id21)](../assets/01_worldmodel_fig2.png)
+![Taxonomy of RL algorithms (https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#id21)](../assets/world-models/01_worldmodel_fig2.png)
 
 - **대표 알고리즘**
     1. Q-learning: 각 상태-행동 쌍의 가치를 테이블로 저장
@@ -252,7 +252,7 @@ Agent Model: V, M, C components
 
 VAE Architecture 
 
-![VAE Architecture](../assets/01_worldmodel_fig7.png)
+![VAE Architecture](../assets/world-models/01_worldmodel_fig7.png)
 
 **목적**: 고해상도 이미지를 작은 숫자 묶음(잠재 벡터 $z$)으로 압축한다.
 
@@ -356,7 +356,7 @@ $$
 
 ### Training Procedure
 
-![Flow diagram of Agent model. ](../assets/01_worldmodel_fig3.png)
+![Flow diagram of Agent model. ](../assets/world-models/01_worldmodel_fig3.png)
 
 Flow diagram of Agent model. 
 
@@ -408,7 +408,7 @@ To summarize the Car Racing experiment, below are the steps taken:
 
 ### Experiment Results
 
-![스크린샷 2026-03-25 00.54.54.png](../assets/01_worldmodel_fig4.png)
+![스크린샷 2026-03-25 00.54.54.png](../assets/world-models/01_worldmodel_fig4.png)
 
 - **CarRacing-v0의 보상 계산 방식**
     
@@ -486,7 +486,7 @@ CarRacing training curves & histogram
 
 V only: 632점
 
-![V + Hidden Layer: 788점](../assets/01_worldmodel_fig5.png)
+![V + Hidden Layer: 788점](../assets/world-models/01_worldmodel_fig5.png)
 
 V + Hidden Layer: 788점
 
@@ -525,7 +525,7 @@ To summarize the *Take Cover* experiment, below are the steps taken:
 
 에이전트를 **world model 내부(꿈속)에서만 학습** 후 실제 환경으로 전이.
 
-![Table2](../assets/01_worldmodel_fig6.png)
+![Table2](../assets/world-models/01_worldmodel_fig6.png)
 
 #### $\tau$ 역할
 
