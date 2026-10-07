@@ -35,6 +35,7 @@ domain: model-based-rl
 ```
 
 `domain`은 아래 중 하나를 사용합니다:
+- `overview`: 특정 논문 하나가 아니라 여러 계열을 함께 정리한 리뷰 (Season 1 Review 등)
 - `model-based-rl`: 월드 모델 안에서 계획하거나 행동을 학습하는 강화학습 (PlaNet, Dreamer, MuZero 등)
 - `sequence-based-world-models`: 시퀀스 모델링으로 강화학습 문제를 푸는 접근 (Decision Transformer 등)
 - `predictive-world-models`: 예측 기반 표현 학습 (V-JEPA 등)

@@ -4,6 +4,7 @@ World Models 관련 논문을 리뷰하고 스터디 자료를 정리하는 공�
 
 ## Categories
 
+- **Overview** — 여러 계열을 한 번에 정리한 리뷰 (Season 1 Review)
 - **Model-Based RL** — 월드 모델 안에서 계획하거나 행동을 학습하는 강화학습 (World Models, PlaNet, Dreamer, MuZero, DreamerV2, DreamerV3)
 - **Sequence-Based World Models** — 시퀀스 모델링 기반 접근 (Decision Transformer, Trajectory Transformer)
 - **Predictive World Models** — 예측 기반 표현 학습 (V-JEPA, V-JEPA 2)
