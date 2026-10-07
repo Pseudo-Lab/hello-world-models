@@ -19,6 +19,7 @@ REVIEW_DIR = REPO_ROOT / "docs" / "review"
 MKDOCS_YML = REPO_ROOT / "mkdocs.yml"
 
 DOMAIN_LABELS = {
+    "overview": "Overview",
     "model-based-rl": "Model-Based RL",
     "sequence-based-world-models": "Sequence-Based World Models",
     "predictive-world-models": "Predictive World Models",
