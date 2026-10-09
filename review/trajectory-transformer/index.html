@@ -1,0 +1,2372 @@
+<!DOCTYPE html><html lang="ko" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="World Models 논문 리뷰 및 스터디 자료">
+      
+      
+      
+      
+        <link rel="prev" href="../decision-transformer/">
+      
+      
+        <link rel="next" href="../v-jepa/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+  <title>Hello, World! — World Models Study</title>
+
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <script>
+    /* 페이지를 그리기 전에 목차 접힘 상태를 적용해 깜빡임을 막는다 */
+    try {
+      if (localStorage.getItem("hwm.sidebarCollapsed") === "1") {
+        document.documentElement.classList.add("sidebar-collapsed")
+      }
+    } catch (e) {}
+  </script>
+
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#offline-reinforcement-learning-as-one-big-sequence-modeling-problem-trajectory-transformer" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <button class="md-header__button md-icon sidebar-toggle" type="button" aria-label="목차 접기 ([)" title="목차 접기 ([)" aria-pressed="false">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </button>
+    <a href="../.." title="홈" class="md-header__button md-logo" aria-label="홈" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hello, World! — World Models Study
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trajectory Transformer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Pseudo-Lab/hello-world-models" title="저장소로 이동" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Pseudo-Lab/hello-world-models
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Hello, World!" class="md-nav__button md-logo" aria-label="Hello, World!" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></svg>
+
+    </a>
+    Hello, World!
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Pseudo-Lab/hello-world-models" title="저장소로 이동" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    Pseudo-Lab/hello-world-models
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../season1-review/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Season 1 Review (2026)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Model-Based RL
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Model-Based RL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../world-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    World Models (2018)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../planet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PlaNet (2019)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dreamer (2020)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../muzero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MuZero (2020)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer-v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DreamerV2 (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreamer-v3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DreamerV3 (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Sequence-Based World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Sequence-Based World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decision-transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decision Transformer (2021)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Trajectory Transformer (2021)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Trajectory Transformer (2021)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#0-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Motivation: 강화학습을 하나의 큰 시퀀스 모델링 문제로
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Motivation: 강화학습을 하나의 큰 시퀀스 모델링 문제로">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      기존 강화학습은 문제를 작게 쪼갠다
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      이 논문이 노리는 것
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 궤적을 토큰 시퀀스로 바꾸기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 궤적을 토큰 시퀀스로 바꾸기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      차원 하나가 토큰 하나
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      연속값을 이산화하는 두 가지 방법
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 모델과 학습
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 모델과 학습">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목적 함수: 다음 토큰 예측
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-beam-search-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Beam Search로 Planning하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Beam Search로 Planning하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beam-search-algorithm-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 beam search (Algorithm 1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41-imitation-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Imitation learning: 그대로 디코딩
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-goal-conditioned-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Goal-conditioned RL: 목표를 맨 앞에 붙이기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-offline-rl-likelihood" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Offline RL: likelihood 대신 보상으로 고르기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Offline RL: likelihood 대신 보상으로 고르기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reward-to-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reward-to-go로 근시안을 막는다
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      실제 탐색 절차
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-model-based-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 기존 model-based planning과 무엇이 다른가
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 모델 분석
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 모델 분석">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-100-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 장기 예측: 100 step을 예측해도 무너지지 않는다
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 오차 누적: 무엇이 정확도를 만들었나
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Attention 패턴: 스스로 찾은 두 가지 전략
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 제어 실험 결과
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 제어 실험 결과">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-offline-rl-d4rl-locomotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Offline RL: D4RL locomotion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-imitation-learning-goal-reaching" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Imitation learning과 goal-reaching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-q-function-sparse-reward-antmaze" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Q-function과 결합: sparse reward AntMaze
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-trajectory-transformer-vs-decision-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Trajectory Transformer vs Decision Transformer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Discussion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Discussion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strengths
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations (논문이 밝힌 한계)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      리뷰어 코멘트
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#world-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      World model 계보에서의 위치
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      참고 자료
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Predictive World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Predictive World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v-jepa/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V-JEPA (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v-jepa-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    V-JEPA 2 (2025)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Generative World Models
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Generative World Models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gaia-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAIA-1 (2023)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genie (2024)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cosmos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cosmos (2025)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#0-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-motivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Motivation: 강화학습을 하나의 큰 시퀀스 모델링 문제로
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Motivation: 강화학습을 하나의 큰 시퀀스 모델링 문제로">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      기존 강화학습은 문제를 작게 쪼갠다
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      이 논문이 노리는 것
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 궤적을 토큰 시퀀스로 바꾸기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 궤적을 토큰 시퀀스로 바꾸기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      차원 하나가 토큰 하나
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      연속값을 이산화하는 두 가지 방법
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 모델과 학습
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 모델과 학습">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      학습 목적 함수: 다음 토큰 예측
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-beam-search-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Beam Search로 Planning하기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Beam Search로 Planning하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beam-search-algorithm-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      기본 beam search (Algorithm 1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41-imitation-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Imitation learning: 그대로 디코딩
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-goal-conditioned-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Goal-conditioned RL: 목표를 맨 앞에 붙이기
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-offline-rl-likelihood" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Offline RL: likelihood 대신 보상으로 고르기
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Offline RL: likelihood 대신 보상으로 고르기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reward-to-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reward-to-go로 근시안을 막는다
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      실제 탐색 절차
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-model-based-planning" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 기존 model-based planning과 무엇이 다른가
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 모델 분석
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 모델 분석">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-100-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 장기 예측: 100 step을 예측해도 무너지지 않는다
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 오차 누적: 무엇이 정확도를 만들었나
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Attention 패턴: 스스로 찾은 두 가지 전략
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 제어 실험 결과
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 제어 실험 결과">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-offline-rl-d4rl-locomotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Offline RL: D4RL locomotion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-imitation-learning-goal-reaching" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Imitation learning과 goal-reaching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-q-function-sparse-reward-antmaze" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Q-function과 결합: sparse reward AntMaze
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-trajectory-transformer-vs-decision-transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Trajectory Transformer vs Decision Transformer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-discussion" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Discussion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Discussion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Strengths
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations (논문이 밝힌 한계)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      리뷰어 코멘트
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#world-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      World model 계보에서의 위치
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      참고 자료
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="offline-reinforcement-learning-as-one-big-sequence-modeling-problem-trajectory-transformer">Offline Reinforcement Learning as One Big Sequence Modeling Problem (Trajectory Transformer)<a class="headerlink" href="#offline-reinforcement-learning-as-one-big-sequence-modeling-problem-trajectory-transformer" title="Permanent link">¶</a></h1>
+<div class="admonition info">
+<p class="admonition-title">Information</p>
+<ul>
+<li><strong>Title:</strong> Offline Reinforcement Learning as One Big Sequence Modeling Problem (Trajectory Transformer)</li>
+<li><strong>Venue:</strong> NeurIPS 2021</li>
+<li><strong>Paper:</strong> <a href="https://arxiv.org/abs/2106.02039">arXiv</a></li>
+<li><strong>Code:</strong> <a href="https://github.com/jannerm/trajectory-transformer">GitHub</a> / <a href="https://trajectory-transformer.github.io">Project page</a></li>
+<li><strong>Presenter:</strong> Boa Jang</li>
+<li><strong>Last updated:</strong> 2026-10-04</li>
+</ul>
+</div>
+<h2 id="0-summary">0. Summary<a class="headerlink" href="#0-summary" title="Permanent link">¶</a></h2>
+<p><strong>Trajectory Transformer(TT)는 강화학습을 "궤적이라는 문장을 생성하는 문제"로 바꿔 푼다.</strong> 상태(state), 행동(action), 보상(reward)을 차원별로 이산화해 하나의 토큰 시퀀스로 늘어놓고, GPT와 같은 구조의 Transformer로 다음 토큰을 예측하도록 학습한다. 행동을 고를 때는 언어 모델의 디코딩 기법인 <strong>beam search</strong>를 planning 알고리즘으로 쓴다.</p>
+<p><strong>문제: 강화학습은 여러 부품을 따로 만들어 조립한다</strong></p>
+<p>기존 강화학습은 Markov 성질을 이용해 긴 문제를 한 step짜리 작은 문제로 쪼갠다. 그래서 actor, critic, dynamics model, behavior policy처럼 각기 다른 분포를 추정하는 부품을 따로 설계하고 튜닝해야 한다. Offline RL에서는 여기에 데이터에 없는 행동(out-of-distribution action)을 막는 장치까지 더해진다.</p>
+<p><strong>해결: 하나의 시퀀스 모델과 하나의 디코딩 알고리즘</strong></p>
+<ol>
+<li><strong>궤적 전체를 한 시퀀스로 모델링</strong><br>
+   상태·행동·보상의 결합 분포를 Transformer 하나로 학습한다. 이 모델이 dynamics model, behavior policy, (reward-to-go를 통해) value 추정기 역할을 모두 맡는다.</li>
+<li><strong>Beam search로 planning</strong><br>
+   디코딩 기준만 바꾸면 같은 모델로 imitation learning, goal-conditioned RL, offline RL을 모두 풀 수 있다.</li>
+</ol>
+<p><strong>결과</strong></p>
+<ul>
+<li><strong>장기 예측:</strong> humanoid에서 100 step을 예측해도 실제 궤적과 눈으로 구분되지 않는다. 같은 데이터로 학습한 feedforward 모델(PETS)은 수십 step 만에 무너진다.</li>
+<li><strong>D4RL locomotion:</strong> 평균 78.9점(quantile 이산화)으로 CQL(77.6), Decision Transformer(74.7)와 비슷하거나 조금 높다.</li>
+<li><strong>AntMaze (sparse reward):</strong> IQL의 Q-function을 beam search의 가이드로 쓰면 평균 84.0점으로, 비교한 모든 방법(IQL 63.2, CQL 44.9, DT 11.8)을 앞선다.</li>
+</ul>
+<p><strong>글의 구성</strong></p>
+<ul>
+<li>1절: 왜 강화학습을 시퀀스 모델링으로 보려 하는지</li>
+<li>2~3절: 궤적을 토큰화하고 Transformer로 학습하는 방법</li>
+<li>4절: Beam search를 세 가지 문제 설정에 맞게 바꾸는 방법</li>
+<li>5~6절: 모델 분석(장기 예측, attention)과 제어 실험 결과</li>
+<li>7~8절: Decision Transformer와의 비교, 한계와 의의</li>
+</ul>
+<hr>
+<h2 id="1-motivation">1. Motivation: 강화학습을 하나의 큰 시퀀스 모델링 문제로<a class="headerlink" href="#1-motivation" title="Permanent link">¶</a></h2>
+<p><strong>강화학습은 "보상이 높아지는 행동 시퀀스를 생성하는 문제"로 볼 수도 있다.</strong> 이렇게 보면 자연어처리에서 잘 작동한 대용량 시퀀스 모델과 디코딩 기법을 강화학습에 그대로 가져올 수 있는지 묻게 된다. 이 논문은 이 비유를 극단까지 밀어붙여, 시퀀스 모델링 도구만으로 쓸 만한 강화학습 알고리즘이 되는지 확인한다.</p>
+<h3 id="_1">기존 강화학습은 문제를 작게 쪼갠다<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>접근</th>
+<th>문제를 쪼개는 방식</th>
+<th>필요한 부품</th>
+<th>어려운 점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model-free</td>
+<td>Bellman 재귀 (principle of optimality)</td>
+<td>Actor, critic</td>
+<td>부품마다 따로 설계·튜닝</td>
+</tr>
+<tr>
+<td>Model-based</td>
+<td>한 step짜리 dynamics model</td>
+<td>Dynamics model, planner (또는 policy)</td>
+<td>예측 오차가 step마다 누적 (compounding error)</td>
+</tr>
+<tr>
+<td>Offline RL</td>
+<td>위 방식 + 보수적 제약</td>
+<td>Behavior policy 추정, 정칙화</td>
+<td>데이터에 없는 행동을 막는 장치가 별도로 필요</td>
+</tr>
+<tr>
+<td><strong>Trajectory Transformer</strong></td>
+<td><strong>쪼개지 않음</strong></td>
+<td><strong>시퀀스 모델 하나</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>논문은 이 부품들이 결국 모두 어떤 분포를 추정하고 있다고 본다. Actor와 behavior policy는 행동의 분포를, dynamics model은 다음 상태의 분포를 추정한다. Value function도 control-as-inference 관점에서는 미래 보상의 분포를 추정하는 것으로 해석할 수 있다(Levine, 2018). 그렇다면 상태·행동·보상을 하나의 데이터 흐름으로 보고 결합 분포를 한 모델로 배우면 된다.</p>
+<div class="admonition example">
+<p class="admonition-title">비유: 부품을 조립하는 대신 문장을 쓰는 작가</p>
+<p>기존 강화학습은 "다음 장면 예측기", "행동 선택기", "점수 평가기"를 따로 만든 뒤 조립한다. TT는 수많은 플레이 기록을 읽은 작가 한 명에게 "이 장면 다음에 이어질 가장 그럴듯하고 결말이 좋은 이야기"를 쓰게 한다. 이야기 속에는 다음 장면도, 주인공의 행동도, 점수도 함께 들어 있다.</p>
+</div>
+<h3 id="_2">이 논문이 노리는 것<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<p>관련 연구들도 LSTM이나 Transformer를 policy, value function, model 같은 <strong>부품 하나</strong>를 표현하는 데 써 왔다. 하지만 성능은 여전히 강화학습 알고리즘 쪽 기법에 기대고 있었다. TT는 반대로 <strong>강화학습 파이프라인을 최대한 시퀀스 모델링으로 대체</strong>하고, 성능이 알고리즘의 정교함이 아니라 시퀀스 모델의 표현력에서 나오게 하는 것을 목표로 한다.</p>
+<hr>
+<h2 id="2">2. 궤적을 토큰 시퀀스로 바꾸기<a class="headerlink" href="#2" title="Permanent link">¶</a></h2>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/trajectory-transformer/01_architecture.png" data-desc-position="bottom"><img alt="Trajectory Transformer 구조" src="../../assets/trajectory-transformer/01_architecture.png" width="700"></a>
+<br>
+<figcaption>Figure 1. 상태·행동·보상을 차원 단위 토큰으로 늘어놓고, 언어 모델처럼 다음 토큰을 예측한다. (source: 논문 Figure 1)</figcaption>
+</figure>
+<h3 id="_3">차원 하나가 토큰 하나<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<p>길이 <span class="arithmatex">\(T\)</span>인 궤적은 상태, 행동, 스칼라 보상의 나열이다.</p>
+<div class="arithmatex">\[
+\tau = (\mathbf{s}_1, \mathbf{a}_1, r_1, \mathbf{s}_2, \mathbf{a}_2, r_2, \ldots, \mathbf{s}_T, \mathbf{a}_T, r_T)
+\]</div>
+<p><strong>TT는 벡터를 통째로 하나의 토큰으로 쓰지 않고, 각 차원을 따로 이산화해 하나씩 토큰으로 만든다.</strong> 상태가 <span class="arithmatex">\(N\)</span>차원, 행동이 <span class="arithmatex">\(M\)</span>차원이면 timestep 하나가 <span class="arithmatex">\(N + M + 1\)</span>개 토큰이 되고, 궤적 전체는 길이 <span class="arithmatex">\(T(N + M + 1)\)</span>의 시퀀스가 된다.</p>
+<div class="arithmatex">\[
+\tau = (\ldots, s_t^1, s_t^2, \ldots, s_t^N, a_t^1, a_t^2, \ldots, a_t^M, r_t, \ldots), \quad t = 1, \ldots, T
+\]</div>
+<p>아래첨자는 timestep, 위첨자는 차원이다. 예를 들어 <span class="arithmatex">\(s_t^i\)</span>는 시점 <span class="arithmatex">\(t\)</span> 상태의 <span class="arithmatex">\(i\)</span>번째 차원이다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>예: HalfCheetah (state 17차원, action 6차원)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>timestep 하나 = 17 + 6 + 1(reward) = 24개 토큰
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>         (offline RL에서는 reward-to-go 토큰 1개가 더 붙어 25개)
+</code></pre></div>
+<p><strong>비효율적으로 보이지만, 이렇게 하면 분포에 대한 가정을 하지 않아도 된다.</strong> 기존 dynamics model은 다음 상태를 대각 공분산 Gaussian으로 가정하는 경우가 많다. TT는 차원마다 앞 차원에 조건부인 categorical 분포를 예측하므로, 여러 봉우리를 가진 분포나 차원 사이의 상관관계도 표현할 수 있다.</p>
+<h3 id="_4">연속값을 이산화하는 두 가지 방법<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<p>각 차원을 <span class="arithmatex">\(V\)</span>개의 구간(bin)으로 나눈다. 논문에서는 <span class="arithmatex">\(V = 100\)</span>을 썼다.</p>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>구간을 나누는 기준</th>
+<th>장점</th>
+<th>단점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Uniform</strong></td>
+<td>값의 범위를 같은 폭으로 분할: 폭 <span class="arithmatex">\(= (\max s^i - \min s^i)/V\)</span></td>
+<td>원래 공간의 거리 정보가 유지된다</td>
+<td>이상치 때문에 범위가 넓어지면, 데이터가 하나도 없는 구간이 많이 생긴다</td>
+</tr>
+<tr>
+<td><strong>Quantile</strong></td>
+<td>각 구간에 데이터가 같은 개수만큼 들어가게 분할</td>
+<td>모든 토큰이 데이터에 등장한다</td>
+<td>원래 공간의 거리 정보가 왜곡된다</td>
+</tr>
+</tbody>
+</table>
+<p>실험에서 두 방법은 대부분 비슷했다. 차이가 크게 난 곳은 <strong>HalfCheetah Medium-Expert</strong> 하나다. 속도 값의 범위가 넓어서 uniform 이산화로는 expert 행동에 필요한 정밀한 제어를 재현하지 못했고, quantile(95.0)이 uniform(40.8)의 두 배 이상을 기록했다.</p>
+<hr>
+<h2 id="3">3. 모델과 학습<a class="headerlink" href="#3" title="Permanent link">¶</a></h2>
+<p><strong>모델은 GPT와 같은 decoder-only Transformer다.</strong> 대규모 언어 모델보다 훨씬 작게, 4개 layer와 4개 self-attention head로 구성했다. 구현도 minGPT를 기반으로 한다. 논문이 강조하듯 모델 구조와 탐색 전략은 자연어처리에서 쓰던 것과 거의 같고, 새로 고민한 부분은 <strong>궤적 데이터를 어떻게 토큰으로 표현할지</strong>다.</p>
+<h3 id="_5">학습 목적 함수: 다음 토큰 예측<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<p>학습은 언어 모델과 똑같이 teacher forcing으로 다음 토큰의 log-likelihood를 최대화한다.</p>
+<div class="arithmatex">\[
+\mathcal{L}(\tau) = \sum_{t=1}^{T} \Bigg( \sum_{i=1}^{N} \log P_\theta\big(s_t^i \mid \mathbf{s}_t^{&lt;i}, \tau_{&lt;t}\big) + \sum_{j=1}^{M} \log P_\theta\big(a_t^j \mid \mathbf{a}_t^{&lt;j}, \mathbf{s}_t, \tau_{&lt;t}\big) + \log P_\theta\big(r_t \mid \mathbf{a}_t, \mathbf{s}_t, \tau_{&lt;t}\big) \Bigg)
+\]</div>
+<p>세 항은 각각 다음과 같이 해석할 수 있다.</p>
+<ul>
+<li><strong>상태 항:</strong> 과거 궤적과 같은 시점의 앞 차원들을 보고 다음 상태 차원을 예측한다. <strong>Dynamics model</strong> 역할이다.</li>
+<li><strong>행동 항:</strong> 현재 상태와 앞 행동 차원들을 보고 행동 차원을 예측한다. 데이터를 모은 <strong>behavior policy</strong> 역할이다.</li>
+<li><strong>보상 항:</strong> 상태와 행동을 보고 보상을 예측한다. <strong>Reward model</strong> 역할이다.</li>
+</ul>
+<p>여기서 <span class="arithmatex">\(\tau_{&lt;t}\)</span>는 시점 <span class="arithmatex">\(t\)</span> 이전까지의 궤적, <span class="arithmatex">\(\mathbf{s}_t^{&lt;i}\)</span>는 시점 <span class="arithmatex">\(t\)</span> 상태의 <span class="arithmatex">\(i\)</span>번째 이전 차원들이다.</p>
+<details class="note">
+<summary>세부 설정 (Appendix A)</summary>
+<ul>
+<li>입력 vocabulary 크기는 <span class="arithmatex">\(V \times (N + M + 2)\)</span>다. 상태, 행동, 보상, reward-to-go가 차원마다 별도의 토큰 집합을 가진다.</li>
+<li>출력 layer는 크기 <span class="arithmatex">\(V\)</span>인 logit만 낸다. 시퀀스에서의 위치로 어느 차원의 토큰인지가 정해지므로 구분할 수 있다.</li>
+<li>Token embedding 128차원, dropout 0.1, batch size 256</li>
+<li>학습률은 처음 2,000 update 동안 0에서 <span class="arithmatex">\(2.5 \times 10^{-4}\)</span>까지 선형으로 올린다(GPT 스케줄). Optimizer는 Adam.</li>
+<li>V100 GPU 1장에서 80 epoch, 데이터셋 크기에 따라 모델 하나당 6~12시간</li>
+</ul>
+</details>
+<hr>
+<h2 id="4-beam-search-planning">4. Beam Search로 Planning하기<a class="headerlink" href="#4-beam-search-planning" title="Permanent link">¶</a></h2>
+<p><strong>TT는 학습한 시퀀스 모델에서 "좋은 궤적"을 디코딩한 뒤, 그 궤적의 첫 행동만 실행하고 다음 step에서 다시 계획한다.</strong> 이는 model predictive control(MPC)의 receding-horizon 방식과 같다. 디코딩에는 자연어처리에서 흔히 쓰는 beam search를 쓴다.</p>
+<h3 id="beam-search-algorithm-1">기본 beam search (Algorithm 1)<a class="headerlink" href="#beam-search-algorithm-1" title="Permanent link">¶</a></h3>
+<p>Beam search는 매 step 모든 후보를 한 토큰씩 늘린 뒤, 점수가 가장 높은 <span class="arithmatex">\(B\)</span>개(beam width)만 남기는 과정을 반복한다.</p>
+<ol>
+<li>빈 시퀀스 하나에서 시작한다.</li>
+<li>남아 있는 각 시퀀스 뒤에 vocabulary의 모든 토큰을 하나씩 붙여 후보를 만든다.</li>
+<li>후보 중 <span class="arithmatex">\(\log P_\theta(\mathbf{y} \mid \mathbf{x})\)</span>가 가장 높은 <span class="arithmatex">\(B\)</span>개만 남긴다.</li>
+<li>원하는 길이가 될 때까지 2~3을 반복하고, 가장 점수가 높은 시퀀스를 반환한다.</li>
+</ol>
+<p><strong>문제 설정마다 바뀌는 것은 "무엇을 조건으로 줄지"와 "무엇을 점수로 쓸지"뿐이다.</strong> 아래 세 설정은 표준 언어 모델 디코딩에서 수정할 부분이 적은 순서다.</p>
+<table>
+<thead>
+<tr>
+<th>설정</th>
+<th>조건 (conditioning)</th>
+<th>Beam search의 점수</th>
+<th>추가로 필요한 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imitation learning</td>
+<td>현재 상태 (+ 과거 궤적)</td>
+<td>궤적의 likelihood</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>Goal-conditioned RL</td>
+<td>현재 상태 + <strong>목표 상태</strong></td>
+<td>궤적의 likelihood</td>
+<td>목표 상태를 시퀀스 맨 앞에 붙이기</td>
+</tr>
+<tr>
+<td>Offline RL</td>
+<td>현재 상태 (+ 과거 궤적)</td>
+<td><strong>누적 보상 + reward-to-go</strong></td>
+<td>Reward-to-go 토큰</td>
+</tr>
+</tbody>
+</table>
+<h3 id="41-imitation-learning">4.1 Imitation learning: 그대로 디코딩<a class="headerlink" href="#41-imitation-learning" title="Permanent link">¶</a></h3>
+<p><strong>학습 데이터의 궤적 분포를 재현하는 것이 목표라면, 언어 모델 디코딩을 수정 없이 쓰면 된다.</strong> 현재 상태 <span class="arithmatex">\(\mathbf{s}_t\)</span>를 조건으로 넣고 likelihood가 높은 궤적을 찾은 뒤, 첫 행동 <span class="arithmatex">\(\mathbf{a}_t\)</span>를 실행한다.</p>
+<p>이 방식은 행동 하나가 아니라 궤적 전체를 참조 행동에 맞추는, 장기 시야를 가진 model-based behavior cloning으로 볼 수 있다. 예측 길이를 행동 차원 수로 줄이면, 즉 행동 토큰만 디코딩하면 autoregressive policy를 쓰는 가장 단순한 behavior cloning과 정확히 같아진다.</p>
+<h3 id="42-goal-conditioned-rl">4.2 Goal-conditioned RL: 목표를 맨 앞에 붙이기<a class="headerlink" href="#42-goal-conditioned-rl" title="Permanent link">¶</a></h3>
+<p><strong>Transformer의 causal mask는 미래 토큰을 볼 수 없게 하지만, 미래를 조건으로 과거를 예측하는 확률 자체는 잘 정의된다.</strong> 그래서 이미 관측한 과거뿐 아니라 "일어나기를 바라는 미래"도 조건으로 줄 수 있다. 마지막 상태를 목표 <span class="arithmatex">\(\mathbf{s}_T\)</span>로 조건화하면 다음 확률로 디코딩하게 된다.</p>
+<div class="arithmatex">\[
+P_\theta\big(s_t^i \mid \mathbf{s}_t^{&lt;i}, \tau_{&lt;t}, \mathbf{s}_T\big)
+\]</div>
+<p>구현은 간단하다. 목표 상태를 시퀀스 맨 앞으로 옮겨 <span class="arithmatex">\(\{\mathbf{s}_T, \mathbf{s}_1, \mathbf{s}_2, \ldots, \mathbf{s}_{T-1}\}\)</span>로 바꾸면 된다. 그러면 attention mask를 고치지 않아도 모든 예측이 목표를 참조할 수 있다.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[ s_T (목표) ] [ s_1  a_1  r_1 ] [ s_2  a_2  r_2 ] ...
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>      ↑
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  맨 앞에 두면 causal mask를 그대로 둬도 뒤의 모든 토큰이 목표를 볼 수 있다
+</code></pre></div>
+<p>학습할 때 각 궤적의 실제 마지막 상태를 목표로 붙이므로, 이는 model-free RL의 goal relabeling(hindsight experience replay)과 닮았다. 보상이나 reward shaping은 전혀 필요 없다. 논문의 표현대로, 이는 시퀀스 모델링의 표준 작업인 <strong>"주어진 증거에서 가장 그럴듯한 시퀀스 추론"</strong>과 같다.</p>
+<h3 id="43-offline-rl-likelihood">4.3 Offline RL: likelihood 대신 보상으로 고르기<a class="headerlink" href="#43-offline-rl-likelihood" title="Permanent link">¶</a></h3>
+<p><strong>보상을 최대화하려면 beam search의 점수를 log-probability에서 예측 보상으로 바꾸면 된다.</strong> Control-as-inference 관점에서는 전이의 log-probability를 "최적일 log-probability"로 바꾸는 것으로 해석할 수 있다.</p>
+<h4 id="reward-to-go">Reward-to-go로 근시안을 막는다<a class="headerlink" href="#reward-to-go" title="Permanent link">¶</a></h4>
+<p>계획 구간(horizon) 안의 보상만 더하면 당장 보상이 큰 쪽만 고르는 근시안적 행동이 나올 수 있다. 그래서 학습 데이터의 각 전이에 <strong>reward-to-go</strong>를 추가 토큰으로 붙인다.</p>
+<div class="arithmatex">\[
+R_t = \sum_{t'=t}^{T} \gamma^{t'-t} r_{t'}
+\]</div>
+<p><span class="arithmatex">\(R_t\)</span>도 다른 값과 같은 방식으로 이산화해, 보상 <span class="arithmatex">\(r_t\)</span> 다음에 예측하도록 학습한다. Planning할 때는 계획 구간 안의 누적 보상에 마지막 시점의 <span class="arithmatex">\(R_t\)</span>를 더해 그 뒤의 가치까지 반영한다.</p>
+<div class="admonition warning">
+<p class="admonition-title">주의: reward-to-go는 학습 데이터를 모은 정책의 가치다</p>
+<p><span class="arithmatex">\(R_t\)</span>는 데이터를 수집한 behavior policy의 Monte Carlo 가치 추정이다. TT가 만들어 내는 더 나은 정책의 가치와는 일반적으로 다르다. 그래도 TT는 이 값을 행동을 직접 고르는 데 쓰지 않고 <strong>beam search의 휴리스틱으로만</strong> 쓰기 때문에, value 추정이 아주 정확할 필요는 없다. Bellman update 없이 Monte Carlo로 바로 학습할 수 있다는 장점도 있다. 다만 sparse reward 같은 어려운 문제에서는 이 추정이 너무 부정확해진다(6.3절).</p>
+</div>
+<h4 id="_6">실제 탐색 절차<a class="headerlink" href="#_6" title="Permanent link">¶</a></h4>
+<p>보상과 reward-to-go는 <span class="arithmatex">\(N + M + 1\)</span>개 토큰마다 한 번씩만 나온다. 그래서 탐색은 두 단계로 나뉜다.</p>
+<ol>
+<li><strong>전이 하나를 샘플링:</strong> 상태·행동·보상·reward-to-go 토큰은 likelihood를 기준으로 디코딩한다. 관측 토큰은 top-1(greedy)로, 행동 토큰은 상위 20개 후보 중에서 샘플링한다(<span class="arithmatex">\(k_\text{obs}=1\)</span>, <span class="arithmatex">\(k_\text{act}=20\)</span>).</li>
+<li><strong>전이 단위로 걸러내기:</strong> 이렇게 만든 전이 <span class="arithmatex">\((\mathbf{s}_t, \mathbf{a}_t, r_t, R_t)\)</span> 전체를 하나의 "단어"처럼 취급하고, 매 step <strong>누적 보상 + reward-to-go</strong>가 가장 높은 <span class="arithmatex">\(B\)</span>개 궤적만 남긴다.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Offline RL용 beam search의 개념적인 흐름 (실제 구현은 토큰 단위로 동작)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">plan</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">beam_width</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">horizon</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">beams</span> <span class="o">=</span> <span class="p">[</span><span class="n">context</span><span class="p">]</span> <span class="o">*</span> <span class="n">beam_width</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">horizon</span><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="c1"># 1. 각 beam을 전이 하나만큼 확장 (s는 greedy, a는 top-20에서 샘플링, r·R도 디코딩)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">extend_one_transition</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">beams</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">expand</span><span class="p">)]</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="c1"># 2. 지금까지의 누적 보상 + 마지막 reward-to-go로 점수를 매겨 상위 B개만 유지</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="n">candidates</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">rewards</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span><span class="o">.</span><span class="n">reward_to_go</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="n">beams</span> <span class="o">=</span> <span class="n">candidates</span><span class="p">[:</span><span class="n">beam_width</span><span class="p">]</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="k">return</span> <span class="n">beams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">actions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 가장 좋은 궤적의 첫 행동만 실행 (MPC)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Hyperparameter</th>
+<th>의미</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beam width</td>
+<td>beam search에서 유지하는 후보 수</td>
+<td>256</td>
+</tr>
+<tr>
+<td>Planning horizon</td>
+<td>한 번 계획할 때 예측하는 전이 수</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Vocabulary size</td>
+<td>차원당 이산화 구간 수</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Context size</td>
+<td>입력으로 넣는 과거 전이 <span class="arithmatex">\((\mathbf{s}_t, \mathbf{a}_t, r_t, R_t)\)</span> 수</td>
+<td>5</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(k_\text{obs}\)</span></td>
+<td>관측을 샘플링하는 top-<span class="arithmatex">\(k\)</span></td>
+<td>1</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(k_\text{act}\)</span></td>
+<td>행동을 샘플링하는 top-<span class="arithmatex">\(k\)</span></td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-model-based-planning">4.4 기존 model-based planning과 무엇이 다른가<a class="headerlink" href="#44-model-based-planning" title="Permanent link">¶</a></h3>
+<p><strong>겉으로 보면 TT는 "행동 시퀀스를 샘플링하고, 모델로 결과를 예측하고, 보상이 가장 높은 궤적을 고르는" 평범한 model-based planner다.</strong> 결정적인 차이는 <strong>행동도 상태와 같은 모델에서 샘플링한다</strong>는 점이다.</p>
+<ul>
+<li><strong>기존 방식:</strong> 행동 시퀀스를 상태와 무관한 최적화 변수로 두고 보상을 최대화한다. 학습한 모델이 데이터에서 본 적 없는 행동에 대해 터무니없이 좋은 결과를 예측하면, optimizer가 그 허점을 파고든다. 분류기에 대한 adversarial example을 찾는 것과 비슷한 문제다.</li>
+<li><strong>TT:</strong> 행동이 데이터 분포에서 그럴듯한 범위 안에서만 샘플링되므로, 모델이 분포 밖 행동으로 질의되는 일이 줄어든다. 그래서 offline RL에서 흔히 쓰는 명시적인 pessimism이나 policy constraint 없이도 비슷한 효과를 얻는다.</li>
+</ul>
+<hr>
+<h2 id="5">5. 모델 분석<a class="headerlink" href="#5" title="Permanent link">¶</a></h2>
+<h3 id="51-100-step">5.1 장기 예측: 100 step을 예측해도 무너지지 않는다<a class="headerlink" href="#51-100-step" title="Permanent link">¶</a></h3>
+<p></p><figure markdown="span">
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/trajectory-transformer/02_prediction_visualization.png" data-desc-position="bottom"><img alt="Humanoid 궤적 예측 비교" src="../../assets/trajectory-transformer/02_prediction_visualization.png" width="700"></a>
+<br>
+<figcaption>Figure 2. 위부터 실제 궤적(Reference), TT 예측, feedforward Gaussian 모델(PETS) 예측. 길이 100의 궤적이며, 발과 머리의 경로를 선으로 표시했다. (source: 논문 Figure 2)</figcaption><p></p>
+</figure>
+<p><strong>같은 humanoid 데이터로 학습해도, TT는 100 step 뒤까지 실제와 구분되지 않는 궤적을 예측하지만 feedforward 모델은 중간에 넘어진다.</strong> 비교 대상은 PETS의 probabilistic ensemble이다. 저자들은 ensemble 크기, layer 수와 크기를 튜닝했지만 수십 step 넘게 정확한 모델을 만들지 못했다. 이전 model-based 연구들이 humanoid에서 예측 구간을 일부러 짧게 잡은 이유도 이 오차 누적 때문이다.</p>
+<p>TT의 예측은 policy 없이 이루어진다는 점도 다르다. 보통은 single-step 모델에 policy가 고른 행동을 넣어 rollout하지만, TT는 행동도 상태와 함께 모델링하므로 행동까지 스스로 예측한다.</p>
+<h3 id="52">5.2 오차 누적: 무엇이 정확도를 만들었나<a class="headerlink" href="#52" title="Permanent link">¶</a></h3>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/trajectory-transformer/03_compounding_errors.png" data-desc-position="bottom"><img alt="오차 누적 비교" src="../../assets/trajectory-transformer/03_compounding_errors.png" width="700"></a>
+<br>
+<figcaption>Figure 3. 예측 구간에 따른 실제 상태의 log-likelihood. 높을수록 정확하다. 점선(discrete oracle)은 uniform 이산화에서 이론적으로 얻을 수 있는 최댓값이다. (source: 논문 Figure 3)</figcaption>
+</figure>
+<p><strong>측정 방법:</strong> 같은 시작점에서 궤적을 1,000개 샘플링해 각 시점의 상태 분포를 추정한 뒤, held-out 실제 궤적의 상태가 그 분포에서 얼마나 그럴듯한지(log-likelihood)를 잰다. 이산 모델에서는 각 구간을 그 범위 안의 uniform 분포로 취급한다.</p>
+<p>이 실험에는 <strong>Markovian Transformer</strong>라는 ablation이 들어 있다. 구조는 TT와 같지만, context를 직전 timestep 하나로 잘라 그보다 먼 과거를 볼 수 없게 만든 모델이다.</p>
+<ul>
+<li><strong>완전 관측 humanoid (왼쪽):</strong> Markovian Transformer도 TT와 거의 비슷하게 정확하다. 즉 정확도의 대부분은 <strong>긴 context가 아니라 Transformer 구조와 차원별 autoregressive 이산화가 주는 표현력</strong>에서 나온다.</li>
+<li><strong>부분 관측 humanoid (오른쪽):</strong> 상태의 각 차원을 50% 확률로 가린 환경이다. 여기서는 TT가 Markovian Transformer보다 확실히 정확하다. 현재 관측만으로 상태를 알 수 없을 때 긴 context가 도움이 된다.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">오해 주의: self-attention이 긴 과거를 봐서 오차 누적이 해결된 것은 아니다</p>
+<p>완전 관측 환경에서는 한 step만 보는 Markovian Transformer도 비슷하게 정확했다. 장기 예측이 좋아진 주된 이유는 Gaussian 가정 없이 차원별로 분포를 표현하는 모델 구조다. 긴 context의 효과는 부분 관측 환경에서 드러난다.</p>
+</div>
+<h3 id="53-attention">5.3 Attention 패턴: 스스로 찾은 두 가지 전략<a class="headerlink" href="#53-attention" title="Permanent link">¶</a></h3>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/trajectory-transformer/04_attention_patterns.png" data-desc-position="bottom"><img alt="Attention 패턴" src="../../assets/trajectory-transformer/04_attention_patterns.png" width="700"></a>
+<br>
+<figcaption>Figure 4. Hopper에서 예측할 때의 attention map. 왼쪽은 1번째 layer, 오른쪽은 3번째 layer의 head다. 빨간색은 상태, 파란색은 행동이며 보상 차원은 생략했다. (source: 논문 Figure 4)</figcaption>
+</figure>
+<ul>
+<li><strong>Markovian 패턴 (왼쪽):</strong> 상태와 행동 모두 직전 전이에 집중한다. 모델이 Markov 성질을 스스로 발견한 셈이다.</li>
+<li><strong>줄무늬(striated) 패턴 (오른쪽):</strong> 상태의 각 차원이 여러 과거 시점의 <strong>같은 차원</strong>을 참조한다.</li>
+</ul>
+<p><strong>행동은 과거 상태보다 과거 행동을 더 많이 참조한다.</strong> 행동이 과거 상태만의 함수라는 일반적인 behavior cloning 가정과는 다르다. 오히려 일부 planning 알고리즘에서 행동 시퀀스를 부드럽게 만들려고 쓰는 action filtering(smoothing)과 닮았다.</p>
+<hr>
+<h2 id="6">6. 제어 실험 결과<a class="headerlink" href="#6" title="Permanent link">¶</a></h2>
+<h3 id="61-offline-rl-d4rl-locomotion">6.1 Offline RL: D4RL locomotion<a class="headerlink" href="#61-offline-rl-d4rl-locomotion" title="Permanent link">¶</a></h3>
+<p><strong>TT는 D4RL locomotion(v2)에서 기존 최고 수준의 offline RL 알고리즘과 같거나 더 좋은 성능을 낸다.</strong> 비교 대상은 접근 방식별로 다음과 같다.</p>
+<ul>
+<li><strong>BC:</strong> 순수 모방(behavior cloning)</li>
+<li><strong>MBOP:</strong> 기존 offline trajectory optimization 중 가장 좋은 방법</li>
+<li><strong>BRAC, CQL:</strong> model-free offline RL의 대표 방법 (temporal difference)</li>
+<li><strong>DT:</strong> 같은 시기에 나온 시퀀스 모델링 방법. Planning 대신 return conditioning을 쓴다.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Environment</th>
+<th style="text-align: right;">BC</th>
+<th style="text-align: right;">MBOP</th>
+<th style="text-align: right;">BRAC</th>
+<th style="text-align: right;">CQL</th>
+<th style="text-align: right;">DT</th>
+<th style="text-align: right;">TT (uniform)</th>
+<th style="text-align: right;">TT (quantile)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Med-Expert</td>
+<td>HalfCheetah</td>
+<td style="text-align: right;">59.9</td>
+<td style="text-align: right;"><strong>105.9</strong></td>
+<td style="text-align: right;">41.9</td>
+<td style="text-align: right;">91.6</td>
+<td style="text-align: right;">86.8</td>
+<td style="text-align: right;">40.8 ±2.3</td>
+<td style="text-align: right;">95.0 ±0.2</td>
+</tr>
+<tr>
+<td>Med-Expert</td>
+<td>Hopper</td>
+<td style="text-align: right;">79.6</td>
+<td style="text-align: right;">55.1</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">105.4</td>
+<td style="text-align: right;">107.6</td>
+<td style="text-align: right;">106.0 ±0.28</td>
+<td style="text-align: right;"><strong>110.0</strong> ±2.7</td>
+</tr>
+<tr>
+<td>Med-Expert</td>
+<td>Walker2d</td>
+<td style="text-align: right;">36.6</td>
+<td style="text-align: right;">70.2</td>
+<td style="text-align: right;">81.6</td>
+<td style="text-align: right;"><strong>108.8</strong></td>
+<td style="text-align: right;">108.1</td>
+<td style="text-align: right;">91.0 ±2.8</td>
+<td style="text-align: right;">101.9 ±6.8</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>HalfCheetah</td>
+<td style="text-align: right;">43.1</td>
+<td style="text-align: right;">44.6</td>
+<td style="text-align: right;">46.3</td>
+<td style="text-align: right;">44.0</td>
+<td style="text-align: right;">42.6</td>
+<td style="text-align: right;">44.0 ±0.31</td>
+<td style="text-align: right;"><strong>46.9</strong> ±0.4</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>Hopper</td>
+<td style="text-align: right;">63.9</td>
+<td style="text-align: right;">48.8</td>
+<td style="text-align: right;">31.3</td>
+<td style="text-align: right;">58.5</td>
+<td style="text-align: right;"><strong>67.6</strong></td>
+<td style="text-align: right;">67.4 ±2.9</td>
+<td style="text-align: right;">61.1 ±3.6</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>Walker2d</td>
+<td style="text-align: right;">77.3</td>
+<td style="text-align: right;">41.0</td>
+<td style="text-align: right;">81.1</td>
+<td style="text-align: right;">72.5</td>
+<td style="text-align: right;">74.0</td>
+<td style="text-align: right;"><strong>81.3</strong> ±2.1</td>
+<td style="text-align: right;">79.0 ±2.8</td>
+</tr>
+<tr>
+<td>Med-Replay</td>
+<td>HalfCheetah</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">42.3</td>
+<td style="text-align: right;"><strong>47.7</strong></td>
+<td style="text-align: right;">45.5</td>
+<td style="text-align: right;">36.6</td>
+<td style="text-align: right;">44.1 ±0.9</td>
+<td style="text-align: right;">41.9 ±2.5</td>
+</tr>
+<tr>
+<td>Med-Replay</td>
+<td>Hopper</td>
+<td style="text-align: right;">27.6</td>
+<td style="text-align: right;">12.4</td>
+<td style="text-align: right;">0.6</td>
+<td style="text-align: right;">95.0</td>
+<td style="text-align: right;">82.7</td>
+<td style="text-align: right;"><strong>99.4</strong> ±3.2</td>
+<td style="text-align: right;">91.5 ±3.6</td>
+</tr>
+<tr>
+<td>Med-Replay</td>
+<td>Walker2d</td>
+<td style="text-align: right;">36.9</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">77.2</td>
+<td style="text-align: right;">66.6</td>
+<td style="text-align: right;">79.4 ±3.3</td>
+<td style="text-align: right;"><strong>82.6</strong> ±6.9</td>
+</tr>
+<tr>
+<td><strong>Average</strong></td>
+<td></td>
+<td style="text-align: right;">47.7</td>
+<td style="text-align: right;">47.8</td>
+<td style="text-align: right;">36.9</td>
+<td style="text-align: right;">77.6</td>
+<td style="text-align: right;">74.7</td>
+<td style="text-align: right;">72.6</td>
+<td style="text-align: right;"><strong>78.9</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table 1. D4RL locomotion 정규화 점수. TT는 15개 seed(독립 학습한 Transformer 5개 × 모델당 궤적 3개)의 평균과 표준오차다. 각 행의 최고 점수를 굵게 표시했다. (source: 논문 Table 1)</em></p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/trajectory-transformer/05_offline_averages.png" data-desc-position="bottom"><img alt="알고리즘별 평균 점수" src="../../assets/trajectory-transformer/05_offline_averages.png" width="600"></a>
+<br>
+<figcaption>Figure 5. Table 1의 알고리즘별 평균. 색은 접근 방식을 나타내며, Trajectory Transformer는 quantile 이산화 결과다. (source: 논문 Figure 5)</figcaption>
+</figure>
+<p>읽을 때 짚어 둘 점은 다음과 같다.</p>
+<ul>
+<li><strong>평균으로 보면 TT(quantile) 78.9, CQL 77.6, DT 74.7로 상위권이 촘촘하다.</strong> 개별 데이터셋에서는 TT가 항상 1등은 아니다. 논문도 "on par with or better"라고 표현한다.</li>
+<li><strong>Uniform과 quantile은 HalfCheetah Medium-Expert를 빼면 비슷하다.</strong> 이 데이터셋 하나에서 40.8 대 95.0으로 갈린 것이 평균 차이(72.6 대 78.9)의 대부분을 만든다.</li>
+<li><strong>Med-Replay처럼 데이터 품질이 섞인 경우에도 BC보다 훨씬 높다.</strong> 단순 모방이 아니라 보상을 보고 궤적을 고르고 있다는 뜻이다.</li>
+</ul>
+<h3 id="62-imitation-learning-goal-reaching">6.2 Imitation learning과 goal-reaching<a class="headerlink" href="#62-imitation-learning-goal-reaching" title="Permanent link">¶</a></h3>
+<p><strong>Imitation:</strong> expert 데이터로 학습한 뒤 likelihood 기준 beam search를 receding-horizon controller로 쓰면, Hopper에서 104%, Walker2d에서 109%의 정규화 점수를 얻는다. 표준 feedforward behavior cloning으로도 expert를 재현할 수 있으므로 놀라운 결과는 아니다. 하지만 언어 모델의 디코딩 알고리즘을 그대로 제어에 쓸 수 있다는 점을 보여 준다.</p>
+<figure>
+  <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../../assets/trajectory-transformer/06_goal_reaching.png" data-desc-position="bottom"><img alt="Four rooms goal-reaching" src="../../assets/trajectory-transformer/06_goal_reaching.png" width="700"></a>
+<br>
+<figcaption>Figure 6. 연속 공간 four rooms 환경에서 목표 상태를 조건으로 준 TT의 실제 궤적. 검은 원이 시작, 파란 원이 목표이며 시간이 지날수록 색이 진해진다. (source: 논문 Figure 6)</figcaption>
+</figure>
+<p><strong>Goal-reaching:</strong> 무작위 시작·목표로 수집한 goal-reaching agent의 궤적으로 학습한 뒤, 목표 상태를 시퀀스 앞에 붙여 계획한다. 보상이나 reward shaping 없이 goal relabeling만으로 방을 돌아 목표에 도달한다. 그림의 선은 모델이 상상한 시퀀스가 아니라 controller가 실제로 움직인 궤적이다.</p>
+<p>Appendix F에서는 같은 방법을 매 episode마다 지도가 바뀌는 MiniGrid-MultiRoom으로 확장한다. 지도 이미지를 작은 CNN으로 embedding해 position embedding처럼 토큰 embedding에 더하는 것만 바꿨고, 처음 보는 지도에서 목표의 94%에 도달했다.</p>
+<h3 id="63-q-function-sparse-reward-antmaze">6.3 Q-function과 결합: sparse reward AntMaze<a class="headerlink" href="#63-q-function-sparse-reward-antmaze" title="Permanent link">¶</a></h3>
+<p><strong>보상이 목표에 도달할 때만 주어지는 AntMaze에서는 Monte Carlo reward-to-go가 거의 정보를 주지 못한다.</strong> 데이터셋에는 목표까지 완주한 궤적이 드물고, 보상이 0인 궤적 여러 개를 이어 붙여야(stitching) 목표에 갈 수 있다. 이런 시간적 조합(temporal compositionality)에는 dynamic programming이 필요하다.</p>
+<p>그래서 TT의 reward-to-go 대신, <strong>IQL로 학습한 Q-function을 beam search의 휴리스틱으로</strong> 쓴다. 이 변형을 TT (+Q)라고 부른다.</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th style="text-align: right;">BC</th>
+<th style="text-align: right;">CQL</th>
+<th style="text-align: right;">IQL</th>
+<th style="text-align: right;">DT</th>
+<th style="text-align: right;">TT (+Q)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Umaze</td>
+<td style="text-align: right;">54.6</td>
+<td style="text-align: right;">74.0</td>
+<td style="text-align: right;">87.5</td>
+<td style="text-align: right;">59.2</td>
+<td style="text-align: right;"><strong>100.0</strong> ±0.0</td>
+</tr>
+<tr>
+<td>Medium-Play</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">61.2</td>
+<td style="text-align: right;">71.2</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;"><strong>93.3</strong> ±6.4</td>
+</tr>
+<tr>
+<td>Medium-Diverse</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">53.7</td>
+<td style="text-align: right;">70.0</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;"><strong>100.0</strong> ±0.0</td>
+</tr>
+<tr>
+<td>Large-Play</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">15.8</td>
+<td style="text-align: right;">39.6</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;"><strong>66.7</strong> ±12.2</td>
+</tr>
+<tr>
+<td>Large-Diverse</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">14.9</td>
+<td style="text-align: right;">47.5</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;"><strong>60.0</strong> ±12.7</td>
+</tr>
+<tr>
+<td><strong>Average</strong></td>
+<td style="text-align: right;">10.9</td>
+<td style="text-align: right;">44.9</td>
+<td style="text-align: right;">63.2</td>
+<td style="text-align: right;">11.8</td>
+<td style="text-align: right;"><strong>84.0</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table 2. AntMaze(v0) 성공률. TT (+Q)는 15개 seed의 평균과 표준오차이며, baseline 결과는 IQL 논문(Kostrikov et al., 2021)에서 가져왔다. (source: 논문 Table 2)</em></p>
+<ul>
+<li><strong>TT (+Q)는 Q-function을 빌려 온 IQL보다도 높다.</strong> 같은 Q-function이라도 policy를 추출하는 데 쓰는 것보다 탐색의 휴리스틱으로 쓰는 편이 Q-function의 오차에 덜 민감하다는 해석이다.</li>
+<li><strong>DT는 Medium·Large에서 0점이다.</strong> Return conditioning은 데이터에 목표까지 가는 완전한 시연이 있어야 잘 작동하는데, AntMaze 데이터셋에는 그런 궤적이 부족하다. TT (+Q)는 dynamic programming(Q-function)과 planning 양쪽에서 조합 능력을 얻는다.</li>
+</ul>
+<hr>
+<h2 id="7-trajectory-transformer-vs-decision-transformer">7. Trajectory Transformer vs Decision Transformer<a class="headerlink" href="#7-trajectory-transformer-vs-decision-transformer" title="Permanent link">¶</a></h2>
+<p><strong>두 논문은 2021년 6월 거의 동시에 나왔고, 둘 다 "강화학습을 시퀀스 모델링으로 풀 수 있다"는 같은 질문에 답한다.</strong> 차이는 학습한 시퀀스 모델로 행동을 고르는 방식에 있다.</p>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>Trajectory Transformer</th>
+<th>Decision Transformer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>입력 시퀀스</td>
+<td>상태·행동·보상·reward-to-go의 <strong>차원별 토큰</strong></td>
+<td>(return-to-go, 상태, 행동)을 <strong>timestep당 3개 토큰</strong>으로</td>
+</tr>
+<tr>
+<td>연속값 처리</td>
+<td>차원마다 이산화 → categorical 분포</td>
+<td>선형 embedding으로 연속값을 직접 입력</td>
+</tr>
+<tr>
+<td>예측 대상</td>
+<td>상태·행동·보상을 <strong>모두</strong> 예측 (world model 역할 포함)</td>
+<td><strong>행동만</strong> 예측</td>
+</tr>
+<tr>
+<td>행동 선택</td>
+<td><strong>Beam search로 planning</strong> (MPC)</td>
+<td>원하는 return을 조건으로 주고 한 번에 행동 생성</td>
+</tr>
+<tr>
+<td>보상 최대화 방식</td>
+<td>탐색할 때 누적 보상 + 가치로 궤적을 고른다</td>
+<td>높은 목표 return을 조건으로 준다</td>
+</tr>
+<tr>
+<td>Dynamic programming과 결합</td>
+<td>Q-function을 탐색 휴리스틱으로 바로 대체 가능 (TT +Q)</td>
+<td>구조상 바로 끼워 넣기 어렵다</td>
+</tr>
+<tr>
+<td>장점</td>
+<td>하나의 모델로 여러 설정 처리, 장기 예측 정확</td>
+<td>단순하고 빠르다</td>
+</tr>
+<tr>
+<td>단점</td>
+<td>Planning이 느리다</td>
+<td>완전한 시연이 부족하면 약하다 (AntMaze)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>World model 관점에서 보면 TT는 "환경과 정책을 함께 시뮬레이션하는 모델"이고, DT는 "조건부 정책"이다.</strong> TT가 이 스터디의 world model 계보에 들어오는 이유도 상태를 예측하는 dynamics model을 품고 있기 때문이다.</p>
+<hr>
+<h2 id="8-discussion">8. Discussion<a class="headerlink" href="#8-discussion" title="Permanent link">¶</a></h2>
+<h3 id="strengths">Strengths<a class="headerlink" href="#strengths" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>부품의 통합:</strong> Policy, dynamics model, value 추정기를 하나의 시퀀스 모델로 대체해, 따로 설계·튜닝할 부품이 줄었다.</li>
+<li><strong>정확한 장기 예측:</strong> Gaussian 가정 없는 차원별 autoregressive 모델링으로, humanoid에서 100 step 예측이 가능했다.</li>
+<li><strong>분포 밖 행동을 자연스럽게 억제:</strong> 행동을 데이터 분포에서 샘플링하므로, offline RL에서 별도의 보수적 제약 없이도 모델 exploitation이 줄어든다.</li>
+<li><strong>유연성:</strong> 같은 모델에 디코딩 기준만 바꿔 imitation, goal-reaching, offline RL을 처리한다.</li>
+<li><strong>Dynamic programming과의 결합:</strong> Q-function을 휴리스틱으로 끼워 넣어 sparse reward 문제에서 큰 향상을 얻었다.</li>
+</ul>
+<h3 id="limitations">Limitations (논문이 밝힌 한계)<a class="headerlink" href="#limitations" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>느린 planning:</strong> Context가 길어지면 행동 하나를 고르는 데 수 초가 걸려 대부분의 실시간 제어에는 쓰기 어렵다. 이 때문에 online RL 실험도 사실상 어렵다. 효율적인 Transformer 구조를 쓰면 줄일 수 있을 것으로 본다.</li>
+<li><strong>이산화의 정밀도 상한:</strong> 연속값을 구간으로 나누므로 예측 정밀도에 원리적인 상한이 있다. HalfCheetah Medium-Expert에서 uniform 이산화가 실패한 것도 같은 맥락이다.</li>
+<li><strong>순수 시퀀스 모델링만으로는 부족한 경우:</strong> Sparse reward처럼 어려운 문제에서는 결국 dynamic programming(Q-function)의 도움이 필요했다. 저자들도 가장 실용적인 형태는 dynamic programming과의 결합일 수 있다고 정리한다.</li>
+</ul>
+<h3 id="_7">리뷰어 코멘트<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>고차원 관측:</strong> 실험은 대부분 저차원 proprioceptive 상태에서 이루어졌다. 차원마다 토큰을 하나씩 만들기 때문에, 이미지처럼 차원이 큰 관측에 그대로 적용하면 시퀀스 길이가 감당하기 어렵게 길어진다. MiniGrid 실험에서도 지도 이미지는 토큰이 아니라 별도의 CNN embedding으로 넣었다.</li>
+<li><strong>Context 길이:</strong> 실제 설정에서 context는 과거 전이 5개다. 긴 기억이 필요한 환경에서의 효과는 부분 관측 humanoid 예측 실험 정도로만 확인되었다.</li>
+<li><strong>후속 연구로의 연결:</strong> "궤적을 토큰으로 보고 Transformer로 world model을 학습한다"는 발상은 이후 IRIS, TWM처럼 Transformer를 world model로 쓰는 연구로 이어진다. Decision Transformer와 함께 강화학습을 대규모 시퀀스 모델링으로 보는 흐름의 출발점이 되었다.</li>
+</ul>
+<h3 id="world-model">World model 계보에서의 위치<a class="headerlink" href="#world-model" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>방법</th>
+<th>모델이 예측하는 것</th>
+<th>행동을 고르는 방법</th>
+<th>핵심 차별점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>World Models (2018)</td>
+<td>잠재 상태 (VAE + MDN-RNN)</td>
+<td>작은 controller를 CMA-ES로 학습</td>
+<td>꿈속에서 학습</td>
+</tr>
+<tr>
+<td>PlaNet (2019)</td>
+<td>잠재 상태 (RSSM)</td>
+<td>CEM planning</td>
+<td>잠재 공간에서 planning</td>
+</tr>
+<tr>
+<td>Dreamer (2020)</td>
+<td>잠재 상태 (RSSM)</td>
+<td>상상 속 actor-critic</td>
+<td>가치 gradient로 정책 학습</td>
+</tr>
+<tr>
+<td>MuZero (2020)</td>
+<td>가치·정책·보상 (관측 재구성 없음)</td>
+<td>MCTS</td>
+<td>계획에 필요한 것만 예측</td>
+</tr>
+<tr>
+<td><strong>Trajectory Transformer (2021)</strong></td>
+<td><strong>상태·행동·보상 시퀀스 전체</strong></td>
+<td><strong>Beam search</strong></td>
+<td><strong>강화학습 = 시퀀스 모델링</strong></td>
+</tr>
+<tr>
+<td>Decision Transformer (2021)</td>
+<td>Return 조건부 행동</td>
+<td>조건부 생성 (planning 없음)</td>
+<td>Return conditioning</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="_8">참고 자료<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<ul>
+<li>논문: <a href="https://arxiv.org/abs/2106.02039">Offline Reinforcement Learning as One Big Sequence Modeling Problem</a></li>
+<li>코드: <a href="https://github.com/jannerm/trajectory-transformer">jannerm/trajectory-transformer</a></li>
+<li>프로젝트 페이지 (attention 시각화 포함): <a href="https://trajectory-transformer.github.io">trajectory-transformer.github.io</a></li>
+<li>Decision Transformer: <a href="https://arxiv.org/abs/2106.01345">arXiv:2106.01345</a></li>
+<li>D4RL 벤치마크: <a href="https://arxiv.org/abs/2004.07219">arXiv:2004.07219</a></li>
+<li>IQL (Implicit Q-Learning): <a href="https://arxiv.org/abs/2110.06169">arXiv:2110.06169</a></li>
+<li>PETS: <a href="https://arxiv.org/abs/1805.12114">arXiv:1805.12114</a></li>
+<li>Control as inference: <a href="https://arxiv.org/abs/1805.00909">Levine, 2018 (arXiv:1805.00909)</a></li>
+</ul>
+
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/edit/main/docs/review/trajectory-transformer.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"></path></svg>
+  </a>
+
+
+
+  
+  <a href="https://github.com/Pseudo-Lab/hello-world-models/raw/main/docs/review/trajectory-transformer.md" title="Download source" class="md-content__button md-icon" download="">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"></path></svg>
+  </a>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/sidebar-toggle.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

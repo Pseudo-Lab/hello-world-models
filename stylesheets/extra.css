@@ -1,0 +1,33 @@
+.md-grid {
+  max-width: 1440px;
+}
+
+/* 현재 보고 있는 목차 항목 강조 */
+.md-nav__link--active {
+  font-weight: 700;
+  color: var(--md-accent-fg-color) !important;
+  border-left: 3px solid var(--md-accent-fg-color);
+  padding-left: 8px;
+  transition: all 0.2s ease;
+}
+
+/* 왼쪽 목차 접기 버튼: 목차가 서랍 메뉴로 바뀌는 좁은 화면에서는 숨긴다.
+   Material의 .md-header__button:not([hidden]) { display: inline-block }보다
+   우선하도록 .md-header__button.sidebar-toggle로 쓴다. */
+.md-header__button.sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-header__button.sidebar-toggle {
+    display: inline-block;
+  }
+
+  html.sidebar-collapsed .md-sidebar--primary {
+    display: none;
+  }
+}
