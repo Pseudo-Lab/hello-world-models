@@ -37,7 +37,7 @@
 | 11 | 2026-06-17 | 김주연 | [V-JEPA 2](https://ai.meta.com/research/publications/v-jepa-2-self-supervised-video-models-enable-understanding-prediction-and-planning/) (arXiv 2025) | [YouTube](https://youtu.be/oR6p-T99E48) / [Review](https://pseudo-lab.github.io/hello-world-models/review/v-jepa-2/) |
 | 12 | 2026-06-24 | 이재호 | [Genie](https://arxiv.org/abs/2402.15391) (ICML 2024) | [YouTube](https://youtu.be/B0qfy_8wVDc) / [Review](https://pseudo-lab.github.io/hello-world-models/review/genie/) |
 | 13 | 2026-07-01 | 유지형 | [Cosmos](https://arxiv.org/abs/2501.03575) (arXiv 2025) | [YouTube](https://youtu.be/V9tw65IKPSE) / [Review](https://pseudo-lab.github.io/hello-world-models/review/cosmos/) |
-| 14 | 2026-10-07 | 유정화 | [Season 1 Review](https://github.com/Pseudo-Lab/hello-world-models/discussions/17)<br>(World Models, Dreamer, JEPA, Genie, Cosmos) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/season1-review/) |
+| 14 | 2026-10-07 | 유정화 | [Season 1 Review](https://github.com/Pseudo-Lab/hello-world-models/discussions/17)<br>(World Models, Dreamer, JEPA, Genie, Cosmos) | [YouTube](https://youtu.be/8vUMlmboF9w) / [Review](https://pseudo-lab.github.io/hello-world-models/review/season1-review/) |
 | 15 | 2026-10-14 | 유정화  | [DreamerV4](https://arxiv.org/abs/2509.24527) (arXiv 2025)  | YouTube / Review |
 | 16 | 2026-10-21 |  |  | YouTube / Review |
 | 17 | 2026-10-28 |  |  | YouTube / Review |
