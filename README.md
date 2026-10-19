@@ -39,7 +39,7 @@
 | 12 | 2026-06-24 | 이재호 | [Genie](https://arxiv.org/abs/2402.15391) (ICML 2024) | [YouTube](https://youtu.be/B0qfy_8wVDc) / [Review](https://pseudo-lab.github.io/hello-world-models/review/genie/) |
 | 13 | 2026-07-01 | 유지형 | [Cosmos](https://arxiv.org/abs/2501.03575) (arXiv 2025) | [YouTube](https://youtu.be/V9tw65IKPSE) / [Review](https://pseudo-lab.github.io/hello-world-models/review/cosmos/) |
 | 14 | 2026-10-07 | 유정화 | [Season 1 Review](https://github.com/Pseudo-Lab/hello-world-models/discussions/17)<br>(World Models, Dreamer, JEPA, Genie, Cosmos) | [YouTube](https://youtu.be/8vUMlmboF9w) / [Review](https://pseudo-lab.github.io/hello-world-models/review/season1-review/) |
-| 15 | 2026-10-14 | 유정화 | [DreamerV4](https://arxiv.org/abs/2509.24527) (arXiv 2025)  | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v4/) |
+| 15 | 2026-10-14 | 유정화 | [DreamerV4](https://arxiv.org/abs/2509.24527) (arXiv 2025)  | [YouTube](https://youtu.be/iT8nkXbD9Ro) / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v4/) |
 | 16 | 2026-10-21 | 유지형 |  | YouTube / Review |
 | 17 | 2026-10-28 |  |  | YouTube / Review |
 | 18 | 2026-11-04 |  |  | YouTube / Review |
