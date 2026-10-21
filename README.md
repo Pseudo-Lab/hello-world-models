@@ -41,7 +41,7 @@
 | 14 | 2026-10-07 | 유정화 | [Season 1 Review](https://github.com/Pseudo-Lab/hello-world-models/discussions/17)<br>(World Models, Dreamer, JEPA, Genie, Cosmos) | [YouTube](https://youtu.be/8vUMlmboF9w) / [Review](https://pseudo-lab.github.io/hello-world-models/review/season1-review/) |
 | 15 | 2026-10-14 | 유정화 | [DreamerV4](https://arxiv.org/abs/2509.24527) (arXiv 2025)  | [YouTube](https://youtu.be/iT8nkXbD9Ro) / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v4/) |
 | 16 | 2026-10-21 | 유지형 |  | YouTube / Review |
-| 17 | 2026-10-28 |  |  | YouTube / Review |
+| 17 | 2026-10-28 | 송용휘 |  | YouTube / Review |
 | 18 | 2026-11-04 |  |  | YouTube / Review |
 | 19 | 2026-11-11 |  |  | YouTube / Review |
 | 20 | 2026-11-18 |  |  | YouTube / Review |
