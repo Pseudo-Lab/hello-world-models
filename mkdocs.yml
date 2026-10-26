@@ -66,6 +66,7 @@ nav:
 - Home: index.md
 - Overview:
   - Season 1 Review (2026): review/season1-review.md
+  - World Model for Robot Learning Survey (2026): review/wm-robot-survey.md
 - Model-Based RL:
   - World Models (2018): review/world-models.md
   - PlaNet (2019): review/planet.md
