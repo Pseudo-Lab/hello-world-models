@@ -20,7 +20,8 @@
 - 유지형 [Jihyeong Yoo] | [Github](https://github.com/Yoojihyeong566) | [Linkedin](https://www.linkedin.com/in/ji-hyeong-yoo-99b701326) |
 - 김현수 [Hyunsoo Kim] | [Github](https://github.com/gustn9609) | Linkedin |
 - 송용휘 [Yonghwi Song] | [Github](https://github.com/thddydgnl) | [Linkedin](https://www.linkedin.com/in/yonghwi-song-115395411/) |
-- 허채연 [Chaeyeon Heo] | [Github](https://github.com/chaeyeonheo) | [Linkedin](https://www.linkedin.com/in/chaeyeon-heo/) | 
+- 허채연 [Chaeyeon Heo] | [Github](https://github.com/chaeyeonheo) | [Linkedin](https://www.linkedin.com/in/chaeyeon-heo/) |
+- 김민수 [Minsu Kim] | [Github](https://github.com/coco0303a) | Linkedin |
 
 ## Reviewed Papers
 | idx | Date | Presenter | Paper | Resources |
