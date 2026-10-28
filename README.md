@@ -46,7 +46,7 @@
 | 18 | 2026-11-04 |  |  | YouTube / Review |
 | 19 | 2026-11-11 | 이우진 |  | YouTube / Review |
 | 20 | 2026-11-18 |  |  | YouTube / Review |
-| 21 | 2026-11-25 |  |  | YouTube / Review |
+| 21 | 2026-11-25 | 김민수 |  | YouTube / Review |
 | 22 | 2026-12-02 |  |  | YouTube / Review |
 | 23 | 2026-12-09 |  |  | YouTube / Review |
 | 24 | 2026-12-16 |  |  | YouTube / Review |
