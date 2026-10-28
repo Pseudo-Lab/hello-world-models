@@ -43,9 +43,9 @@
 | 15 | 2026-10-14 | 유정화 | [DreamerV4](https://arxiv.org/abs/2509.24527) (arXiv 2025)  | [YouTube](https://youtu.be/iT8nkXbD9Ro) / [Review](https://pseudo-lab.github.io/hello-world-models/review/dreamer-v4/) |
 | 16 | 2026-10-21 | 유지형 |  [Qwen-RobotWorld](https://arxiv.org/abs/2606.17030) (arXiv 2026) | [YouTube](https://youtu.be/qPQSTmDSiAc) / Review |
 | 17 | 2026-10-28 | 송용휘 | [World Model for Robot Learning Survey](https://arxiv.org/abs/2605.00080) (arXiv 2026) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/wm-robot-survey/) |
-| 18 | 2026-11-04 |  |  | YouTube / Review |
+| 18 | 2026-11-04 | 허채연 |  | YouTube / Review |
 | 19 | 2026-11-11 | 이우진 |  | YouTube / Review |
-| 20 | 2026-11-18 |  |  | YouTube / Review |
+| 20 | 2026-11-18 | 김해람 |  | YouTube / Review |
 | 21 | 2026-11-25 | 김민수 |  | YouTube / Review |
 | 22 | 2026-12-02 |  |  | YouTube / Review |
 | 23 | 2026-12-09 |  |  | YouTube / Review |
