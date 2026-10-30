@@ -10,7 +10,7 @@ domain: overview
 !!! info "Information"
     - **Title:** Hello, World Models: 지난 시즌 리뷰 (핵심 논문 다시 보기)
     - **Session:** Season 2 오리엔테이션 (2026-10-07)
-    - **Papers:** [World Models](world-models.md), [PlaNet](planet.md), [Dreamer](dreamer.md), [DreamerV2](dreamer-v2.md), [DreamerV3](dreamer-v3.md), I-JEPA, [V-JEPA](v-jepa.md), [V-JEPA 2](v-jepa-2.md), [Genie](genie.md), [Cosmos](cosmos.md)
+    - **Papers:** [World Models](world-models.md), [PlaNet](planet.md), [Dreamer](dreamer.md), [DreamerV2](dreamer-v2.md), [DreamerV3](dreamer-v3.md), I-JEPA, [V-JEPA](v-jepa.md), V-JEPA 2, [Genie](genie.md), [Cosmos](cosmos.md)
     - **Presenter:** [유정화](https://github.com/jeongHwarr)
     - **Last updated:** 2026-10-08
 
@@ -185,7 +185,7 @@ Context encoder와 target encoder는 같은 ViT 구조를 쓰지만 역할과 �
 
 **V-JEPA의 결과는 이미지 모델과 영상 모델의 차이를 보여 준다.** 인코더를 고정한 채 평가했을 때, 실제 동작을 봐야 정답을 알 수 있는 SSv2에서 V-JEPA는 72.2, DINOv2는 50.6을 기록했다. 이미지 모델은 무엇이 있는지는 알지만 어떻게 움직이는지는 모르고, V-JEPA는 영상에서 움직임을 배웠다는 뜻이다.
 
-2025년에 나온 V-JEPA 2는 여기에 행동 조건부 예측기를 붙였다. 그 결과 처음 보는 환경에서도 추가 학습 없이 로봇 팔의 움직임을 zero-shot으로 계획할 수 있게 되었다. 자세한 내용은 [V-JEPA](v-jepa.md), [V-JEPA 2](v-jepa-2.md) 리뷰를 참고한다.
+2025년에 나온 V-JEPA 2는 여기에 행동 조건부 예측기를 붙였다. 그 결과 처음 보는 환경에서도 추가 학습 없이 로봇 팔의 움직임을 zero-shot으로 계획할 수 있게 되었다. 자세한 내용은 [V-JEPA](v-jepa.md), V-JEPA 2 리뷰를 참고한다.
 
 ---
 
