@@ -21,6 +21,7 @@
 - 김현수 [Hyunsoo Kim] | [Github](https://github.com/gustn9609) | Linkedin |
 - 송용휘 [Yonghwi Song] | [Github](https://github.com/thddydgnl) | [Linkedin](https://www.linkedin.com/in/yonghwi-song-115395411/) |
 - 허채연 [Chaeyeon Heo] | [Github](https://github.com/chaeyeonheo) | [Linkedin](https://www.linkedin.com/in/chaeyeon-heo/) |
+- 이우진 [Wooijn Lee] | [Github](https://github.com/10kH) | [Linkedin](https://www.linkedin.com/in/writerwoody/) |
 - 김민수 [Minsu Kim] | [Github](https://github.com/coco0303a) | Linkedin |
 
 ## Reviewed Papers
@@ -45,7 +46,7 @@
 | 16 | 2026-10-21 | 유지형 |  [Qwen-RobotWorld](https://arxiv.org/abs/2606.17030) (arXiv 2026) | [YouTube](https://youtu.be/qPQSTmDSiAc) / Review |
 | 17 | 2026-10-28 | 송용휘 | [World Model for Robot Learning Survey](https://arxiv.org/abs/2605.00080) (arXiv 2026) | YouTube / [Review](https://pseudo-lab.github.io/hello-world-models/review/wm-robot-survey/) |
 | 18 | 2026-11-04 | 허채연 |  | YouTube / Review |
-| 19 | 2026-11-11 | 이우진 |  | YouTube / Review |
+| 19 | 2026-11-11 | 이우진 | [World Action Models are Zero-shot Policies](https://dreamzero0.github.io/) (arXiv 2026) | YouTube / Review |
 | 20 | 2026-11-18 | 김해람 |  | YouTube / Review |
 | 21 | 2026-11-25 | 김민수 |  | YouTube / Review |
 | 22 | 2026-12-02 |  |  | YouTube / Review |
