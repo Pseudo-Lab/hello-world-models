@@ -46,7 +46,7 @@
 | 16 | 2026-10-21 | 유지형 |  [Qwen-RobotWorld](https://arxiv.org/abs/2606.17030) (arXiv 2026) | [YouTube](https://youtu.be/qPQSTmDSiAc) / Review |
 | 17 | 2026-10-28 | 송용휘 | [World Model for Robot Learning Survey](https://arxiv.org/abs/2605.00080) (arXiv 2026) | [YouTube](https://youtu.be/yyoIG9iJilM) / [Review](https://pseudo-lab.github.io/hello-world-models/review/wm-robot-survey/) |
 | 18 | 2026-11-04 | 허채연 | [Video World Models with Long-term Spatial Memory](https://arxiv.org/abs/2506.05284) (NeurIPS 2025) | YouTube / Review |
-| 19 | 2026-11-11 | 이우진 | [World Action Models are Zero-shot Policies](https://dreamzero0.github.io/) (arXiv 2026) | YouTube / Review |
+| 19 | 2026-11-11 | 이우진 | [World Action Models are Zero-shot Policies](https://dreamzero0.github.io/)<br>(arXiv 2026) | YouTube / Review |
 | 20 | 2026-11-18 | 김해람 |  | YouTube / Review |
 | 21 | 2026-11-25 | 김민수 |  | YouTube / Review |
 | 22 | 2026-12-02 |  |  | YouTube / Review |
